@@ -1,30 +1,31 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ShapefileSharp.Tests.Shapefiles;
 
 namespace ShapefileSharp.Tests
 {
     [TestClass]
     public class ShapefileTests
     {
-        const string CountriesShapefilePath = "Data/ne_10m_admin_0_countries.shp";
+        private readonly Countries Countries = new Countries();
 
         [TestMethod]
-        public void Countries_ShapeType_Equals_Polygon()
+        public void ShapeType_Equals()
         {
-            var shapefile = new Shapefile(CountriesShapefilePath);
+            var shapefile = new Shapefile(Countries.FilePath);
 
-            Assert.AreEqual(ShapeType.Polygon, shapefile.ShapeType);
+            Assert.AreEqual(Countries.ShapeType, shapefile.ShapeType);
         }
 
         [TestMethod]
-        public void Countries_BoundingBox_Equals()
+        public void BoundingBox_Equals()
         {
-            var shapefile = new Shapefile(CountriesShapefilePath);
-            var boundingBox = shapefile.BoundingBox;
+            var shapefile = new Shapefile(Countries.FilePath);
 
-            Assert.AreEqual(boundingBox.XMax, 180.0000000000002);
-            Assert.AreEqual(boundingBox.XMin, -179.99999999999989);
-            Assert.AreEqual(boundingBox.YMax, 83.634100653000118);
-            Assert.AreEqual(boundingBox.YMin, -90);
+            //TODO: Override BoundingBox.Equals.  Use here.  Create a Unit Test for it.
+            Assert.AreEqual(shapefile.BoundingBox.XMax, Countries.BoundingBox.XMax);
+            Assert.AreEqual(shapefile.BoundingBox.XMin, Countries.BoundingBox.XMin);
+            Assert.AreEqual(shapefile.BoundingBox.YMax, Countries.BoundingBox.YMax);
+            Assert.AreEqual(shapefile.BoundingBox.YMin, Countries.BoundingBox.YMin);
         }
     }
 }
