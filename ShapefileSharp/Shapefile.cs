@@ -2,7 +2,7 @@
 
 namespace ShapefileSharp
 {
-    public class Shapefile
+    public class Shapefile : IShapefile
     {
         public Shapefile(string filePath)
         {
