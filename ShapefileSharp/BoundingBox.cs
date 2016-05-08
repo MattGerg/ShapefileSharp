@@ -18,6 +18,53 @@
             MMax = box.MMax;
         }
 
+        public override bool Equals(object obj)
+        {
+            BoundingBox other = obj as BoundingBox;
+
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (!XMin.Equals(other.XMin))
+            {
+                return false;
+            }
+
+            if (!XMax.Equals(other.XMax))
+            {
+                return false;
+            }
+
+            if (!YMin.Equals(other.YMin))
+            {
+                return false;
+            }
+
+            if (!ZMin.Equals(other.ZMin))
+            {
+                return false;
+            }
+
+            if (!ZMax.Equals(other.ZMax))
+            {
+                return false;
+            }
+
+            if (!MMin.Equals(other.MMin))
+            {
+                return false;
+            }
+
+            if (!MMax.Equals(other.MMax))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public double XMin { get; set; }
         public double XMax { get; set; }
         public double YMin { get; set; }

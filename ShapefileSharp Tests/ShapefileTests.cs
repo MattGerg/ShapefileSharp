@@ -21,11 +21,7 @@ namespace ShapefileSharp.Tests
         {
             var shapefile = new Shapefile(Countries.FilePath);
 
-            //TODO: Override BoundingBox.Equals.  Use here.  Create a Unit Test for it.
-            Assert.AreEqual(shapefile.BoundingBox.XMax, Countries.BoundingBox.XMax);
-            Assert.AreEqual(shapefile.BoundingBox.XMin, Countries.BoundingBox.XMin);
-            Assert.AreEqual(shapefile.BoundingBox.YMax, Countries.BoundingBox.YMax);
-            Assert.AreEqual(shapefile.BoundingBox.YMin, Countries.BoundingBox.YMin);
+            Assert.AreEqual(shapefile.BoundingBox, Countries.BoundingBox);
         }
     }
 }
