@@ -1,7 +1,7 @@
 ﻿namespace ShapefileSharp.Tests.Shapefiles
 {
     /// <summary>
-    /// A mock Shapefile with hardcoded data.
+    /// A mock Polygon Shapefile with hardcoded data.
     /// </summary>
     internal sealed class Countries : IShapefile
     {
