@@ -1,4 +1,6 @@
-﻿namespace ShapefileSharp
+﻿using System.Linq;
+
+namespace ShapefileSharp
 {
     public class BoundingBox : IReadOnlyBoundingBox
     {
@@ -18,6 +20,31 @@
             MMax = box.MMax;
         }
 
+        private double[] ToArray()
+        {
+            return new double[] {
+                XMin,
+                XMax,
+                YMin,
+                YMax,
+                ZMin,
+                ZMax,
+                MMin,
+                MMax
+            };
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 13;
+
+            foreach (double iValue in ToArray()) {
+                hash = (hash * 7) + iValue.GetHashCode();
+            }
+
+            return hash;
+        }
+
         public override bool Equals(object obj)
         {
             BoundingBox other = obj as BoundingBox;
@@ -27,42 +54,7 @@
                 return false;
             }
 
-            if (!XMin.Equals(other.XMin))
-            {
-                return false;
-            }
-
-            if (!XMax.Equals(other.XMax))
-            {
-                return false;
-            }
-
-            if (!YMin.Equals(other.YMin))
-            {
-                return false;
-            }
-
-            if (!ZMin.Equals(other.ZMin))
-            {
-                return false;
-            }
-
-            if (!ZMax.Equals(other.ZMax))
-            {
-                return false;
-            }
-
-            if (!MMin.Equals(other.MMin))
-            {
-                return false;
-            }
-
-            if (!MMax.Equals(other.MMax))
-            {
-                return false;
-            }
-
-            return true;
+            return ToArray().SequenceEqual(other.ToArray());
         }
 
         public double XMin { get; set; }
