@@ -2,6 +2,11 @@
 {
     public struct WordCount
     {
+        public WordCount(int words)
+        {
+            Words = words;
+        }
+
         /// <summary>
         /// The number of 16-bit words.
         /// </summary>
