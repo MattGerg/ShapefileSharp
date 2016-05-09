@@ -44,7 +44,7 @@
     <Compile Include="BoundingBox.cs" />
     <Compile Include="ContentLength.cs" />
     <Compile Include="IBoundingBox.cs" />
-    <Compile Include="IReadOnlyRecordHeader.cs" />
+    <Compile Include="IRecordHeader.cs" />
     <Compile Include="IShape.cs" />
     <Compile Include="IShapefile.cs" />
     <Compile Include="IShapeRecord.cs" />

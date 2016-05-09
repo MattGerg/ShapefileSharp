@@ -2,7 +2,7 @@
 {
     internal sealed class ShapeRecord : IShapeRecord
     {
-        public IReadOnlyRecordHeader Header { get; set; }
+        public IRecordHeader Header { get; set; }
         public IShape Shape { get; set; }
     }
 }
