@@ -3,6 +3,6 @@
     public interface IShapefile
     {
         ShapeType ShapeType { get; }
-        IReadOnlyBoundingBox BoundingBox { get; }
+        IBoundingBox BoundingBox { get; }
     }
 }

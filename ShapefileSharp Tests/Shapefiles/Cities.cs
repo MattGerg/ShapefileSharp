@@ -8,7 +8,7 @@
         public const string FilePath = "Data/ne_10m_populated_places_simple.shp";
 
         public ShapeType ShapeType { get; } = ShapeType.Point;
-        public IReadOnlyBoundingBox BoundingBox { get; } = new BoundingBox()
+        public IBoundingBox BoundingBox { get; } = new BoundingBox()
         {
             XMax = 179.38330358817018,
             XMin = -179.58997888396897,

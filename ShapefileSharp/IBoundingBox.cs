@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IReadOnlyBoundingBox
+    public interface IBoundingBox
     {
         double XMin { get; }
         double XMax { get; }
@@ -12,9 +12,9 @@
         double MMax { get; }
     }
 
-    public static class IReadonlyBoundingBoxExtensions
+    public static class IBoundingBoxExtensions
     {
-        public static BoundingBox ToMutable(this IReadOnlyBoundingBox box)
+        public static BoundingBox ToMutable(this IBoundingBox box)
         {
             return new BoundingBox(box);
         }

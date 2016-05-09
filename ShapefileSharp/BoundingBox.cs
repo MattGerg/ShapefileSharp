@@ -2,13 +2,13 @@
 
 namespace ShapefileSharp
 {
-    public class BoundingBox : IReadOnlyBoundingBox
+    public class BoundingBox : IBoundingBox
     {
         public BoundingBox() : base()
         {
         }
 
-        public BoundingBox(IReadOnlyBoundingBox box) : this()
+        public BoundingBox(IBoundingBox box) : this()
         {
             XMin = box.XMin;
             XMax = box.XMax;

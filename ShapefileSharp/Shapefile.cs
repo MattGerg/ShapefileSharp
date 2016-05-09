@@ -45,6 +45,6 @@ namespace ShapefileSharp
         }
 
         public ShapeType ShapeType { get; }
-        public IReadOnlyBoundingBox BoundingBox { get; }
+        public IBoundingBox BoundingBox { get; }
     }
 }

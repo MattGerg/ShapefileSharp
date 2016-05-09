@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="BoundingBox.cs" />
     <Compile Include="ContentLength.cs" />
-    <Compile Include="IReadOnlyBoundingBox.cs" />
+    <Compile Include="IBoundingBox.cs" />
     <Compile Include="IReadOnlyRecordHeader.cs" />
     <Compile Include="IShape.cs" />
     <Compile Include="IShapefile.cs" />
