@@ -7,7 +7,6 @@ namespace ShapefileSharp
     {
         public ShapefileReader(Stream stream) : base()
         {
-            Stream = stream;
             BinaryReader = new BinaryReader(stream);
         }
 
@@ -36,38 +35,37 @@ namespace ShapefileSharp
         }
         #endregion
 
-        private Stream Stream { get; }
         private BinaryReader BinaryReader { get; }
 
         public IShapefileHeader ReadHeader()
         {
-            Stream.Seek(ShapefileSpec.ShapeTypePos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.ShapeTypePos, SeekOrigin.Begin);
             var shapeType = (ShapeType) BinaryReader.ReadInt32();
 
             var boundingBox = new BoundingBox();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxXMinPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxXMinPos, SeekOrigin.Begin);
             boundingBox.XMin = BinaryReader.ReadDouble();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxXMaxPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxXMaxPos, SeekOrigin.Begin);
             boundingBox.XMax = BinaryReader.ReadDouble();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxYMinPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxYMinPos, SeekOrigin.Begin);
             boundingBox.YMin = BinaryReader.ReadDouble();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxYMaxPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxYMaxPos, SeekOrigin.Begin);
             boundingBox.YMax = BinaryReader.ReadDouble();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxZMinPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxZMinPos, SeekOrigin.Begin);
             boundingBox.ZMin = BinaryReader.ReadDouble();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxZMaxPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxZMaxPos, SeekOrigin.Begin);
             boundingBox.ZMax = BinaryReader.ReadDouble();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxMMinPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxMMinPos, SeekOrigin.Begin);
             boundingBox.MMin = BinaryReader.ReadDouble();
 
-            Stream.Seek(ShapefileSpec.BoundingBoxMMaxPos, SeekOrigin.Begin);
+            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxMMaxPos, SeekOrigin.Begin);
             boundingBox.MMax = BinaryReader.ReadDouble();
 
             return new ShapefileHeader()
