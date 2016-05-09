@@ -1,8 +1,8 @@
 ﻿namespace ShapefileSharp
 {
-    class RecordHeader : IReadOnlyRecordHeader
+    internal sealed class RecordHeader : IReadOnlyRecordHeader
     {
-        public int RecordNumber { get; }
-        public int ContentLength { get; }
+        public int RecordNumber { get; set; }
+        public int ContentLength { get; set; }
     }
 }
