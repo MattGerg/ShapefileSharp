@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoundingBox.cs" />
+    <Compile Include="IShapefileHeader.cs" />
     <Compile Include="IShapeIndexRecord.cs" />
+    <Compile Include="ShapefileHeader.cs" />
+    <Compile Include="ShapefileReader.cs" />
     <Compile Include="ShapeIndexEnumerator.cs" />
     <Compile Include="ShapeIndexRecord.cs" />
     <Compile Include="ShapeIndexSpec.cs" />

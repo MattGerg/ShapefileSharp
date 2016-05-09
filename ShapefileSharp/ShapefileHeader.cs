@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ShapefileSharp
+﻿namespace ShapefileSharp
 {
-    class ShapefileHeader
+    public sealed class ShapefileHeader : IShapefileHeader
     {
+        public ShapeType ShapeType { get; set; }
+        public IBoundingBox BoundingBox { get; set; }
     }
 }

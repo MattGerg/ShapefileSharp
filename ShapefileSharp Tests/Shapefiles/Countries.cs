@@ -7,13 +7,16 @@
     {
         public const string FilePath = "Data/ne_10m_admin_0_countries.shp";
 
-        public ShapeType ShapeType { get; } = ShapeType.Polygon;
-        public IBoundingBox BoundingBox { get; } = new BoundingBox()
+        public IShapefileHeader Header { get; } = new ShapefileHeader()
         {
-            XMax = 180.0000000000002,
-            XMin = -179.99999999999989,
-            YMax = 83.634100653000118,
-            YMin = -90
+            ShapeType = ShapeType.Polygon,
+            BoundingBox = new BoundingBox()
+            {
+                XMax = 180.0000000000002,
+                XMin = -179.99999999999989,
+                YMax = 83.634100653000118,
+                YMin = -90
+            }
         };
     }
 }

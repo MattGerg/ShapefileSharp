@@ -15,15 +15,15 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void ShapeType_Equals()
         {
-            Assert.AreEqual(CitiesExpected.ShapeType, CitiesActual.ShapeType);
-            Assert.AreEqual(CountriesExpected.ShapeType, CountriesActual.ShapeType);
+            Assert.AreEqual(CitiesExpected.Header.ShapeType, CitiesActual.Header.ShapeType);
+            Assert.AreEqual(CountriesExpected.Header.ShapeType, CountriesActual.Header.ShapeType);
         }
 
         [TestMethod]
         public void BoundingBox_Equals()
         {
-            Assert.AreEqual(CitiesExpected.BoundingBox, CitiesActual.BoundingBox);
-            Assert.AreEqual(CountriesExpected.BoundingBox, CountriesActual.BoundingBox);
+            Assert.AreEqual(CitiesExpected.Header.BoundingBox, CitiesActual.Header.BoundingBox);
+            Assert.AreEqual(CountriesExpected.Header.BoundingBox, CountriesActual.Header.BoundingBox);
         }
     }
 }

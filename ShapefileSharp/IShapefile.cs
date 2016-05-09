@@ -2,7 +2,6 @@
 {
     public interface IShapefile
     {
-        ShapeType ShapeType { get; }
-        IBoundingBox BoundingBox { get; }
+        IShapefileHeader Header { get; }
     }
 }
