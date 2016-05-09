@@ -3,6 +3,6 @@
     public interface IReadOnlyRecordHeader
     {
         int RecordNumber { get; }
-        int ContentLength { get; }
+        ContentLength ContentLength { get; }
     }
 }
