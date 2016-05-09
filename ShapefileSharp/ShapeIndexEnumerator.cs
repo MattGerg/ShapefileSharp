@@ -6,7 +6,7 @@ namespace ShapefileSharp
 {
     internal sealed class ShapeIndexEnumerator : IEnumerator<IShapeIndexRecord>
     {
-        public ShapeIndexEnumerator(ShapeIndex shapeIndex) : base()
+        public ShapeIndexEnumerator(IShapeIndex shapeIndex) : base()
         {
             ShapeIndex = shapeIndex;
         }
@@ -34,7 +34,7 @@ namespace ShapefileSharp
         }
         #endregion
 
-        private ShapeIndex ShapeIndex { get; }
+        private IShapeIndex ShapeIndex { get; }
         private int Position { get; set; }
 
         public IShapeIndexRecord Current
