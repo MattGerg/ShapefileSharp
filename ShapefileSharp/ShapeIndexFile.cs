@@ -5,9 +5,9 @@ using System.IO;
 
 namespace ShapefileSharp
 {
-    internal sealed class ShapeIndex : IShapeIndex, IDisposable
+    internal sealed class ShapeIndexFile : IShapeIndex, IDisposable
     {
-        public ShapeIndex(string filePath) : base()
+        public ShapeIndexFile(string filePath) : base()
         {
             FileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             Count = Convert.ToInt32((FileStream.Length - ShapeIndexSpec.HeaderBytes) / ShapeIndexSpec.RecordBytes);
