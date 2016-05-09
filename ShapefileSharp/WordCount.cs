@@ -1,9 +1,9 @@
 ﻿namespace ShapefileSharp
 {
-    public struct ContentLength
+    public struct WordCount
     {
         /// <summary>
-        /// The number of 16-words.
+        /// The number of 16-bit words.
         /// </summary>
         public int Words { get; set; }
 

@@ -3,6 +3,6 @@
     internal sealed class RecordHeader : IRecordHeader
     {
         public int RecordNumber { get; set; }
-        public ContentLength ContentLength { get; set; }
+        public WordCount ContentLength { get; set; }
     }
 }

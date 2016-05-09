@@ -3,6 +3,6 @@
     public interface IRecordHeader
     {
         int RecordNumber { get; }
-        ContentLength ContentLength { get; }
+        WordCount ContentLength { get; }
     }
 }
