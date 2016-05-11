@@ -121,10 +121,11 @@ namespace ShapefileSharp
             var shapeRecord = new ShapeRecord()
             {
                 Header = ReadShapeHeader(indexRecord),
-                ShapeType = ReadShapeType(indexRecord)
             };
 
-            switch (shapeRecord.ShapeType)
+            ShapeType shapeType = ReadShapeType(indexRecord);
+
+            switch (shapeType)
             {
                 case ShapeType.NullShape:
                     shapeRecord.Shape = null;
@@ -135,7 +136,7 @@ namespace ShapefileSharp
                     break;
 
                 default:
-                    Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeRecord.ShapeType));
+                    Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));
                     break;
             }
 

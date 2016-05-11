@@ -52,11 +52,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Shapefiles\CitiesIndexFile.cs" />
     <Compile Include="Shapefiles\CitiesMainFile.cs" />
+    <Compile Include="Shapefiles\CitiesShapefile.cs" />
     <Compile Include="Shapefiles\CountriesMainFile.cs" />
     <Compile Include="IShapeMainFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BoundingBoxTests.cs" />
+    <Compile Include="ShapefileTests.cs" />
     <Compile Include="WordCountTests.cs" />
   </ItemGroup>
   <ItemGroup>

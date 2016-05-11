@@ -23,7 +23,17 @@ namespace ShapefileSharp.Tests.Shapefiles
 
         public IShapeRecord GetRecord(IShapeIndexRecord indexRecord)
         {
-            throw new NotImplementedException();
+            switch (indexRecord.Offset.Words)
+            {
+                case 50:
+                    return new ShapeRecord()
+                    {
+                    
+                    };
+
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }
