@@ -47,7 +47,7 @@ namespace ShapefileSharp
 
         public IShapeRecord GetRecord(IShapeIndexRecord indexRecord)
         {
-            return Reader.ReadShapeRecord(Header.ShapeType, indexRecord);
+            return Reader.ReadShapeRecord(indexRecord);
         }
     }
 }

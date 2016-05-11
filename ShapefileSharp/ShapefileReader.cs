@@ -76,39 +76,45 @@ namespace ShapefileSharp
             };
         }
 
-        public IShapeRecord ReadShapeRecord(ShapeType shapeType, IShapeIndexRecord indexRecord)
+        public IShapeRecord ReadShapeRecord(IShapeIndexRecord indexRecord)
         {
             var shapeRecord = new ShapeRecord()
             {
-                Header = ReadShapeHeader(indexRecord.Offset)
+                Header = ReadShapeHeader(indexRecord),
+                ShapeType = ReadShapeType(indexRecord)
             };
 
-            switch (shapeType)
+            switch (shapeRecord.ShapeType)
             {
                 case ShapeType.NullShape:
                     shapeRecord.Shape = null;
                     break;
 
                 default:
-                    Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));
+                    Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeRecord.ShapeType));
                     break;
             }
 
             return shapeRecord;
         }
 
-        private IRecordHeader ReadShapeHeader(WordCount offset)
+        private IRecordHeader ReadShapeHeader(IShapeIndexRecord indexRecord)
         {
             var recordHeader = new RecordHeader();
 
-            BinaryReader.BaseStream.Position = offset.Bytes;
+            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes;
             recordHeader.RecordNumber = BinaryReader.ReadInt32();
 
-            BinaryReader.BaseStream.Position = offset.Bytes + 4; //TODO: 4 should be a const in a Spec class...
+            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 4; //TODO: 4 should be a const in a Spec class...
             recordHeader.ContentLength = new WordCount(BinaryReader.ReadInt32());
 
             return recordHeader;
         }
 
+        private ShapeType ReadShapeType(IShapeIndexRecord indexRecord)
+        {
+            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 8; //TODO: 8 should be a const in a Spec class...
+            return (ShapeType)BinaryReader.ReadInt32();
+        }
     }
 }
