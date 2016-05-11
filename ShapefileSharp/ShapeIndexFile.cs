@@ -5,6 +5,9 @@ using System.IO;
 
 namespace ShapefileSharp
 {
+    /// <summary>
+    /// A Shape Index (.shx) file.
+    /// </summary>
     internal sealed class ShapeIndexFile : IShapeIndex, IDisposable
     {
         public ShapeIndexFile(string filePath) : base()

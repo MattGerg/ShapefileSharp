@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace ShapefileSharp
@@ -74,5 +75,40 @@ namespace ShapefileSharp
                 BoundingBox = boundingBox
             };
         }
+
+        public IShapeRecord ReadShapeRecord(ShapeType shapeType, IShapeIndexRecord indexRecord)
+        {
+            var shapeRecord = new ShapeRecord()
+            {
+                Header = ReadShapeHeader(indexRecord.Offset)
+            };
+
+            switch (shapeType)
+            {
+                case ShapeType.NullShape:
+                    shapeRecord.Shape = null;
+                    break;
+
+                default:
+                    Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));
+                    break;
+            }
+
+            return shapeRecord;
+        }
+
+        private IRecordHeader ReadShapeHeader(WordCount offset)
+        {
+            var recordHeader = new RecordHeader();
+
+            BinaryReader.BaseStream.Position = offset.Bytes;
+            recordHeader.RecordNumber = BinaryReader.ReadInt32();
+
+            BinaryReader.BaseStream.Position = offset.Bytes + 4; //TODO: 4 should be a const in a Spec class...
+            recordHeader.ContentLength = new WordCount(BinaryReader.ReadInt32());
+
+            return recordHeader;
+        }
+
     }
 }
