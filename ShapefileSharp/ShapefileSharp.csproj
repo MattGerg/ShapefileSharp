@@ -46,12 +46,14 @@
     <Compile Include="BoundingBox.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="IPointM.cs" />
+    <Compile Include="IPointShape.cs" />
     <Compile Include="IPointZ.cs" />
     <Compile Include="IShapefileHeader.cs" />
     <Compile Include="IShapeIndexRecord.cs" />
     <Compile Include="IShapeMainFile.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointM.cs" />
+    <Compile Include="PointShape.cs" />
     <Compile Include="PointZ.cs" />
     <Compile Include="ShapefileHeader.cs" />
     <Compile Include="ShapefileReader.cs" />

@@ -90,6 +90,10 @@ namespace ShapefileSharp
                     shapeRecord.Shape = null;
                     break;
 
+                case ShapeType.Point:
+                    shapeRecord.Shape = ReadPointShape(indexRecord);
+                    break;
+
                 default:
                     Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeRecord.ShapeType));
                     break;
@@ -115,6 +119,23 @@ namespace ShapefileSharp
         {
             BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 8; //TODO: 8 should be a const in a Spec class...
             return (ShapeType)BinaryReader.ReadInt32();
+        }
+
+        private IPointShape ReadPointShape(IShapeIndexRecord indexRecord)
+        {
+            var point = new Point();
+            var pointShape = new PointShape()
+            {
+                Point = point
+            };
+
+            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 12; //TODO: 12 should be a const in a Spec class...
+            point.X = BinaryReader.ReadDouble();
+
+            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 20; //TODO: 20 should be a const in a Spec class...
+            point.Y = BinaryReader.ReadDouble();
+
+            return pointShape;
         }
     }
 }

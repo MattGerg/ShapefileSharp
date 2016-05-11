@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    interface IPoint
+    public interface IPoint
     {
         double X { get; }
         double Y { get; }
