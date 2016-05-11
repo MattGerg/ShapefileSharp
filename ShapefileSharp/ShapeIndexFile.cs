@@ -13,6 +13,7 @@ namespace ShapefileSharp
         public ShapeIndexFile(string filePath) : base()
         {
             FileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            Reader = new ShapefileReader(FileStream);
             Count = Convert.ToInt32((FileStream.Length - ShapeIndexSpec.HeaderBytes) / ShapeIndexSpec.RecordBytes);
         }
 
@@ -25,7 +26,7 @@ namespace ShapefileSharp
             {
                 if (disposing)
                 {
-                    BinaryReader.Dispose();
+                    Reader.Dispose();
                     FileStream.Dispose();
                 }
 
@@ -42,19 +43,13 @@ namespace ShapefileSharp
         #endregion
 
         private FileStream FileStream { get; }
-        private BinaryReader BinaryReader { get; }
+        private ShapefileReader Reader { get; }
 
         public IShapeIndexRecord this[int index]
         {
             get
             {
-                FileStream.Seek(ShapeIndexSpec.GetRecordPos((uint) index), SeekOrigin.Begin);
-
-                return new ShapeIndexRecord()
-                {
-                    Offset = new WordCount(BinaryReader.ReadInt32()),
-                    ContentLength = new WordCount(BinaryReader.ReadInt32())
-                };
+                return Reader.ReadShapeIndexRecord(index);
             }
         }
 
