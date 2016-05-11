@@ -21,5 +21,22 @@
                 return Words * 2;
             }
         }
+
+        public override int GetHashCode()
+        {
+            return Words.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is WordCount))
+            {
+                return false;
+            }
+            
+            WordCount other = (WordCount) obj;
+
+            return Words.Equals(other.Words);
+        }
     }
 }
