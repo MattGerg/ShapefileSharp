@@ -35,7 +35,7 @@ namespace ShapefileSharp
         #endregion
 
         private IShapeIndex ShapeIndex { get; }
-        private int Position { get; set; }
+        private int Position { get; set; } = -1;
 
         public IShapeIndexRecord Current
         {
