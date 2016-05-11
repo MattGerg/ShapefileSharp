@@ -48,12 +48,12 @@ namespace ShapefileSharp
 
         public IEnumerator<IShapeRecord> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new ShapefileEnumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
