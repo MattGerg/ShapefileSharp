@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace ShapefileSharp
 {
@@ -37,6 +38,32 @@ namespace ShapefileSharp
         #endregion
 
         private BinaryReader BinaryReader { get; }
+
+        private int ReadIntBig(uint pos)
+        {
+            BinaryReader.BaseStream.Position = pos;
+            var bytes = BinaryReader.ReadBytes(sizeof(int));
+
+            if (BitConverter.IsLittleEndian)
+            {
+                bytes = bytes.Reverse().ToArray();
+            }
+
+            return BitConverter.ToInt32(bytes, 0);
+        }
+
+        private int ReadIntLittle(uint pos)
+        {
+            BinaryReader.BaseStream.Position = pos;
+            var bytes = BinaryReader.ReadBytes(sizeof(int));
+
+            if (!BitConverter.IsLittleEndian)
+            {
+                bytes = bytes.Reverse().ToArray();
+            }
+
+            return BitConverter.ToInt32(bytes, 0);
+        }
 
         public IShapefileHeader ReadHeader()
         {
@@ -76,6 +103,19 @@ namespace ShapefileSharp
             };
         }
 
+        public IShapeIndexRecord ReadShapeIndexRecord(int recordIndex)
+        {
+            var indexRecord = new ShapeIndexRecord();
+
+            var recordPos = ShapeIndexSpec.GetRecordPos((uint)recordIndex);
+
+            BinaryReader.BaseStream.Position = recordPos;
+            indexRecord.Offset = new WordCount(ReadIntBig(recordPos));
+            indexRecord.ContentLength = new WordCount(ReadIntBig(recordPos + 4)); //TODO: 4 should be a const in a Spec class...
+
+            return indexRecord;
+        }
+
         public IShapeRecord ReadShapeRecord(IShapeIndexRecord indexRecord)
         {
             var shapeRecord = new ShapeRecord()
@@ -106,11 +146,8 @@ namespace ShapefileSharp
         {
             var recordHeader = new RecordHeader();
 
-            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes;
-            recordHeader.RecordNumber = BinaryReader.ReadInt32();
-
-            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 4; //TODO: 4 should be a const in a Spec class...
-            recordHeader.ContentLength = new WordCount(BinaryReader.ReadInt32());
+            recordHeader.RecordNumber = ReadIntBig((uint)indexRecord.Offset.Bytes);
+            recordHeader.ContentLength = new WordCount(ReadIntBig((uint)indexRecord.Offset.Bytes + 4)); //TODO: 4 should be a const in a Spec class...
 
             return recordHeader;
         }
