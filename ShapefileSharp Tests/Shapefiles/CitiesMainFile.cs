@@ -1,9 +1,11 @@
-﻿namespace ShapefileSharp.Tests.Shapefiles
+﻿using System;
+
+namespace ShapefileSharp.Tests.Shapefiles
 {
     /// <summary>
     /// A mock Point Shapefile with hardcoded data.
     /// </summary>
-    internal sealed class Cities : IShapefile
+    internal sealed class CitiesMainFile : IShapeMainFile
     {
         public const string FilePath = "Data/ne_10m_populated_places_simple.shp";
 
@@ -18,5 +20,10 @@
                 YMin = -89.999999814387266
             }
         };
+
+        public IShapeRecord GetRecord(IShapeIndexRecord indexRecord)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

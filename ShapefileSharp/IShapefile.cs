@@ -1,6 +1,8 @@
-﻿namespace ShapefileSharp
+﻿using System.Collections.Generic;
+
+namespace ShapefileSharp
 {
-    public interface IShapefile
+    public interface IShapefile: IReadOnlyList<IShapeRecord>
     {
         IShapefileHeader Header { get; }
     }

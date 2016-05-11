@@ -57,10 +57,12 @@
     <Compile Include="PointZ.cs" />
     <Compile Include="ShapefileHeader.cs" />
     <Compile Include="ShapefileReader.cs" />
+    <Compile Include="ShapefileEnumerator.cs" />
     <Compile Include="ShapeIndexEnumerator.cs" />
     <Compile Include="ShapeIndexRecord.cs" />
     <Compile Include="ShapeIndexSpec.cs" />
     <Compile Include="ShapeMainFile.cs" />
+    <Compile Include="ShapeMainFileFactory.cs" />
     <Compile Include="WordCount.cs" />
     <Compile Include="IBoundingBox.cs" />
     <Compile Include="IRecordHeader.cs" />

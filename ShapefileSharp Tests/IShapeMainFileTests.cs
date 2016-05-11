@@ -4,13 +4,13 @@ using ShapefileSharp.Tests.Shapefiles;
 namespace ShapefileSharp.Tests
 {
     [TestClass]
-    public class ShapefileTests
+    public class IShapeMainFileTests
     {
-        private readonly IShapefile CitiesExpected = new Cities();
-        private readonly IShapefile CitiesActual = new Shapefile(Cities.FilePath);
+        private readonly IShapeMainFile CitiesExpected = new CitiesMainFile();
+        private readonly IShapeMainFile CitiesActual = ShapeMainFileFactory.Create(CitiesMainFile.FilePath);
 
-        private readonly IShapefile CountriesExpected = new Countries();
-        private readonly IShapefile CountriesActual = new Shapefile(Countries.FilePath);
+        private readonly IShapeMainFile CountriesExpected = new CountriesMainFile();
+        private readonly IShapeMainFile CountriesActual = ShapeMainFileFactory.Create(CountriesMainFile.FilePath);
 
         [TestMethod]
         public void ShapeType_Equals()

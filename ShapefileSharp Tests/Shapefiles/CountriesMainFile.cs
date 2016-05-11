@@ -1,9 +1,11 @@
-﻿namespace ShapefileSharp.Tests.Shapefiles
+﻿using System;
+
+namespace ShapefileSharp.Tests.Shapefiles
 {
     /// <summary>
     /// A mock Polygon Shapefile with hardcoded data.
     /// </summary>
-    internal sealed class Countries : IShapefile
+    internal sealed class CountriesMainFile : IShapeMainFile
     {
         public const string FilePath = "Data/ne_10m_admin_0_countries.shp";
 
@@ -18,5 +20,10 @@
                 YMin = -90
             }
         };
+
+        public IShapeRecord GetRecord(IShapeIndexRecord indexRecord)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
