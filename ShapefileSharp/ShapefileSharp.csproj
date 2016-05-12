@@ -71,7 +71,7 @@
     <Compile Include="IShapeIndex.cs" />
     <Compile Include="IShapeRecord.cs" />
     <Compile Include="NullShape.cs" />
-    <Compile Include="RecordHeader.cs" />
+    <Compile Include="ShapeRecordHeader.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="Shapefile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

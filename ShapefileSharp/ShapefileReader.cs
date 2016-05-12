@@ -145,7 +145,7 @@ namespace ShapefileSharp
 
         private IShapeRecordHeader ReadShapeHeader(IShapeIndexRecord indexRecord)
         {
-            var recordHeader = new RecordHeader();
+            var recordHeader = new ShapeRecordHeader();
 
             recordHeader.RecordNumber = ReadIntBig((uint)indexRecord.Offset.Bytes);
             recordHeader.ContentLength = new WordCount(ReadIntBig((uint)indexRecord.Offset.Bytes + 4)); //TODO: 4 should be a const in a Spec class...
