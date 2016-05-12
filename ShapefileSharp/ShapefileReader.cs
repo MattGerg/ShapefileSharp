@@ -143,7 +143,7 @@ namespace ShapefileSharp
             return shapeRecord;
         }
 
-        private IRecordHeader ReadShapeHeader(IShapeIndexRecord indexRecord)
+        private IShapeRecordHeader ReadShapeHeader(IShapeIndexRecord indexRecord)
         {
             var recordHeader = new RecordHeader();
 

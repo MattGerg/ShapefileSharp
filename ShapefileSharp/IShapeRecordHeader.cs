@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IRecordHeader
+    public interface IShapeRecordHeader
     {
         int RecordNumber { get; }
         WordCount ContentLength { get; }

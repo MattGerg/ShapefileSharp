@@ -65,7 +65,7 @@
     <Compile Include="ShapeMainFileFactory.cs" />
     <Compile Include="WordCount.cs" />
     <Compile Include="IBoundingBox.cs" />
-    <Compile Include="IRecordHeader.cs" />
+    <Compile Include="IShapeRecordHeader.cs" />
     <Compile Include="IShape.cs" />
     <Compile Include="IShapefile.cs" />
     <Compile Include="IShapeIndex.cs" />

@@ -2,7 +2,7 @@
 {
     public sealed class ShapeRecord : IShapeRecord
     {
-        public IRecordHeader Header { get; set; }
+        public IShapeRecordHeader Header { get; set; }
         public IShape Shape { get; set; }
     }
 }
