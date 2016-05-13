@@ -39,7 +39,7 @@ namespace ShapefileSharp
 
         private BinaryReader BinaryReader { get; }
 
-        private int ReadIntBig(uint pos)
+        private int ReadIntBig(long pos)
         {
             BinaryReader.BaseStream.Position = pos;
             var bytes = BinaryReader.ReadBytes(sizeof(int));
@@ -52,7 +52,7 @@ namespace ShapefileSharp
             return BitConverter.ToInt32(bytes, 0);
         }
 
-        private int ReadIntLittle(uint pos)
+        private int ReadIntLittle(long pos)
         {
             BinaryReader.BaseStream.Position = pos;
             var bytes = BinaryReader.ReadBytes(sizeof(int));
