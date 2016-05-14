@@ -4,17 +4,8 @@
     {
         public static class Record
         {
-            public static class RecordNumber
-            {
-                public static WordCount Pos { get; } = new WordCount(0);
-                public static WordCount Length { get; } = new WordCount(1);
-            }
-
-            public static class ConentLength
-            {
-                public static WordCount Pos { get; } = new WordCount(1);
-                public static WordCount Length { get; } = new WordCount(1);
-            }
+            public static Field RecordNumber { get; } = new Field(new WordCount(0), FieldType.Int, Endianness.Big);
+            public static Field ContentLength { get; } = new Field(new WordCount(1), FieldType.Int, Endianness.Big);
         }
     }
 }
