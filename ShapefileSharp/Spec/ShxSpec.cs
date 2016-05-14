@@ -8,12 +8,20 @@
             public static WordCount Length { get; } = new WordCount(50);
         }
 
-        public static long FirstRecordPos = Header.Length.Bytes;
-        public const uint RecordBytes = 8;
-
-        public static long GetRecordPos(uint recordIndex)
+        public static class Record
         {
-            return FirstRecordPos + (recordIndex * RecordBytes);
+            private static class First
+            {
+                public static WordCount Pos { get; } = Header.Length;
+            }
+
+            public static WordCount Length { get; } = new WordCount(2);
+
+            public static WordCount GetPos(int recordIndex)
+            {
+                //TODO: Create WordCount operators for + and *
+                return new WordCount(First.Pos.Words + (recordIndex * Length.Words));
+            }
         }
     }
 }

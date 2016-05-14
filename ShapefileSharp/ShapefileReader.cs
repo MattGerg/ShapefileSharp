@@ -108,11 +108,11 @@ namespace ShapefileSharp
         {
             var indexRecord = new ShapeIndexRecord();
 
-            var recordPos = ShxSpec.GetRecordPos((uint)recordIndex);
+            var recordPos = ShxSpec.Record.GetPos(recordIndex);
 
-            BinaryReader.BaseStream.Position = recordPos;
-            indexRecord.Offset = new WordCount(ReadIntBig(recordPos));
-            indexRecord.ContentLength = new WordCount(ReadIntBig(recordPos + 4)); //TODO: 4 should be a const in a Spec class...
+            BinaryReader.BaseStream.Position = recordPos.Bytes;
+            indexRecord.Offset = new WordCount(ReadIntBig(recordPos.Bytes));
+            indexRecord.ContentLength = new WordCount(ReadIntBig(recordPos.Bytes + 4)); //TODO: 4 should be a const in a Spec class...
 
             return indexRecord;
         }
