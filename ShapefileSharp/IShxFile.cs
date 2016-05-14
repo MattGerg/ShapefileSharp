@@ -8,5 +8,6 @@ namespace ShapefileSharp
     public interface IShxFile : IReadOnlyList<IShxRecord>
     {
         //TODO: Add accessors for header information...
+        int RecordCount { get; }
     }
 }

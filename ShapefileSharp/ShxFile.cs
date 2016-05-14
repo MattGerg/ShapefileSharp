@@ -12,7 +12,7 @@ namespace ShapefileSharp
         public ShxFile(string filePath) : base()
         {
             Reader = new ShxReader(filePath);
-            Count = Reader.GetRecordCount();            
+            RecordCount = Reader.GetRecordCount();            
         }
 
         #region IDisposable Support
@@ -49,7 +49,15 @@ namespace ShapefileSharp
             }
         }
 
-        public int Count { get; }
+        public int RecordCount { get; }
+
+        public int Count
+        {
+            get
+            {
+                return RecordCount;
+            }
+        }
 
         public IEnumerator<IShxRecord> GetEnumerator()
         {

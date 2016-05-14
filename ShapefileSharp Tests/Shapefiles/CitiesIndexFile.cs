@@ -33,11 +33,19 @@ namespace ShapefileSharp.Tests.Shapefiles
             }
         }
 
-        public int Count
+        public int RecordCount
         {
             get
             {
                 return Indices.Count;
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return RecordCount;
             }
         }
 
