@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ShapefileSharp.Tests.Shapefiles
@@ -21,6 +22,14 @@ namespace ShapefileSharp.Tests.Shapefiles
             });
 
             Indices = indices.AsReadOnly();
+        }
+
+        public IShapefileHeader Header
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private IReadOnlyList<IShxRecord> Indices { get; }

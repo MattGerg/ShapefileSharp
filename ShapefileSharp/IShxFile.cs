@@ -7,7 +7,7 @@ namespace ShapefileSharp
     /// </summary>
     public interface IShxFile : IReadOnlyList<IShxRecord>
     {
-        //TODO: Add accessors for header information...
+        IShapefileHeader Header { get; }
         int RecordCount { get; }
     }
 }

@@ -12,6 +12,8 @@ namespace ShapefileSharp
         public ShxFile(string filePath) : base()
         {
             Reader = new ShxReader(filePath);
+
+            Header = Reader.ReadHeader();
             RecordCount = Reader.GetRecordCount();            
         }
 
@@ -41,6 +43,9 @@ namespace ShapefileSharp
 
         private ShxReader Reader { get; }
 
+        public IShapefileHeader Header { get; }
+        public int RecordCount { get; }
+
         public IShxRecord this[int index]
         {
             get
@@ -48,8 +53,6 @@ namespace ShapefileSharp
                 return Reader.ReadRecord(index);
             }
         }
-
-        public int RecordCount { get; }
 
         public int Count
         {
