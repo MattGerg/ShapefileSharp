@@ -6,7 +6,7 @@ namespace ShapefileSharp.Tests.Shapefiles
     /// <summary>
     /// A mock Point Shapefile with hardcoded data.
     /// </summary>
-    internal sealed class CitiesIndexFile : IShapeIndex
+    internal sealed class CitiesIndexFile : IShxFile
     {
         public const string FilePath = "Data/ne_10m_populated_places_simple.shx";
 

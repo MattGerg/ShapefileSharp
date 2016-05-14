@@ -68,7 +68,7 @@
     <Compile Include="IShapeRecordHeader.cs" />
     <Compile Include="IShape.cs" />
     <Compile Include="IShapefile.cs" />
-    <Compile Include="IShapeIndex.cs" />
+    <Compile Include="IShxFile.cs" />
     <Compile Include="IShapeRecord.cs" />
     <Compile Include="NullShape.cs" />
     <Compile Include="ShapeRecordHeader.cs" />

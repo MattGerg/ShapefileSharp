@@ -11,14 +11,14 @@ namespace ShapefileSharp
         {
         }
 
-        public Shapefile(IShpFile shapeMainFile, IShapeIndex shapeIndex) : base()
+        public Shapefile(IShpFile shapeMainFile, IShxFile shapeIndex) : base()
         {
             ShapeMainFile = shapeMainFile;
             ShapeIndex = shapeIndex;
         }
 
         private IShpFile ShapeMainFile { get; }
-        private IShapeIndex ShapeIndex { get; }
+        private IShxFile ShapeIndex { get; }
 
         public IShapefileHeader Header
         {

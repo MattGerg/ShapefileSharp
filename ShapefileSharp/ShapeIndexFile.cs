@@ -8,7 +8,7 @@ namespace ShapefileSharp
     /// <summary>
     /// A Shape Index (.shx) file.
     /// </summary>
-    internal sealed class ShapeIndexFile : IShapeIndex, IDisposable
+    internal sealed class ShapeIndexFile : IShxFile, IDisposable
     {
         public ShapeIndexFile(string filePath) : base()
         {
