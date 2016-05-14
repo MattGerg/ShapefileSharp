@@ -4,7 +4,7 @@
     {
         public static IShpFile Create(string filePath)
         {
-            return new ShapeMainFile(filePath);
+            return new ShpFile(filePath);
         }
     }
 }

@@ -61,7 +61,7 @@
     <Compile Include="ShapeIndexEnumerator.cs" />
     <Compile Include="ShapeIndexRecord.cs" />
     <Compile Include="ShapeIndexSpec.cs" />
-    <Compile Include="ShapeMainFile.cs" />
+    <Compile Include="ShpFile.cs" />
     <Compile Include="ShapeMainFileFactory.cs" />
     <Compile Include="WordCount.cs" />
     <Compile Include="IBoundingBox.cs" />

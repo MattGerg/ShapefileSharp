@@ -6,9 +6,9 @@ namespace ShapefileSharp
     /// <summary>
     /// A Shapefile main (.shp) file.
     /// </summary>
-    internal sealed class ShapeMainFile : IShpFile, IDisposable
+    internal sealed class ShpFile : IShpFile, IDisposable
     {
-        public ShapeMainFile(string filePath)
+        public ShpFile(string filePath)
         {
             Stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             Reader = new ShapefileReader(Stream);
