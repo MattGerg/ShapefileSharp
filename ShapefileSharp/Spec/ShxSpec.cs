@@ -1,14 +1,17 @@
 ﻿namespace ShapefileSharp.Spec
 {
-    public static class ShxSpec
+    internal static class ShxSpec
     {
-        public const uint HeaderPos = 0;
-        public const uint HeaderBytes = 100;
+        public static class Header
+        {
+            public static WordCount Pos { get; } = new WordCount(0);
+            public static WordCount Length { get; } = new WordCount(50);
+        }
 
-        public const uint FirstRecordPos = HeaderBytes;
+        public static long FirstRecordPos = Header.Length.Bytes;
         public const uint RecordBytes = 8;
 
-        public static uint GetRecordPos(uint recordIndex)
+        public static long GetRecordPos(uint recordIndex)
         {
             return FirstRecordPos + (recordIndex * RecordBytes);
         }

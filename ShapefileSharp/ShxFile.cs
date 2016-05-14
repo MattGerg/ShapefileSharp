@@ -15,7 +15,7 @@ namespace ShapefileSharp
         {
             FileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             Reader = new ShapefileReader(FileStream);
-            Count = Convert.ToInt32((FileStream.Length - ShxSpec.HeaderBytes) / ShxSpec.RecordBytes);
+            Count = Convert.ToInt32((FileStream.Length - ShxSpec.Header.Length.Bytes) / ShxSpec.RecordBytes);
         }
 
         #region IDisposable Support
