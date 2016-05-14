@@ -19,8 +19,7 @@
 
             public static WordCount GetPos(int recordIndex)
             {
-                //TODO: Create WordCount operators for + and *
-                return new WordCount(First.Pos.Words + (recordIndex * Length.Words));
+                return First.Pos + (recordIndex * Length);
             }
         }
     }

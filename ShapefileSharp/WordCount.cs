@@ -22,6 +22,21 @@
             }
         }
 
+        public static WordCount operator +(WordCount wc1, WordCount wc2)
+        {
+            return new WordCount(wc1.Words + wc2.Words);
+        }
+
+        public static WordCount operator *(WordCount wc, int factor)
+        {
+            return new WordCount(wc.Words * factor);
+        }
+
+        public static WordCount operator *(int factor, WordCount wc)
+        {
+            return wc * factor;
+        }
+
         public override int GetHashCode()
         {
             return Words.GetHashCode();
