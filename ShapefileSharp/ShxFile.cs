@@ -13,11 +13,13 @@ namespace ShapefileSharp
     {
         public ShxFile(string filePath) : base()
         {
-            FileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            Reader = new ShapefileReader(FileStream);
+            Reader = new ShapefileReader(filePath);
 
-            //TODO: The reader or spec should figure this out...
-            Count = Convert.ToInt32((FileStream.Length - ShxSpec.Header.Length.Bytes) / ShxSpec.Record.Length.Bytes);
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                //TODO: The reader should figure this out...
+                Count = Convert.ToInt32((fs.Length - ShxSpec.Header.Length.Bytes) / ShxSpec.Record.Length.Bytes);
+            }                
         }
 
         #region IDisposable Support
@@ -30,7 +32,6 @@ namespace ShapefileSharp
                 if (disposing)
                 {
                     Reader.Dispose();
-                    FileStream.Dispose();
                 }
 
                 disposedValue = true;
@@ -45,7 +46,6 @@ namespace ShapefileSharp
         }
         #endregion
 
-        private FileStream FileStream { get; }
         private ShapefileReader Reader { get; }
 
         public IShapeIndexRecord this[int index]

@@ -10,8 +10,7 @@ namespace ShapefileSharp
     {
         public ShpFile(string filePath)
         {
-            Stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            Reader = new ShapefileReader(Stream);
+            Reader = new ShapefileReader(filePath);
             Header = Reader.ReadHeader();
         }
 
@@ -25,7 +24,6 @@ namespace ShapefileSharp
                 if (disposing)
                 {
                     Reader.Dispose();
-                    Stream.Dispose();
                 }
 
                 disposedValue = true;
@@ -42,8 +40,7 @@ namespace ShapefileSharp
         #endregion
 
         public IShapefileHeader Header { get; }
-        private FileStream Stream { get; }
-        private ShapefileReader Reader { get; }
+        private readonly ShapefileReader Reader;
 
         public IShapeRecord GetRecord(IShapeIndexRecord indexRecord)
         {
