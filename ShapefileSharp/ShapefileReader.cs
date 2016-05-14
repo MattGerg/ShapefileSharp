@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShapefileSharp.Spec;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -107,7 +108,7 @@ namespace ShapefileSharp
         {
             var indexRecord = new ShapeIndexRecord();
 
-            var recordPos = ShapeIndexSpec.GetRecordPos((uint)recordIndex);
+            var recordPos = ShxSpec.GetRecordPos((uint)recordIndex);
 
             BinaryReader.BaseStream.Position = recordPos;
             indexRecord.Offset = new WordCount(ReadIntBig(recordPos));

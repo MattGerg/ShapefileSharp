@@ -1,6 +1,6 @@
-﻿namespace ShapefileSharp
+﻿namespace ShapefileSharp.Spec
 {
-    public static class ShapeIndexSpec
+    public static class ShxSpec
     {
         public const uint HeaderPos = 0;
         public const uint HeaderBytes = 100;
