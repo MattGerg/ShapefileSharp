@@ -10,19 +10,6 @@ namespace ShapefileSharp
         {
         }
 
-        public IShapeIndexRecord ReadShapeIndexRecord(int recordIndex)
-        {
-            var indexRecord = new ShapeIndexRecord();
-
-            var recordPos = ShxSpec.Record.GetPos(recordIndex);
-
-            BinaryReader.BaseStream.Position = recordPos.Bytes;
-            indexRecord.Offset = new WordCount(BinaryReader.ReadInt32Big());
-            indexRecord.ContentLength = new WordCount(BinaryReader.ReadInt32Big());
-
-            return indexRecord;
-        }
-
         public IShapeRecord ReadShapeRecord(IShapeIndexRecord indexRecord)
         {
             var shapeRecord = new ShapeRecord()

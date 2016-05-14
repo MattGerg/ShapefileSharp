@@ -13,7 +13,7 @@ namespace ShapefileSharp
     {
         public ShxFile(string filePath) : base()
         {
-            Reader = new ShapefileReader(filePath);
+            Reader = new ShxReader(filePath);
 
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
@@ -46,13 +46,13 @@ namespace ShapefileSharp
         }
         #endregion
 
-        private ShapefileReader Reader { get; }
+        private ShxReader Reader { get; }
 
         public IShapeIndexRecord this[int index]
         {
             get
             {
-                return Reader.ReadShapeIndexRecord(index);
+                return Reader.ReadRecord(index);
             }
         }
 

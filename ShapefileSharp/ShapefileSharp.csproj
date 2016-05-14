@@ -62,6 +62,7 @@
     <Compile Include="ShapefileEnumerator.cs" />
     <Compile Include="ShapeIndexEnumerator.cs" />
     <Compile Include="ShapeIndexRecord.cs" />
+    <Compile Include="ShxReader.cs" />
     <Compile Include="Spec\ShxSpec.cs" />
     <Compile Include="ShpFile.cs" />
     <Compile Include="ShapeMainFileFactory.cs" />
