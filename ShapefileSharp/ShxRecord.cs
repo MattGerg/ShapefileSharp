@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public sealed class ShapeIndexRecord : IShxRecord
+    public sealed class ShxRecord : IShxRecord
     {
         public WordCount Offset { get; set; }
         public WordCount ContentLength { get; set; }
@@ -17,7 +17,7 @@
 
         public override bool Equals(object obj)
         {
-            var other = obj as ShapeIndexRecord;
+            var other = obj as ShxRecord;
 
             if (other == null)
             {

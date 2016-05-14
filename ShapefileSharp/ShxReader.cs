@@ -10,7 +10,7 @@ namespace ShapefileSharp
 
         public IShxRecord ReadRecord(int recordIndex)
         {
-            var indexRecord = new ShapeIndexRecord();
+            var indexRecord = new ShxRecord();
 
             var recordPos = ShxSpec.Record.GetPos(recordIndex);
 

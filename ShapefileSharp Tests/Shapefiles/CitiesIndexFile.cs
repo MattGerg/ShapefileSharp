@@ -12,9 +12,9 @@ namespace ShapefileSharp.Tests.Shapefiles
 
         public CitiesIndexFile() : base()
         {
-            var indices = new List<ShapeIndexRecord>();
+            var indices = new List<ShxRecord>();
 
-            indices.Add(new ShapeIndexRecord()
+            indices.Add(new ShxRecord()
             {
                 Offset = new WordCount(50),
                 ContentLength = new WordCount(10)
