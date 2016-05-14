@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using ShapefileSharp.Spec;
+using System.Diagnostics;
 using System.IO;
 
 namespace ShapefileSharp
@@ -40,8 +41,10 @@ namespace ShapefileSharp
         {
             var recordHeader = new ShpRecordHeader();
 
-            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes;
+            BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.RecordNumber.Pos).Bytes;
             recordHeader.RecordNumber = BinaryReader.ReadInt32Big();
+
+            BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.ConentLength.Pos).Bytes;
             recordHeader.ContentLength = new WordCount(BinaryReader.ReadInt32Big());
 
             return recordHeader;
