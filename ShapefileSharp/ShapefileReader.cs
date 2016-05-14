@@ -40,32 +40,6 @@ namespace ShapefileSharp
 
         private BinaryReader BinaryReader { get; }
 
-        private int ReadIntBig(long pos)
-        {
-            BinaryReader.BaseStream.Position = pos;
-            var bytes = BinaryReader.ReadBytes(sizeof(int));
-
-            if (BitConverter.IsLittleEndian)
-            {
-                bytes = bytes.Reverse().ToArray();
-            }
-
-            return BitConverter.ToInt32(bytes, 0);
-        }
-
-        private int ReadIntLittle(long pos)
-        {
-            BinaryReader.BaseStream.Position = pos;
-            var bytes = BinaryReader.ReadBytes(sizeof(int));
-
-            if (!BitConverter.IsLittleEndian)
-            {
-                bytes = bytes.Reverse().ToArray();
-            }
-
-            return BitConverter.ToInt32(bytes, 0);
-        }
-
         public IShapefileHeader ReadHeader()
         {
             BinaryReader.BaseStream.Seek(ShapefileSpec.ShapeTypePos, SeekOrigin.Begin);
@@ -111,8 +85,8 @@ namespace ShapefileSharp
             var recordPos = ShxSpec.Record.GetPos(recordIndex);
 
             BinaryReader.BaseStream.Position = recordPos.Bytes;
-            indexRecord.Offset = new WordCount(ReadIntBig(recordPos.Bytes));
-            indexRecord.ContentLength = new WordCount(ReadIntBig(recordPos.Bytes + 4)); //TODO: 4 should be a const in a Spec class...
+            indexRecord.Offset = new WordCount(BinaryReader.ReadInt32Big());
+            indexRecord.ContentLength = new WordCount(BinaryReader.ReadInt32Big());
 
             return indexRecord;
         }
@@ -148,8 +122,9 @@ namespace ShapefileSharp
         {
             var recordHeader = new ShapeRecordHeader();
 
-            recordHeader.RecordNumber = ReadIntBig((uint)indexRecord.Offset.Bytes);
-            recordHeader.ContentLength = new WordCount(ReadIntBig((uint)indexRecord.Offset.Bytes + 4)); //TODO: 4 should be a const in a Spec class...
+            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes;
+            recordHeader.RecordNumber = BinaryReader.ReadInt32Big();
+            recordHeader.ContentLength = new WordCount(BinaryReader.ReadInt32Big());
 
             return recordHeader;
         }
