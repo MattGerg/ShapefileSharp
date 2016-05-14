@@ -74,7 +74,7 @@
     <Compile Include="IShxFile.cs" />
     <Compile Include="IShpRecord.cs" />
     <Compile Include="NullShape.cs" />
-    <Compile Include="ShapeRecordHeader.cs" />
+    <Compile Include="ShpRecordHeader.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="Shapefile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

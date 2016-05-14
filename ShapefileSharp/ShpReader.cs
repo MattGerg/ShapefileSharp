@@ -38,7 +38,7 @@ namespace ShapefileSharp
 
         private IShpRecordHeader ReadShapeHeader(IShxRecord indexRecord)
         {
-            var recordHeader = new ShapeRecordHeader();
+            var recordHeader = new ShpRecordHeader();
 
             BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes;
             recordHeader.RecordNumber = BinaryReader.ReadInt32Big();
