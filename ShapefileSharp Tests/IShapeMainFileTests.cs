@@ -6,11 +6,11 @@ namespace ShapefileSharp.Tests
     [TestClass]
     public class IShapeMainFileTests
     {
-        private readonly IShapeMainFile CitiesExpected = new CitiesMainFile();
-        private readonly IShapeMainFile CitiesActual = ShapeMainFileFactory.Create(CitiesMainFile.FilePath);
+        private readonly IShpFile CitiesExpected = new CitiesMainFile();
+        private readonly IShpFile CitiesActual = ShapeMainFileFactory.Create(CitiesMainFile.FilePath);
 
-        private readonly IShapeMainFile CountriesExpected = new CountriesMainFile();
-        private readonly IShapeMainFile CountriesActual = ShapeMainFileFactory.Create(CountriesMainFile.FilePath);
+        private readonly IShpFile CountriesExpected = new CountriesMainFile();
+        private readonly IShpFile CountriesActual = ShapeMainFileFactory.Create(CountriesMainFile.FilePath);
 
         [TestMethod]
         public void ShapeType_Equals()

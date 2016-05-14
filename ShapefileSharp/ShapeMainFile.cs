@@ -4,9 +4,9 @@ using System.IO;
 namespace ShapefileSharp
 {
     /// <summary>
-    /// A Shape Main (.shp) file.
+    /// A Shapefile main (.shp) file.
     /// </summary>
-    internal sealed class ShapeMainFile : IShapeMainFile, IDisposable
+    internal sealed class ShapeMainFile : IShpFile, IDisposable
     {
         public ShapeMainFile(string filePath)
         {
