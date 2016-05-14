@@ -8,9 +8,9 @@ namespace ShapefileSharp
     /// <summary>
     /// A Shape Index (.shx) file.
     /// </summary>
-    internal sealed class ShapeIndexFile : IShxFile, IDisposable
+    internal sealed class ShxFile : IShxFile, IDisposable
     {
-        public ShapeIndexFile(string filePath) : base()
+        public ShxFile(string filePath) : base()
         {
             FileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             Reader = new ShapefileReader(FileStream);

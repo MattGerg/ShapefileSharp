@@ -7,7 +7,7 @@ namespace ShapefileSharp
 {
     public class Shapefile : IShapefile
     {
-        public Shapefile(string filePath) : this(new ShpFile(filePath), new ShapeIndexFile(Path.ChangeExtension(filePath, ".shx")))
+        public Shapefile(string filePath) : this(new ShpFile(filePath), new ShxFile(Path.ChangeExtension(filePath, ".shx")))
         {
         }
 
