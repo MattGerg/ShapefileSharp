@@ -2,7 +2,7 @@
 {
     public interface IShpRecord
     {
-        IShapeRecordHeader Header { get; }
+        IShpRecordHeader Header { get; }
         IShape Shape { get; }
     }
 }

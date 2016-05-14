@@ -36,7 +36,7 @@ namespace ShapefileSharp
             return shapeRecord;
         }
 
-        private IShapeRecordHeader ReadShapeHeader(IShxRecord indexRecord)
+        private IShpRecordHeader ReadShapeHeader(IShxRecord indexRecord)
         {
             var recordHeader = new ShapeRecordHeader();
 
