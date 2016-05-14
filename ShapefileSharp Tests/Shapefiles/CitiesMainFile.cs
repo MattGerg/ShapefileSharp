@@ -21,7 +21,7 @@ namespace ShapefileSharp.Tests.Shapefiles
             }
         };
 
-        public IShapeRecord GetRecord(IShxRecord indexRecord)
+        public IShpRecord GetRecord(IShxRecord indexRecord)
         {
             switch (indexRecord.Offset.Words)
             {

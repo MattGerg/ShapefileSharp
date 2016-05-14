@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ShapefileSharp
 {
-    internal sealed class ShapefileEnumerator : IEnumerator<IShapeRecord>
+    internal sealed class ShapefileEnumerator : IEnumerator<IShpRecord>
     {
         public ShapefileEnumerator(IShapefile shapefile) : base()
         {
@@ -37,7 +37,7 @@ namespace ShapefileSharp
         private IShapefile Shapefile { get; }
         private int Position { get; set; } = -1;
 
-        public IShapeRecord Current
+        public IShpRecord Current
         {
             get
             {

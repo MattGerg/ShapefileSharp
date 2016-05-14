@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IShapeRecord
+    public interface IShpRecord
     {
         IShapeRecordHeader Header { get; }
         IShape Shape { get; }

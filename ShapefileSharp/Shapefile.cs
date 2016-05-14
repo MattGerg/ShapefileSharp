@@ -36,7 +36,7 @@ namespace ShapefileSharp
             }
         }
 
-        public IShapeRecord this[int index]
+        public IShpRecord this[int index]
         {
             get
             {
@@ -46,7 +46,7 @@ namespace ShapefileSharp
             }
         }
 
-        public IEnumerator<IShapeRecord> GetEnumerator()
+        public IEnumerator<IShpRecord> GetEnumerator()
         {
             return new ShapefileEnumerator(this);
         }

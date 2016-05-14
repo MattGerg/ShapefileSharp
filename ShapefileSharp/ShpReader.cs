@@ -9,7 +9,7 @@ namespace ShapefileSharp
         {
         }
 
-        public IShapeRecord ReadShapeRecord(IShxRecord indexRecord)
+        public IShpRecord ReadShapeRecord(IShxRecord indexRecord)
         {
             var shapeRecord = new ShapeRecord()
             {
