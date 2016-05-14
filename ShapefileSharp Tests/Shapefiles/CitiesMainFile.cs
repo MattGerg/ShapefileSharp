@@ -26,7 +26,7 @@ namespace ShapefileSharp.Tests.Shapefiles
             switch (indexRecord.Offset.Words)
             {
                 case 50:
-                    return new ShapeRecord()
+                    return new ShpRecord()
                     {
                     
                     };

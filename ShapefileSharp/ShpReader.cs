@@ -11,7 +11,7 @@ namespace ShapefileSharp
 
         public IShpRecord ReadShapeRecord(IShxRecord indexRecord)
         {
-            var shapeRecord = new ShapeRecord()
+            var shapeRecord = new ShpRecord()
             {
                 Header = ReadShapeHeader(indexRecord),
             };
