@@ -1,4 +1,5 @@
 ﻿using ShapefileSharp.Spec;
+using System;
 
 namespace ShapefileSharp
 {
@@ -6,6 +7,11 @@ namespace ShapefileSharp
     {
         public ShxReader(string shxFilePath) : base(shxFilePath)
         {
+        }
+
+        public int GetRecordCount()
+        {
+            return Convert.ToInt32((BinaryReader.BaseStream.Length - ShxSpec.Header.Length.Bytes) / ShxSpec.Record.Length.Bytes);
         }
 
         public IShxRecord ReadRecord(int recordIndex)

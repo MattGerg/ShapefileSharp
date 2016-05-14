@@ -1,8 +1,6 @@
-﻿using ShapefileSharp.Spec;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 
 namespace ShapefileSharp
 {
@@ -14,12 +12,7 @@ namespace ShapefileSharp
         public ShxFile(string filePath) : base()
         {
             Reader = new ShxReader(filePath);
-
-            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            {
-                //TODO: The reader should figure this out...
-                Count = Convert.ToInt32((fs.Length - ShxSpec.Header.Length.Bytes) / ShxSpec.Record.Length.Bytes);
-            }                
+            Count = Reader.GetRecordCount();            
         }
 
         #region IDisposable Support
