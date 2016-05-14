@@ -48,7 +48,7 @@ namespace ShapefileSharp
 
         private ShxReader Reader { get; }
 
-        public IShapeIndexRecord this[int index]
+        public IShxRecord this[int index]
         {
             get
             {
@@ -58,7 +58,7 @@ namespace ShapefileSharp
 
         public int Count { get; }
 
-        public IEnumerator<IShapeIndexRecord> GetEnumerator()
+        public IEnumerator<IShxRecord> GetEnumerator()
         {
             return new ShapeIndexEnumerator(this);
         }

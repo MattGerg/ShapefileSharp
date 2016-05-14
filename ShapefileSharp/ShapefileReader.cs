@@ -10,7 +10,7 @@ namespace ShapefileSharp
         {
         }
 
-        public IShapeRecord ReadShapeRecord(IShapeIndexRecord indexRecord)
+        public IShapeRecord ReadShapeRecord(IShxRecord indexRecord)
         {
             var shapeRecord = new ShapeRecord()
             {
@@ -37,7 +37,7 @@ namespace ShapefileSharp
             return shapeRecord;
         }
 
-        private IShapeRecordHeader ReadShapeHeader(IShapeIndexRecord indexRecord)
+        private IShapeRecordHeader ReadShapeHeader(IShxRecord indexRecord)
         {
             var recordHeader = new ShapeRecordHeader();
 
@@ -48,13 +48,13 @@ namespace ShapefileSharp
             return recordHeader;
         }
 
-        private ShapeType ReadShapeType(IShapeIndexRecord indexRecord)
+        private ShapeType ReadShapeType(IShxRecord indexRecord)
         {
             BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 8; //TODO: 8 should be a const in a Spec class...
             return (ShapeType)BinaryReader.ReadInt32();
         }
 
-        private IPointShape ReadPointShape(IShapeIndexRecord indexRecord)
+        private IPointShape ReadPointShape(IShxRecord indexRecord)
         {
             var point = new Point();
             var pointShape = new PointShape()

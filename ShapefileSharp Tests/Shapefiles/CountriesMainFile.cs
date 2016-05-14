@@ -21,7 +21,7 @@ namespace ShapefileSharp.Tests.Shapefiles
             }
         };
 
-        public IShapeRecord GetRecord(IShapeIndexRecord indexRecord)
+        public IShapeRecord GetRecord(IShxRecord indexRecord)
         {
             throw new NotImplementedException();
         }

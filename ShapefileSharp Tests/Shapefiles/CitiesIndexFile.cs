@@ -23,9 +23,9 @@ namespace ShapefileSharp.Tests.Shapefiles
             Indices = indices.AsReadOnly();
         }
 
-        private IReadOnlyList<IShapeIndexRecord> Indices { get; }
+        private IReadOnlyList<IShxRecord> Indices { get; }
 
-        public IShapeIndexRecord this[int index]
+        public IShxRecord this[int index]
         {
             get
             {
@@ -41,7 +41,7 @@ namespace ShapefileSharp.Tests.Shapefiles
             }
         }
 
-        public IEnumerator<IShapeIndexRecord> GetEnumerator()
+        public IEnumerator<IShxRecord> GetEnumerator()
         {
             return Indices.GetEnumerator();
         }

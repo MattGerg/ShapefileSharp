@@ -8,7 +8,7 @@ namespace ShapefileSharp
         {
         }
 
-        public IShapeIndexRecord ReadRecord(int recordIndex)
+        public IShxRecord ReadRecord(int recordIndex)
         {
             var indexRecord = new ShapeIndexRecord();
 

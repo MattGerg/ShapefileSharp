@@ -6,6 +6,6 @@
     public interface IShpFile
     {
         IShapefileHeader Header { get; }
-        IShapeRecord GetRecord(IShapeIndexRecord indexRecord);
+        IShapeRecord GetRecord(IShxRecord indexRecord);
     }
 }

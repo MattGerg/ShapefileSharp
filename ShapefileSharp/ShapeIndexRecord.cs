@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public sealed class ShapeIndexRecord : IShapeIndexRecord
+    public sealed class ShapeIndexRecord : IShxRecord
     {
         public WordCount Offset { get; set; }
         public WordCount ContentLength { get; set; }

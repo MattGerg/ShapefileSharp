@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IShapeIndexRecord
+    public interface IShxRecord
     {
         /// <summary>
         /// The offset from the start of the Main (.shp) File.

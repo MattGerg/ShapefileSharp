@@ -42,7 +42,7 @@ namespace ShapefileSharp
         public IShapefileHeader Header { get; }
         private readonly ShapefileReader Reader;
 
-        public IShapeRecord GetRecord(IShapeIndexRecord indexRecord)
+        public IShapeRecord GetRecord(IShxRecord indexRecord)
         {
             return Reader.ReadShapeRecord(indexRecord);
         }
