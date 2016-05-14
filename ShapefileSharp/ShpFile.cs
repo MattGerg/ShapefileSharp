@@ -10,7 +10,7 @@ namespace ShapefileSharp
     {
         public ShpFile(string filePath)
         {
-            Reader = new ShapefileReader(filePath);
+            Reader = new ShpReader(filePath);
             Header = Reader.ReadHeader();
         }
 
@@ -40,7 +40,7 @@ namespace ShapefileSharp
         #endregion
 
         public IShapefileHeader Header { get; }
-        private readonly ShapefileReader Reader;
+        private readonly ShpReader Reader;
 
         public IShapeRecord GetRecord(IShxRecord indexRecord)
         {

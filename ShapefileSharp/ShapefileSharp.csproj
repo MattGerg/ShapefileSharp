@@ -58,7 +58,7 @@
     <Compile Include="PointShape.cs" />
     <Compile Include="PointZ.cs" />
     <Compile Include="ShapefileHeader.cs" />
-    <Compile Include="ShapefileReader.cs" />
+    <Compile Include="ShpReader.cs" />
     <Compile Include="ShapefileEnumerator.cs" />
     <Compile Include="ShapeIndexEnumerator.cs" />
     <Compile Include="ShxRecord.cs" />

@@ -1,12 +1,11 @@
-﻿using ShapefileSharp.Spec;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 
 namespace ShapefileSharp
 {
-    internal sealed class ShapefileReader : FileReaderBase
+    internal sealed class ShpReader : FileReaderBase
     {
-        public ShapefileReader(string shpFilePath) : base(shpFilePath)
+        public ShpReader(string shpFilePath) : base(shpFilePath)
         {
         }
 
