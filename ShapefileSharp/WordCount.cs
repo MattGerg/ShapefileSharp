@@ -1,10 +1,33 @@
-﻿namespace ShapefileSharp
+﻿using System;
+
+namespace ShapefileSharp
 {
     public struct WordCount
     {
+        private const int BytesPerWord = 2;
+
         public WordCount(int words)
         {
             Words = words;
+        }
+
+        /// <summary>
+        /// Create a <see cref="WordCount"/> based on the specified number of bytes.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the specified number of bytes is odd (i.e. un-even).</exception>
+        public static WordCount FromBytes(int bytes)
+        {
+            if (bytes % BytesPerWord != 0)
+            {
+                throw new ArgumentException("Cannot determine number of words from odd number of bytes.", nameof(bytes));
+            }
+
+            return new WordCount(bytes / BytesPerWord);
+        }
+
+        public static WordCount FromWords(int words)
+        {
+            return new WordCount(words);
         }
 
         /// <summary>
@@ -18,7 +41,7 @@
         public int Bytes {
             get
             {
-                return Words * 2;
+                return Words * BytesPerWord;
             }
         }
 
