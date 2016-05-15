@@ -39,15 +39,12 @@ namespace ShapefileSharp
 
         private IShpRecordHeader ReadShapeHeader(IShxRecord indexRecord)
         {
-            var recordHeader = new ShpRecordHeader();
-
-            BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.RecordNumber.Offset).Bytes;
-            recordHeader.RecordNumber = BinaryReader.ReadInt32Big();
-
-            BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.ContentLength.Offset).Bytes;
-            recordHeader.ContentLength = new WordCount(BinaryReader.ReadInt32Big());
-
-            return recordHeader;
+            return new ShpRecordHeader()
+            {
+                RecordNumber = ReadField(ShpSpec.Record.RecordNumber, indexRecord.Offset),
+                //TODO: Just make a WordCount field?
+                ContentLength = WordCount.FromWords(ReadField(ShpSpec.Record.ContentLength, indexRecord.Offset))
+            };
         }
 
         private ShapeType ReadShapeType(IShxRecord indexRecord)
