@@ -4,8 +4,8 @@
     {
         public static class Record
         {
-            public static Field RecordNumber { get; } = new Field(new WordCount(0), FieldType.Int, Endianness.Big);
-            public static Field ContentLength { get; } = new Field(new WordCount(1), FieldType.Int, Endianness.Big);
+            public static IntField RecordNumber { get; } = new IntField(WordCount.FromWords(0), Endianness.Big);
+            public static IntField ContentLength { get; } = new IntField(WordCount.FromWords(1), Endianness.Big);
         }
     }
 }

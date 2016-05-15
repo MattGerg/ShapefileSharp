@@ -1,16 +1,14 @@
 ﻿namespace ShapefileSharp.Spec
 {
-    internal sealed class Field
+    internal abstract class Field
     {
-        public Field(WordCount offset, FieldType type, Endianness endianness) : base()
+        public Field(WordCount offset, WordCount length) : base()
         {
             Offset = offset;
-            Type = type;
-            Endianness = endianness;
+            Length = length;
         }
 
         public WordCount Offset { get; }
-        public FieldType Type { get; }
-        public Endianness Endianness { get; }
+        public WordCount Length { get; }
     }
 }
