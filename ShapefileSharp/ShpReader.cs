@@ -41,16 +41,16 @@ namespace ShapefileSharp
         {
             return new ShpRecordHeader()
             {
-                RecordNumber = ReadField(ShpSpec.Record.RecordNumber, indexRecord.Offset),
+                RecordNumber = ReadField(ShpSpec.Record.Header.RecordNumber, indexRecord.Offset),
                 //TODO: Just make a WordCount field?
-                ContentLength = WordCount.FromWords(ReadField(ShpSpec.Record.ContentLength, indexRecord.Offset))
+                ContentLength = WordCount.FromWords(ReadField(ShpSpec.Record.Header.ContentLength, indexRecord.Offset))
             };
         }
 
         private ShapeType ReadShapeType(IShxRecord indexRecord)
         {
-            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 8; //TODO: 8 should be a const in a Spec class...
-            return (ShapeType)BinaryReader.ReadInt32();
+            //TODO: Just make a ShapeType field?
+            return (ShapeType)ReadField(ShpSpec.Record.ShapeType, indexRecord.Offset);
         }
 
         private IPointShape ReadPointShape(IShxRecord indexRecord)
