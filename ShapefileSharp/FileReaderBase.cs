@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using ShapefileSharp.Spec;
+using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace ShapefileSharp
 {
@@ -38,6 +41,41 @@ namespace ShapefileSharp
 
         private readonly FileStream FileStream;
         protected BinaryReader BinaryReader { get; }
+
+        protected double ReadField(DoubleField field)
+        {
+            return ReadField(field, WordCount.FromWords(0));
+        }
+
+        protected double ReadField(DoubleField field, WordCount origin)
+        {
+            BinaryReader.BaseStream.Position = (origin + field.Offset).Bytes;
+            return BinaryReader.ReadDouble();
+        }
+
+        protected int ReadField(IntField field)
+        {
+            return ReadField(field, WordCount.FromWords(0));
+        }
+
+        protected int ReadField(IntField field, WordCount origin)
+        {
+            BinaryReader.BaseStream.Position = (origin + field.Offset).Bytes;
+
+            switch (field.Endianness)
+            {
+                case Endianness.Little:
+                    return BinaryReader.ReadInt32();
+
+                case Endianness.Big:
+                    return BinaryReader.ReadInt32Big();
+
+                default:
+                    Debug.Fail("Unimplemented Endianness.");
+                    throw new NotImplementedException("Unimplemented Endianness.");
+
+            }
+        }
 
         public IShapefileHeader ReadHeader()
         {
