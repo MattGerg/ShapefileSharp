@@ -16,7 +16,7 @@ namespace ShapefileSharp.Spec
             {
                 using (var reader = new BinaryReader(ms))
                 {
-                    reader.BaseStream.Position = 0; //TODO: Capture in spec class...
+                    reader.BaseStream.Position = ShpSpec.Record.Contents.ShapeType.Offset.Bytes; //TODO: Capture in spec class...
                     ShapeType shapeType = (ShapeType)reader.ReadInt32();
 
                     switch (shapeType)
@@ -25,19 +25,16 @@ namespace ShapefileSharp.Spec
                             return new NullShape();
 
                         case ShapeType.Point:
-                            var point = new Point();
-                            var pointShape = new PointShape()
+                            var point = new Point()
+                            {
+                                X = reader.ReadField(ShpSpec.Record.Contents.PointShape.X),
+                                Y = reader.ReadField(ShpSpec.Record.Contents.PointShape.Y)
+                            };
+                                                        
+                            return new PointShape()
                             {
                                 Point = point
                             };
-
-                            reader.BaseStream.Position = 4; //TODO: 4 should be a const in a Spec class...
-                            point.X = reader.ReadDouble();
-
-                            reader.BaseStream.Position = 12; //TODO: 12 should be a const in a Spec class...
-                            point.Y = reader.ReadDouble();
-
-                            return pointShape;
 
                         default:
                             Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));
