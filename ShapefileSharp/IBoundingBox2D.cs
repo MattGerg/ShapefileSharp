@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IBoundingBox2D
+    public interface IBoundingBox2d
     {
         double XMin { get; }
         double XMax { get; }
