@@ -113,6 +113,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\multipoint.dbf" />
+    <None Include="Data\multipoint.prj" />
+    <None Include="Data\multipoint.shp" />
+    <None Include="Data\multipoint.shx" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
