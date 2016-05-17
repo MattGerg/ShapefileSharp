@@ -10,7 +10,7 @@ namespace ShapefileSharp
     {
         public static double ReadField(this BinaryReader reader, DoubleField field)
         {
-            return reader.ReadField(field, WordCount.FromBytes(0));
+            return reader.ReadField(field, WordCount.Zero);
         }
 
         public static double ReadField(this BinaryReader reader, DoubleField field, WordCount origin)
@@ -21,7 +21,7 @@ namespace ShapefileSharp
 
         public static int ReadField(this BinaryReader reader, IntField field)
         {
-            return reader.ReadField(field, WordCount.FromWords(0));
+            return reader.ReadField(field, WordCount.Zero);
         }
 
         public static int ReadField(this BinaryReader reader, IntField field, WordCount origin)

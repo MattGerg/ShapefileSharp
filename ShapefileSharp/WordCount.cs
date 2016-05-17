@@ -4,6 +4,8 @@ namespace ShapefileSharp
 {
     public struct WordCount
     {
+        public static readonly WordCount Zero = FromWords(0);
+
         private const int BytesPerWord = 2;
 
         public WordCount(int words)
