@@ -59,6 +59,7 @@
     <Compile Include="IShapeMainFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BoundingBoxTests.cs" />
+    <Compile Include="Shapefiles\MultiPointShpFile.cs" />
     <Compile Include="ShapefileTests.cs" />
     <Compile Include="WordCountTests.cs" />
   </ItemGroup>
@@ -114,10 +115,38 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\multipoint.dbf" />
-    <None Include="Data\multipoint.prj" />
-    <None Include="Data\multipoint.shp" />
-    <None Include="Data\multipoint.shx" />
+    <Content Include="Data\multipoint.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\multipoint.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\multipoint.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\multipoint.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\lnd-stations.cpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\lnd-stations.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\lnd-stations.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\lnd-stations.qpj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\lnd-stations.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\lnd-stations.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
