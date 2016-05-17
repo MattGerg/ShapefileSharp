@@ -1,5 +1,6 @@
 ﻿using ShapefileSharp.Spec;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -16,6 +17,30 @@ namespace ShapefileSharp
         {
             reader.BaseStream.Position = (origin + field.Offset).Bytes;
             return reader.ReadDouble();
+        }
+
+        public static int ReadField(this BinaryReader reader, IntField field)
+        {
+            return reader.ReadField(field, WordCount.FromWords(0));
+        }
+
+        public static int ReadField(this BinaryReader reader, IntField field, WordCount origin)
+        {
+            reader.BaseStream.Position = (origin + field.Offset).Bytes;
+
+            switch (field.Endianness)
+            {
+                case Endianness.Little:
+                    return reader.ReadInt32();
+
+                case Endianness.Big:
+                    return reader.ReadInt32Big();
+
+                default:
+                    Debug.Fail("Unimplemented Endianness.");
+                    throw new NotImplementedException("Unimplemented Endianness.");
+
+            }
         }
 
         /// <summary>
