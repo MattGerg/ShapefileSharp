@@ -18,7 +18,14 @@
                 /// The offset, from the beginning of the Shape record, where the Contents begin.
                 /// </summary>
                 public static WordCount Offset { get; } = Header.Length;
+
                 public static IntField ShapeType { get; } = new IntField(WordCount.FromBytes(0), Endianness.Little);
+
+                public static class PointShape
+                {
+                    public static DoubleField X { get; } = new DoubleField(WordCount.FromBytes(4));
+                    public static DoubleField Y { get; } = new DoubleField(WordCount.FromBytes(12));
+                }
             }
         }
     }
