@@ -12,7 +12,14 @@
                 public static WordCount Length { get; } = RecordNumber.Length + ContentLength.Length;
             }
 
-            public static IntField ShapeType { get; } = new IntField(Header.Length, Endianness.Little);
+            public static class Contents
+            {
+                /// <summary>
+                /// The offset, from the beginning of the Shape record, where the Contents begin.
+                /// </summary>
+                public static WordCount Offset { get; } = Header.Length;
+                public static IntField ShapeType { get; } = new IntField(WordCount.FromBytes(0), Endianness.Little);
+            }
         }
     }
 }

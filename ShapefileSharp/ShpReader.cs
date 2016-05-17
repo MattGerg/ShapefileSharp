@@ -10,6 +10,8 @@ namespace ShapefileSharp
         {
         }
 
+        private readonly ShapeSerializer ShapeSerializer = new ShapeSerializer();
+
         public IShpRecord ReadShapeRecord(IShxRecord indexRecord)
         {
             var shapeRecord = new ShpRecord()
@@ -17,22 +19,10 @@ namespace ShapefileSharp
                 Header = ReadShapeHeader(indexRecord),
             };
 
-            ShapeType shapeType = ReadShapeType(indexRecord);
+            BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.Contents.Offset).Bytes;
+            var contents = BinaryReader.ReadBytes(shapeRecord.Header.ContentLength.Bytes);
 
-            switch (shapeType)
-            {
-                case ShapeType.NullShape:
-                    shapeRecord.Shape = null;
-                    break;
-
-                case ShapeType.Point:
-                    shapeRecord.Shape = ReadPointShape(indexRecord);
-                    break;
-
-                default:
-                    Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));
-                    break;
-            }
+            shapeRecord.Shape = ShapeSerializer.Deserialize(contents);
 
             return shapeRecord;
         }
@@ -45,12 +35,6 @@ namespace ShapefileSharp
                 //TODO: Just make a WordCount field?
                 ContentLength = WordCount.FromWords(ReadField(ShpSpec.Record.Header.ContentLength, indexRecord.Offset))
             };
-        }
-
-        private ShapeType ReadShapeType(IShxRecord indexRecord)
-        {
-            //TODO: Just make a ShapeType field?
-            return (ShapeType)ReadField(ShpSpec.Record.ShapeType, indexRecord.Offset);
         }
 
         private IPointShape ReadPointShape(IShxRecord indexRecord)
