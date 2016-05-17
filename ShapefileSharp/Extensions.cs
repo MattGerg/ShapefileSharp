@@ -43,6 +43,20 @@ namespace ShapefileSharp
             }
         }
 
+        public static IPoint ReadField(this BinaryReader reader, PointField field)
+        {
+            return reader.ReadField(field, WordCount.Zero);
+        }
+
+        public static IPoint ReadField(this BinaryReader reader, PointField field, WordCount origin)
+        {
+            return new Point()
+            {
+                X = reader.ReadField(field.X),
+                Y = reader.ReadField(field.Y)
+            };
+        }
+
         /// <summary>
         /// Reads an <see cref="int"/> in Big-endian format.
         /// </summary>

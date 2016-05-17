@@ -71,6 +71,7 @@
     <Compile Include="Spec\Endianness.cs" />
     <Compile Include="Spec\Field.cs" />
     <Compile Include="Spec\IntField.cs" />
+    <Compile Include="Spec\PointField.cs" />
     <Compile Include="Spec\ShapeSerializer.cs" />
     <Compile Include="Spec\ShpSpec.cs" />
     <Compile Include="Spec\ShxSpec.cs" />

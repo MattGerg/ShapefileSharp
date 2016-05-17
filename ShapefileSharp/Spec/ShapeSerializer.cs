@@ -27,11 +27,7 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.Point:
                             {
-                                var point = new Point()
-                                {
-                                    X = reader.ReadField(ShpSpec.Record.Contents.PointShape.X),
-                                    Y = reader.ReadField(ShpSpec.Record.Contents.PointShape.Y)
-                                };
+                                var point = reader.ReadField(ShpSpec.Record.Contents.PointShape.Point);
 
                                 return new PointShape()
                                 {
@@ -54,11 +50,7 @@ namespace ShapefileSharp.Spec
 
                                 for (var i = 0; i < numPoints; i++)
                                 {
-                                    var point = new Point()
-                                    {
-                                        X = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.X(i)),
-                                        Y = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Y(i))
-                                    };
+                                    var point = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Point(i));
 
                                     points.Add(point);
                                 }

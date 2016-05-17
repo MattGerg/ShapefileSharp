@@ -23,8 +23,7 @@
 
                 public static class PointShape
                 {
-                    public static DoubleField X { get; } = new DoubleField(WordCount.FromBytes(4));
-                    public static DoubleField Y { get; } = new DoubleField(WordCount.FromBytes(12));
+                    public static PointField Point { get; } = new PointField(WordCount.FromBytes(4));
                 }
 
                 public static class MultiPointShape
@@ -39,14 +38,9 @@
 
                     public static IntField NumPoints { get; } = new IntField(WordCount.FromBytes(36), Endianness.Little);
 
-                    public static DoubleField X(int numPoint)
+                    public static PointField Point(int numPoint)
                     {
-                        return new DoubleField(WordCount.FromBytes(40 + (numPoint * 16)));
-                    }
-
-                    public static DoubleField Y(int numPoint)
-                    {
-                        return new DoubleField(WordCount.FromBytes(48 + (numPoint * 16)));
+                        return new PointField(WordCount.FromBytes(40 + (numPoint * 32)));
                     }
                 }
             }
