@@ -14,17 +14,17 @@ namespace ShapefileSharp
 
         public IShpRecord ReadShapeRecord(IShxRecord indexRecord)
         {
-            var shapeRecord = new ShpRecord()
-            {
-                Header = ReadShapeHeader(indexRecord),
-            };
+            var header = ReadShapeHeader(indexRecord);
 
             BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.Contents.Offset).Bytes;
-            var contents = BinaryReader.ReadBytes(shapeRecord.Header.ContentLength.Bytes);
+            var contents = BinaryReader.ReadBytes(header.ContentLength.Bytes);
+            var shape = ShapeSerializer.Deserialize(contents);
 
-            shapeRecord.Shape = ShapeSerializer.Deserialize(contents);
-
-            return shapeRecord;
+            return new ShpRecord()
+            {
+                Header = header,
+                Shape = shape
+            };
         }
 
         private IShpRecordHeader ReadShapeHeader(IShxRecord indexRecord)
