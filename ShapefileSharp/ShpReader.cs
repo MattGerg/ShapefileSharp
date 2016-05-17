@@ -36,22 +36,5 @@ namespace ShapefileSharp
                 ContentLength = WordCount.FromWords(ReadField(ShpSpec.Record.Header.ContentLength, indexRecord.Offset))
             };
         }
-
-        private IPointShape ReadPointShape(IShxRecord indexRecord)
-        {
-            var point = new Point();
-            var pointShape = new PointShape()
-            {
-                Point = point
-            };
-
-            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 12; //TODO: 12 should be a const in a Spec class...
-            point.X = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Position = indexRecord.Offset.Bytes + 20; //TODO: 20 should be a const in a Spec class...
-            point.Y = BinaryReader.ReadDouble();
-
-            return pointShape;
-        }
     }
 }
