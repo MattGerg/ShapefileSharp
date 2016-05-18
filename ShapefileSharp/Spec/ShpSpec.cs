@@ -28,19 +28,13 @@
 
                 public static class MultiPointShape
                 {
-                    public static class Box
-                    {
-                        public static DoubleField XMin { get; } = new DoubleField(WordCount.FromBytes(4));
-                        public static DoubleField YMin { get; } = new DoubleField(WordCount.FromBytes(12));
-                        public static DoubleField XMax { get; } = new DoubleField(WordCount.FromBytes(20));
-                        public static DoubleField YMax { get; } = new DoubleField(WordCount.FromBytes(28));
-                    }
+                    public static BoundingBox2dField Box { get; } = new BoundingBox2dField(WordCount.FromBytes(4));
 
                     public static IntField NumPoints { get; } = new IntField(WordCount.FromBytes(36), Endianness.Little);
 
-                    public static PointField Point(int numPoint)
+                    public static PointField Point(int pointIndex)
                     {
-                        return new PointField(WordCount.FromBytes(40 + (numPoint * 32)));
+                        return new PointField(WordCount.FromBytes(40 + (pointIndex * 32)));
                     }
                 }
             }

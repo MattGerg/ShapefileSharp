@@ -37,13 +37,7 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.MultiPoint:
                             {
-                                var box = new BoundingBox()
-                                {
-                                    XMin = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Box.XMin),
-                                    YMin = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Box.YMin),
-                                    XMax = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Box.XMax),
-                                    YMax = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Box.YMax)
-                                };
+                                var box = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Box);
 
                                 var numPoints = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.NumPoints);
                                 var points = new List<IPoint>();

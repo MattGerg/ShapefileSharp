@@ -8,6 +8,22 @@ namespace ShapefileSharp
 {
     internal static class Extensions
     {
+        public static IBoundingBox2d ReadField(this BinaryReader reader, BoundingBox2dField field)
+        {
+            return reader.ReadField(field, WordCount.Zero);
+        }
+
+        public static IBoundingBox2d ReadField(this BinaryReader reader, BoundingBox2dField field, WordCount origin)
+        {
+            return new BoundingBox()
+            {
+                XMin = reader.ReadField(field.XMin),
+                YMin = reader.ReadField(field.YMin),
+                XMax = reader.ReadField(field.XMax),
+                YMax = reader.ReadField(field.YMax)
+            };
+        }
+
         public static double ReadField(this BinaryReader reader, DoubleField field)
         {
             return reader.ReadField(field, WordCount.Zero);
