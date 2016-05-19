@@ -56,6 +56,46 @@ namespace ShapefileSharp.Spec
                                 };
                             }
 
+                        case ShapeType.PolyLine:
+                            {
+                                var box = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.Box);
+                                var numParts = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.NumParts);
+                                var numPoints = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.NumPoints);
+
+                                var pointStartIndices = new List<int>();
+
+                                for (var i = 0; i < numParts; i++)
+                                {
+                                    var pointStartField = ShpSpec.Record.Contents.PolyLineShape.Part(i);
+                                    var pointStartIndex = reader.ReadField(pointStartField);
+
+                                    pointStartIndices.Add(pointStartIndex);
+                                }
+
+                                var parts = new List<IReadOnlyList<IPoint>>();
+
+                                for (var i = 0; i < pointStartIndices.Count; i++)
+                                {
+                                    var startIndex = pointStartIndices[i];
+                                    var endIndex = (pointStartIndices.Count > (i + 1) ? pointStartIndices[i + 1] : numPoints) - 1;
+                                    var points = new List<IPoint>();
+
+                                    for (var iPointIndex = startIndex; iPointIndex <= endIndex; iPointIndex++)
+                                    {
+                                        var pointField = ShpSpec.Record.Contents.PolyLineShape.Point(numParts, iPointIndex);
+                                        var point = reader.ReadField(pointField);
+                                        points.Add(point);                     
+                                    }
+
+                                    parts.Add(points.AsReadOnly());
+                                }
+
+                                return new PolyLineShape()
+                                {
+                                    Box = box,
+                                    Parts = parts.AsReadOnly()
+                                };
+                            }
 
                         default:
                             Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));

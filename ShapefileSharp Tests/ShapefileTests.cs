@@ -9,6 +9,7 @@ namespace ShapefileSharp.Tests
     {
         Shapefile CitiesActual = new Shapefile(CitiesMainFile.FilePath);
         Shapefile MultiPointActual = new Shapefile(MultiPointShpFile.FilePath);
+        Shapefile PolyLineActual = new Shapefile(PolyLineShpFile.FilePath);
 
         [TestMethod]
         public void Cities_FirstRecord_Equals()
@@ -40,6 +41,23 @@ namespace ShapefileSharp.Tests
             var multiPointShape = actual.Shape as IMultiPointShape;
             Assert.AreEqual(458860, multiPointShape.Points.First().X);
             Assert.AreEqual(132410, multiPointShape.Points.First().Y);
+        }
+
+        [TestMethod]
+        public void Polyline_FirstRecord_Equals()
+        {
+            var actual = PolyLineActual.First();
+
+            //TODO: There must be a better way to store these expected values...
+            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(ShapeType.PolyLine, actual.Shape.ShapeType);
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPolyLineShape));
+
+            //TODO: Check the box...
+
+            var polyLineShape = actual.Shape as IPolyLineShape;
+            Assert.AreEqual(-74.95269, polyLineShape.Parts.First().First().X);
+            Assert.AreEqual(40.04527, polyLineShape.Parts.First().First().Y);
         }
     }
 }
