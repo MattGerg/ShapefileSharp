@@ -17,8 +17,8 @@ namespace ShapefileSharp.Spec
             {
                 using (var reader = new BinaryReader(ms))
                 {
-                    reader.BaseStream.Position = ShpSpec.Record.Contents.ShapeType.Offset.Bytes; //TODO: Capture in spec class...
-                    ShapeType shapeType = (ShapeType)reader.ReadInt32();
+                    //TODO: Create ShapeType field?
+                    ShapeType shapeType = (ShapeType)reader.ReadField(ShpSpec.Record.Contents.ShapeType);
 
                     switch (shapeType)
                     {
