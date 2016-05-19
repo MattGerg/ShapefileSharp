@@ -3,6 +3,6 @@
     public interface IShapefileHeader
     {
         ShapeType ShapeType { get; }
-        IBoundingBox BoundingBox { get; }
+        IBoundingBox<IPointZ> BoundingBox { get; }
     }
 }

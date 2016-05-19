@@ -2,7 +2,7 @@
 
 namespace ShapefileSharp
 {
-    public sealed class MultiPointShape : Shape, IMultiPointShape
+    public sealed class MultiPointShape : Shape, IMultiPointShape<IPoint>
     {
         public override ShapeType ShapeType
         {
@@ -12,7 +12,7 @@ namespace ShapefileSharp
             }
         }
 
-        public IBoundingBox2d Box { get; set; }
+        public IBoundingBox<IPoint> Box { get; set; }
         public IReadOnlyList<IPoint> Points { get; set; }
     }
 }

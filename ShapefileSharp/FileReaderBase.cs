@@ -44,36 +44,42 @@ namespace ShapefileSharp
             BinaryReader.BaseStream.Seek(ShapefileSpec.ShapeTypePos, SeekOrigin.Begin);
             var shapeType = (ShapeType)BinaryReader.ReadInt32();
 
-            var boundingBox = new BoundingBox();
+            var min = new Point();
+            var max = new Point();
 
+            //TODO: Use some kind of PointField...
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxXMinPos, SeekOrigin.Begin);
-            boundingBox.XMin = BinaryReader.ReadDouble();
+            min.X = BinaryReader.ReadDouble();
 
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxXMaxPos, SeekOrigin.Begin);
-            boundingBox.XMax = BinaryReader.ReadDouble();
+            max.X = BinaryReader.ReadDouble();
 
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxYMinPos, SeekOrigin.Begin);
-            boundingBox.YMin = BinaryReader.ReadDouble();
+            min.Y = BinaryReader.ReadDouble();
 
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxYMaxPos, SeekOrigin.Begin);
-            boundingBox.YMax = BinaryReader.ReadDouble();
+            max.Y = BinaryReader.ReadDouble();
 
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxZMinPos, SeekOrigin.Begin);
-            boundingBox.ZMin = BinaryReader.ReadDouble();
+            min.Z = BinaryReader.ReadDouble();
 
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxZMaxPos, SeekOrigin.Begin);
-            boundingBox.ZMax = BinaryReader.ReadDouble();
+            max.Z = BinaryReader.ReadDouble();
 
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxMMinPos, SeekOrigin.Begin);
-            boundingBox.MMin = BinaryReader.ReadDouble();
+            min.M = BinaryReader.ReadDouble();
 
             BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxMMaxPos, SeekOrigin.Begin);
-            boundingBox.MMax = BinaryReader.ReadDouble();
+            max.M = BinaryReader.ReadDouble();
 
             return new ShapefileHeader()
             {
                 ShapeType = shapeType,
-                BoundingBox = boundingBox
+                BoundingBox = new BoundingBox<IPointZ>()
+                {
+                    Min = min,
+                    Max = max
+                }
             };
         }
     }

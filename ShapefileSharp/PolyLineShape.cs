@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    class PolyLineShape : MultiPartShape<IBoundingBox2d, IPoint>, IPolyLineShape
+    class PolyLineShape : MultiPartShape<IPoint>, IPolyLineShape
     {
         public override ShapeType ShapeType
         {

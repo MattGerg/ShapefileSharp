@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IPolyLineShape : IMultiPartShape<IBoundingBox2d, IPoint>
+    public interface IPolyLineShape : IMultiPartShape<IPoint>
     {
     }
 }

@@ -1,18 +1,16 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IBoundingBox : IBoundingBox2d
+    public interface IBoundingBox<T> where T:IPoint
     {
-        double ZMin { get; }
-        double ZMax { get; }
-        double MMin { get; }
-        double MMax { get; }
+        T Min { get; }
+        T Max { get; }
     }
 
     public static class IBoundingBoxExtensions
     {
-        public static BoundingBox ToMutable(this IBoundingBox box)
+        internal static BoundingBox<T> ToMutable<T>(this IBoundingBox<T> box) where T:IPoint
         {
-            return new BoundingBox(box);
+            return new BoundingBox<T>(box);
         }
     }
 }

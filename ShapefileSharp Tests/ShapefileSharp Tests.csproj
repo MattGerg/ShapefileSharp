@@ -58,7 +58,6 @@
     <Compile Include="Shapefiles\CountriesMainFile.cs" />
     <Compile Include="IShapeMainFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BoundingBoxTests.cs" />
     <Compile Include="Shapefiles\MultiPointShpFile.cs" />
     <Compile Include="Shapefiles\PolyLineShpFile.cs" />
     <Compile Include="ShapefileTests.cs" />

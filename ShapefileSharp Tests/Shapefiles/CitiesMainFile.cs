@@ -12,12 +12,18 @@ namespace ShapefileSharp.Tests.Shapefiles
         public IShapefileHeader Header { get; } = new ShapefileHeader()
         {
             ShapeType = ShapeType.Point,
-            BoundingBox = new BoundingBox()
+            BoundingBox = new BoundingBox<IPointZ>()
             {
-                XMax = 179.38330358817018,
-                XMin = -179.58997888396897,
-                YMax = 82.483323180359434,
-                YMin = -89.999999814387266
+                Min = new Point()
+                {
+                    X = -179.58997888396897,
+                    Y = -89.999999814387266
+                },
+                Max = new Point()
+                {
+                    X = 179.38330358817018,
+                    Y = 82.483323180359434
+                }
             }
         };
 

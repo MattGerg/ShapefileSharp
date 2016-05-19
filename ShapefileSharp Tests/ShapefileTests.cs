@@ -34,11 +34,11 @@ namespace ShapefileSharp.Tests
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.MultiPoint, actual.Shape.ShapeType);
-            Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape));
+            Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape<IPoint>));
 
             //TODO: Check the box...
 
-            var multiPointShape = actual.Shape as IMultiPointShape;
+            var multiPointShape = actual.Shape as IMultiPointShape<IPoint>;
             Assert.AreEqual(458860, multiPointShape.Points.First().X);
             Assert.AreEqual(132410, multiPointShape.Points.First().Y);
         }

@@ -2,9 +2,9 @@
 
 namespace ShapefileSharp
 {
-    public interface IMultiPointShape : IShape
+    public interface IMultiPointShape<T> : IShape where T:IPoint
     {
-        IBoundingBox2d Box { get; }
-        IReadOnlyList<IPoint> Points { get; }
+        IBoundingBox<T> Box { get; }
+        IReadOnlyList<T> Points { get; }
     }
 }

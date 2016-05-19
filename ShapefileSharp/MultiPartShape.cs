@@ -2,9 +2,9 @@
 
 namespace ShapefileSharp
 {
-    internal abstract class MultiPartShape<TBox, TPoint> : Shape, IMultiPartShape<TBox, TPoint> where TBox:IBoundingBox2d where TPoint:IPoint
+    internal abstract class MultiPartShape<T> : Shape, IMultiPartShape<T> where T:IPoint
     {
-        public TBox Box { get; set; }
-        public IReadOnlyList<IReadOnlyList<TPoint>> Parts { get; set; }
+        public IBoundingBox<T> Box { get; set; }
+        public IReadOnlyList<IReadOnlyList<T>> Parts { get; set; }
     }
 }
