@@ -34,13 +34,35 @@ namespace ShapefileSharp.Tests
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.MultiPoint, actual.Shape.ShapeType);
-            Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape<IPoint>));
 
-            //TODO: Check the box...
-
+            Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape<IPoint>));   
             var multiPointShape = actual.Shape as IMultiPointShape<IPoint>;
-            Assert.AreEqual(458860, multiPointShape.Points.First().X);
-            Assert.AreEqual(132410, multiPointShape.Points.First().Y);
+
+            Assert.AreEqual(1, multiPointShape.Points.Count); //TODO: Maybe test a MultiPoint record with multiple points? haha
+
+            var firstPoint = new Point()
+            {
+                X = 458860,
+                Y = 132410
+            };
+
+            Assert.AreEqual(firstPoint, multiPointShape.Points.First());
+
+            var box = new BoundingBox<IPoint>()
+            {
+                Min = new Point()
+                {
+                    X = 458860,
+                    Y = 132410
+                },
+                Max = new Point()
+                {
+                    X = 458860,
+                    Y = 132410
+                }
+            };
+
+            Assert.AreEqual(box, multiPointShape.Box);
         }
 
         [TestMethod]
