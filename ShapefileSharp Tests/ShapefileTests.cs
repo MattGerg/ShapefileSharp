@@ -45,7 +45,6 @@ namespace ShapefileSharp.Tests
                 X = 458860,
                 Y = 132410
             };
-
             Assert.AreEqual(firstPoint, multiPointShape.Points.First());
 
             var box = new BoundingBox<IPoint>()
@@ -61,7 +60,6 @@ namespace ShapefileSharp.Tests
                     Y = 132410
                 }
             };
-
             Assert.AreEqual(box, multiPointShape.Box);
         }
 
@@ -73,13 +71,35 @@ namespace ShapefileSharp.Tests
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.PolyLine, actual.Shape.ShapeType);
+
             Assert.IsInstanceOfType(actual.Shape, typeof(IPolyLineShape));
-
-            //TODO: Check the box...
-
             var polyLineShape = actual.Shape as IPolyLineShape;
-            Assert.AreEqual(-74.95269, polyLineShape.Parts.First().First().X);
-            Assert.AreEqual(40.04527, polyLineShape.Parts.First().First().Y);
+
+            Assert.AreEqual(1, polyLineShape.Parts.Count);
+            Assert.AreEqual(12, polyLineShape.Parts.First().Count);
+
+            var firstPoint = new Point()
+            {
+                X = -74.95269,
+                Y = 40.04527
+            };
+            Assert.AreEqual(firstPoint, polyLineShape.Parts.First().First());
+
+
+            var box = new BoundingBox<IPoint>()
+            {
+                Min = new Point()
+                {
+                    X = -74.95269,
+                    Y = 40.04527
+                },
+                Max = new Point()
+                {
+                    X = -74.94871,
+                    Y = 40.04969
+                }
+            };
+            Assert.AreEqual(box, polyLineShape.Box);
         }
     }
 }
