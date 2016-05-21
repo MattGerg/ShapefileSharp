@@ -1,6 +1,9 @@
-﻿namespace ShapefileSharp.Spec
+﻿using System;
+using System.IO;
+
+namespace ShapefileSharp.Spec
 {
-    internal sealed class DoubleField : Field
+    internal sealed class DoubleField : Field<double>
     {
         public DoubleField(WordCount offset) : base(offset)
         {
@@ -8,5 +11,11 @@
         }
 
         public override WordCount Length { get; }
+
+        public override double Read(BinaryReader reader, WordCount origin)
+        {
+            reader.BaseStream.Position = (origin + Offset).Bytes;
+            return reader.ReadDouble();
+        }
     }
 }

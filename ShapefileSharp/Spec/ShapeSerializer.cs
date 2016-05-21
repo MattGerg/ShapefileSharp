@@ -18,7 +18,7 @@ namespace ShapefileSharp.Spec
                 using (var reader = new BinaryReader(ms))
                 {
                     //TODO: Create ShapeType field?
-                    ShapeType shapeType = (ShapeType)reader.ReadField(ShpSpec.Record.Contents.ShapeType);
+                    ShapeType shapeType = (ShapeType)ShpSpec.Record.Contents.ShapeType.Read(reader);
 
                     switch (shapeType)
                     {
@@ -27,7 +27,7 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.Point:
                             {
-                                var point = reader.ReadField(ShpSpec.Record.Contents.PointShape.Point);
+                                var point = ShpSpec.Record.Contents.PointShape.Point.Read(reader);
 
                                 return new PointShape()
                                 {
@@ -37,14 +37,14 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.MultiPoint:
                             {
-                                var box = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Box);
+                                var box = ShpSpec.Record.Contents.MultiPointShape.Box.Read(reader);
 
-                                var numPoints = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.NumPoints);
+                                var numPoints = ShpSpec.Record.Contents.MultiPointShape.NumPoints.Read(reader);
                                 var points = new List<IPoint>();
 
                                 for (var i = 0; i < numPoints; i++)
                                 {
-                                    var point = reader.ReadField(ShpSpec.Record.Contents.MultiPointShape.Point(i));
+                                    var point = ShpSpec.Record.Contents.MultiPointShape.Point(i).Read(reader);
 
                                     points.Add(point);
                                 }
@@ -58,16 +58,15 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.PolyLine: case ShapeType.Polygon:
                             {
-                                var box = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.Box);
-                                var numParts = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.NumParts);
-                                var numPoints = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.NumPoints);
+                                var box = ShpSpec.Record.Contents.PolyLineShape.Box.Read(reader);
+                                var numParts = ShpSpec.Record.Contents.PolyLineShape.NumParts.Read(reader);
+                                var numPoints = ShpSpec.Record.Contents.PolyLineShape.NumPoints.Read(reader);
 
                                 var pointStartIndices = new List<int>();
 
                                 for (var i = 0; i < numParts; i++)
                                 {
-                                    var pointStartField = ShpSpec.Record.Contents.PolyLineShape.Part(i);
-                                    var pointStartIndex = reader.ReadField(pointStartField);
+                                    var pointStartIndex = ShpSpec.Record.Contents.PolyLineShape.Part(i).Read(reader);
 
                                     pointStartIndices.Add(pointStartIndex);
                                 }
@@ -82,8 +81,7 @@ namespace ShapefileSharp.Spec
 
                                     for (var iPointIndex = startIndex; iPointIndex <= endIndex; iPointIndex++)
                                     {
-                                        var pointField = ShpSpec.Record.Contents.PolyLineShape.Point(numParts, iPointIndex);
-                                        var point = reader.ReadField(pointField);
+                                        var point = ShpSpec.Record.Contents.PolyLineShape.Point(numParts, iPointIndex).Read(reader);
                                         points.Add(point);                     
                                     }
 

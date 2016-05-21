@@ -32,6 +32,11 @@ namespace ShapefileSharp
             return new WordCount(words);
         }
 
+        public override string ToString()
+        {
+            return string.Format("W:{0}  B:{1}", Words, Bytes);
+        }
+
         /// <summary>
         /// The number of 16-bit words.
         /// </summary>
