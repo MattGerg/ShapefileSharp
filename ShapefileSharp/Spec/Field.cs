@@ -2,13 +2,12 @@
 {
     internal abstract class Field
     {
-        public Field(WordCount offset, WordCount length) : base()
+        protected Field(WordCount offset) : base()
         {
             Offset = offset;
-            Length = length;
         }
 
         public WordCount Offset { get; }
-        public WordCount Length { get; }
+        public abstract WordCount Length { get; }
     }
 }

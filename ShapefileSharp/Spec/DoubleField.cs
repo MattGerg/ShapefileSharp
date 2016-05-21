@@ -2,8 +2,11 @@
 {
     internal sealed class DoubleField : Field
     {
-        public DoubleField(WordCount offset) : base(offset, WordCount.FromBytes(sizeof(double)))
+        public DoubleField(WordCount offset) : base(offset)
         {
+            Length = WordCount.FromBytes(sizeof(double));
         }
+
+        public override WordCount Length { get; }
     }
 }
