@@ -5,7 +5,7 @@ namespace ShapefileSharp.Tests.Shapefiles
     /// <summary>
     /// A mock Polygon Shapefile with hardcoded data.
     /// </summary>
-    internal sealed class CountriesMainFile : IShpFile
+    internal sealed class PolygonShpFile : IShpFile
     {
         public const string FilePath = "Data/ne_10m_admin_0_countries.shp";
 

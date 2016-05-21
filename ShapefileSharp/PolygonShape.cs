@@ -1,15 +1,13 @@
 ﻿namespace ShapefileSharp
 {
-    public sealed class PolygonShape : Shape, IPolygonShape
+    internal sealed class PolygonShape : MultiPartShape<IPoint>, IPolygonShape
     {
         public override ShapeType ShapeType
         {
             get
             {
-                return ShapeType.Point;
+                return ShapeType.Polygon;
             }
         }
-
-        public IPoint Point { get; set; }
     }
 }

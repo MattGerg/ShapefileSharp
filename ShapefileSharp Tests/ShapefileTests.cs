@@ -10,6 +10,7 @@ namespace ShapefileSharp.Tests
         Shapefile CitiesActual = new Shapefile(CitiesMainFile.FilePath);
         Shapefile MultiPointActual = new Shapefile(MultiPointShpFile.FilePath);
         Shapefile PolyLineActual = new Shapefile(PolyLineShpFile.FilePath);
+        Shapefile PolygonActual = new Shapefile(PolygonShpFile.FilePath);
 
         [TestMethod]
         public void Cities_FirstRecord_Equals()
@@ -100,6 +101,45 @@ namespace ShapefileSharp.Tests
                 }
             };
             Assert.AreEqual(box, polyLineShape.Box);
+        }
+
+        [TestMethod]
+        public void Polygon_FirstRecord_Equals()
+        {
+            var actual = PolygonActual.First();
+
+            //TODO: There must be a better way to store these expected values...
+            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(ShapeType.Polygon, actual.Shape.ShapeType);
+
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPolygonShape));
+            var polygonShape = actual.Shape as IPolygonShape;
+
+            Assert.AreEqual(1, polygonShape.Parts.Count);
+            Assert.AreEqual(26, polygonShape.Parts.First().Count);
+
+            var firstPoint = new Point()
+            {
+                X = -69.996937628999916,
+                Y = 12.577582098000036
+            };
+            Assert.AreEqual(firstPoint, polygonShape.Parts.First().First());
+
+
+            var box = new BoundingBox<IPoint>()
+            {
+                Min = new Point()
+                {
+                    X = -70.062408006999874,
+                    Y = 12.417669989000046
+                },
+                Max = new Point()
+                {
+                    X = -69.876820441999939,
+                    Y = 12.632147528000104
+                }
+            };
+            Assert.AreEqual(box, polygonShape.Box);
         }
     }
 }

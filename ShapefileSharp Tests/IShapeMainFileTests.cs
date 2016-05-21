@@ -9,8 +9,8 @@ namespace ShapefileSharp.Tests
         private readonly IShpFile CitiesExpected = new CitiesMainFile();
         private readonly IShpFile CitiesActual = ShapeMainFileFactory.Create(CitiesMainFile.FilePath);
 
-        private readonly IShpFile CountriesExpected = new CountriesMainFile();
-        private readonly IShpFile CountriesActual = ShapeMainFileFactory.Create(CountriesMainFile.FilePath);
+        private readonly IShpFile CountriesExpected = new PolygonShpFile();
+        private readonly IShpFile CountriesActual = ShapeMainFileFactory.Create(PolygonShpFile.FilePath);
 
         [TestMethod]
         public void ShapeType_Equals()

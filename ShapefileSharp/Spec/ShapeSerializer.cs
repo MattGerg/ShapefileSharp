@@ -56,7 +56,7 @@ namespace ShapefileSharp.Spec
                                 };
                             }
 
-                        case ShapeType.PolyLine:
+                        case ShapeType.PolyLine: case ShapeType.Polygon:
                             {
                                 var box = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.Box);
                                 var numParts = reader.ReadField(ShpSpec.Record.Contents.PolyLineShape.NumParts);
@@ -90,11 +90,24 @@ namespace ShapefileSharp.Spec
                                     parts.Add(points.AsReadOnly());
                                 }
 
-                                return new PolyLineShape()
+                                switch (shapeType)
                                 {
-                                    Box = box,
-                                    Parts = parts.AsReadOnly()
-                                };
+                                    case ShapeType.PolyLine:
+                                        return new PolyLineShape()
+                                        {
+                                            Box = box,
+                                            Parts = parts.AsReadOnly()
+                                        };
+
+                                    case ShapeType.Polygon:
+                                        return new PolygonShape()
+                                        {
+                                            Box = box,
+                                            Parts = parts.AsReadOnly()
+                                        };
+                                }
+                                
+                                throw new Exception("Unpossible.");
                             }
 
                         default:

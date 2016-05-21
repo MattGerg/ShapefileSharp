@@ -1,7 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    interface IPolygonShape
+    public interface IPolygonShape : IMultiPartShape<IPoint>
     {
-
     }
 }

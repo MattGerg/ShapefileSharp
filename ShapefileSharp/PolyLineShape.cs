@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    class PolyLineShape : MultiPartShape<IPoint>, IPolyLineShape
+    internal sealed class PolyLineShape : MultiPartShape<IPoint>, IPolyLineShape
     {
         public override ShapeType ShapeType
         {

@@ -52,6 +52,7 @@
     <Compile Include="IPointM.cs" />
     <Compile Include="IPointShape.cs" />
     <Compile Include="IPointZ.cs" />
+    <Compile Include="IPolygonShape.cs" />
     <Compile Include="IPolyLineShape.cs" />
     <Compile Include="IShapefileHeader.cs" />
     <Compile Include="IShxRecord.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="MultiPointShape.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointShape.cs" />
+    <Compile Include="PolygonShape.cs" />
     <Compile Include="PolyLineShape.cs" />
     <Compile Include="ShapefileHeader.cs" />
     <Compile Include="ShpReader.cs" />
