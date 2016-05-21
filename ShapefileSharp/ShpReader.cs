@@ -32,8 +32,7 @@ namespace ShapefileSharp
             return new ShpRecordHeader()
             {
                 RecordNumber = ShpSpec.Record.Header.RecordNumber.Read(BinaryReader, indexRecord.Offset),
-                //TODO: Just make a WordCount field?
-                ContentLength = WordCount.FromWords(ShpSpec.Record.Header.ContentLength.Read(BinaryReader, indexRecord.Offset))
+                ContentLength = ShpSpec.Record.Header.ContentLength.Read(BinaryReader, indexRecord.Offset)
             };
         }
     }

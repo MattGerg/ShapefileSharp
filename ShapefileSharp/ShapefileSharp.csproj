@@ -80,6 +80,7 @@
     <Compile Include="Spec\ShxSpec.cs" />
     <Compile Include="ShpFile.cs" />
     <Compile Include="ShapeMainFileFactory.cs" />
+    <Compile Include="Spec\WordCountField.cs" />
     <Compile Include="WordCount.cs" />
     <Compile Include="IBoundingBox.cs" />
     <Compile Include="IShpRecordHeader.cs" />

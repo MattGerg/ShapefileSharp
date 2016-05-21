@@ -7,7 +7,7 @@
             public static class Header
             {
                 public static IntField RecordNumber { get; } = new IntField(WordCount.FromBytes(0), Endianness.Big);
-                public static IntField ContentLength { get; } = new IntField(WordCount.FromBytes(4), Endianness.Big);
+                public static WordCountField ContentLength { get; } = new WordCountField(WordCount.FromBytes(4));
 
                 public static WordCount Length { get; } = RecordNumber.Length + ContentLength.Length;
             }
