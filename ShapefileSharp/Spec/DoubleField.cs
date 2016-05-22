@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -7,10 +6,17 @@ namespace ShapefileSharp.Spec
     {
         public DoubleField(WordCount offset) : base(offset)
         {
-            Length = WordCount.FromBytes(sizeof(double));
         }
 
-        public override WordCount Length { get; }
+        public static readonly WordCount FieldLength = WordCount.FromBytes(sizeof(double));
+
+        public override WordCount Length
+        {
+            get
+            {
+                return FieldLength;
+            }
+        }
 
         public override double Read(BinaryReader reader, WordCount origin)
         {

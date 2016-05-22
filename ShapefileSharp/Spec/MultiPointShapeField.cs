@@ -20,8 +20,7 @@ namespace ShapefileSharp.Spec
 
         private PointField Point(int pointIndex)
         {
-            //TODO: Length of PointField (16) should be statically accessible on the PointField class...
-            var offset = NumPoints.Offset + NumPoints.Length + WordCount.FromBytes(pointIndex * 16);
+            var offset = NumPoints.Offset + NumPoints.Length + (pointIndex * PointField.FieldLength);
 
             return new PointField(offset);
         }

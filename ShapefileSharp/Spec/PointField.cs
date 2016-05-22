@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -9,11 +8,17 @@ namespace ShapefileSharp.Spec
         {
             X = new DoubleField(offset);
             Y = new DoubleField(offset + X.Length);
-
-            Length = X.Length + Y.Length;
         }
 
-        public override WordCount Length { get; }
+        public static readonly WordCount FieldLength = DoubleField.FieldLength * 2;
+
+        public override WordCount Length
+        {
+            get
+            {
+                return FieldLength;
+            }
+        }
 
         public DoubleField X { get; }
         public DoubleField Y { get; }
