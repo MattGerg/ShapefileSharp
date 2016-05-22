@@ -15,23 +15,6 @@
 
                 public static IntField ShapeType { get; } = new IntField(WordCount.FromBytes(0), Endianness.Little);
 
-                public static class PointShape
-                {
-                    public static PointField Point { get; } = new PointField(WordCount.FromBytes(4));
-                }
-
-                public static class MultiPointShape
-                {
-                    public static BoundingBox2dField Box { get; } = new BoundingBox2dField(WordCount.FromBytes(4));
-
-                    public static IntField NumPoints { get; } = new IntField(WordCount.FromBytes(36), Endianness.Little);
-
-                    public static PointField Point(int pointIndex)
-                    {
-                        return new PointField(WordCount.FromBytes(40 + (pointIndex * 16)));
-                    }
-                }
-
                 public static class PolyLineShape
                 {
                     public static BoundingBox2dField Box { get; } = new BoundingBox2dField(WordCount.FromBytes(4));

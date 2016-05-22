@@ -17,6 +17,8 @@ namespace ShapefileSharp.Spec
             {
                 using (var reader = new BinaryReader(ms))
                 {
+                    //TODO: This entire block could be rolled into a ShapeField?
+                    //      Or maybe this whole class just becomes a ShapeField?
                     //TODO: Create ShapeType field?
                     ShapeType shapeType = (ShapeType)ShpSpec.Record.Contents.ShapeType.Read(reader);
 
@@ -27,30 +29,16 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.Point:
                             {
-                                var pointShapeField = new PointShapeField(ShpSpec.Record.Contents.ShapeType.Length);
+                                var shapeField = new PointShapeField(ShpSpec.Record.Contents.ShapeType.Length);
 
-                                return pointShapeField.Read(reader);
+                                return shapeField.Read(reader);
                             }
 
                         case ShapeType.MultiPoint:
                             {
-                                var box = ShpSpec.Record.Contents.MultiPointShape.Box.Read(reader);
+                                var shapeField = new MultiPointShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
 
-                                var numPoints = ShpSpec.Record.Contents.MultiPointShape.NumPoints.Read(reader);
-                                var points = new List<IPoint>();
-
-                                for (var i = 0; i < numPoints; i++)
-                                {
-                                    var point = ShpSpec.Record.Contents.MultiPointShape.Point(i).Read(reader);
-
-                                    points.Add(point);
-                                }
-
-                                return new MultiPointShape()
-                                {
-                                    Box = box,
-                                    Points = points.AsReadOnly()
-                                };
+                                return shapeField.Read(reader);
                             }
 
                         case ShapeType.PolyLine: case ShapeType.Polygon:
