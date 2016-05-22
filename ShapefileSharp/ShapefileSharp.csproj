@@ -50,6 +50,7 @@
     <Compile Include="IMultiPointShape.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="IPointM.cs" />
+    <Compile Include="IPointMShape.cs" />
     <Compile Include="IPointShape.cs" />
     <Compile Include="IPointZ.cs" />
     <Compile Include="IPolygonShape.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="MultiPartGeometry.cs" />
     <Compile Include="MultiPointShape.cs" />
     <Compile Include="Point.cs" />
+    <Compile Include="PointMShape.cs" />
     <Compile Include="PointShape.cs" />
     <Compile Include="PolygonShape.cs" />
     <Compile Include="PolyLineShape.cs" />
@@ -77,6 +79,8 @@
     <Compile Include="Spec\MultiPartGeometryField.cs" />
     <Compile Include="Spec\MultiPointShapeField.cs" />
     <Compile Include="Spec\PointField.cs" />
+    <Compile Include="Spec\PointMField.cs" />
+    <Compile Include="Spec\PointMShapeField.cs" />
     <Compile Include="Spec\PointShapeField.cs" />
     <Compile Include="Spec\PolygonShapeField.cs" />
     <Compile Include="Spec\PolyLineShapeField.cs" />

@@ -55,6 +55,13 @@ namespace ShapefileSharp.Spec
                                 return shapeField.Read(reader);
                             }
 
+                        case ShapeType.PointM:
+                            {
+                                var shapeField = new PointMShapeField(ShpSpec.Record.Contents.ShapeType.Length);
+
+                                return shapeField.Read(reader);
+                            }
+
                         default:
                             Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));
                             throw new NotImplementedException();

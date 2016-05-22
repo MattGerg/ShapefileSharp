@@ -20,8 +20,8 @@ namespace ShapefileSharp.Spec
             }
         }
 
-        public DoubleField X { get; }
-        public DoubleField Y { get; }
+        private DoubleField X { get; }
+        private DoubleField Y { get; }
 
         public override IPoint Read(BinaryReader reader, WordCount origin)
         {
