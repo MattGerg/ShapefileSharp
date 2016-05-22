@@ -41,30 +41,18 @@ namespace ShapefileSharp.Spec
                                 return shapeField.Read(reader);
                             }
 
-                        case ShapeType.PolyLine: case ShapeType.Polygon:
+                        case ShapeType.PolyLine:
                             {
-                                var shapeField = new MultiPartGeometryField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
+                                var shapeField = new PolyLineShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
 
-                                var geometry = shapeField.Read(reader);
+                                return shapeField.Read(reader);
+                            }
 
-                                switch (shapeType)
-                                {
-                                    case ShapeType.PolyLine:
-                                        return new PolyLineShape()
-                                        {
-                                            Box = geometry.Box,
-                                            Lines = geometry.Parts
-                                        };
+                        case ShapeType.Polygon:
+                            {
+                                var shapeField = new PolygonShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
 
-                                    case ShapeType.Polygon:
-                                        return new PolygonShape()
-                                        {
-                                            Box = geometry.Box,
-                                            Rings = geometry.Parts
-                                        };
-                                }
-                                
-                                throw new Exception("Unpossible.");
+                                return shapeField.Read(reader);
                             }
 
                         default:
