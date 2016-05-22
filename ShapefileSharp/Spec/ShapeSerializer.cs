@@ -27,12 +27,9 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.Point:
                             {
-                                var point = ShpSpec.Record.Contents.PointShape.Point.Read(reader);
+                                var pointShapeField = new PointShapeField(ShpSpec.Record.Contents.ShapeType.Length);
 
-                                return new PointShape()
-                                {
-                                    Point = point
-                                };
+                                return pointShapeField.Read(reader);
                             }
 
                         case ShapeType.MultiPoint:

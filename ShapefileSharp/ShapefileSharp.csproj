@@ -75,6 +75,7 @@
     <Compile Include="Spec\Field.cs" />
     <Compile Include="Spec\IntField.cs" />
     <Compile Include="Spec\PointField.cs" />
+    <Compile Include="Spec\PointShapeField.cs" />
     <Compile Include="Spec\ShapeSerializer.cs" />
     <Compile Include="Spec\ShpRecordHeaderField.cs" />
     <Compile Include="Spec\ShpSpec.cs" />
