@@ -1,6 +1,8 @@
-﻿namespace ShapefileSharp
+﻿using System.Collections.Generic;
+
+namespace ShapefileSharp
 {
-    internal sealed class PolygonShape : MultiPartShape<IPoint>, IPolygonShape
+    internal sealed class PolygonShape : Shape, IPolygonShape<IPoint>
     {
         public override ShapeType ShapeType
         {
@@ -9,5 +11,8 @@
                 return ShapeType.Polygon;
             }
         }
+
+        public IBoundingBox<IPoint> Box { get; set; }
+        public IReadOnlyList<IReadOnlyList<IPoint>> Rings { get; set; }
     }
 }

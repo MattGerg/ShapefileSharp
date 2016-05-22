@@ -46,7 +46,7 @@
     <Compile Include="BoundingBox.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileReaderBase.cs" />
-    <Compile Include="IMultiPartShape.cs" />
+    <Compile Include="IMultiPartGeometry.cs" />
     <Compile Include="IMultiPointShape.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="IPointM.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="IShapefileHeader.cs" />
     <Compile Include="IShxRecord.cs" />
     <Compile Include="IShpFile.cs" />
-    <Compile Include="MultiPartShape.cs" />
+    <Compile Include="MultiPartGeometry.cs" />
     <Compile Include="MultiPointShape.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointShape.cs" />

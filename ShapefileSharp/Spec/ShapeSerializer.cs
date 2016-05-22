@@ -43,15 +43,15 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.PolyLine: case ShapeType.Polygon:
                             {
-                                var box = ShpSpec.Record.Contents.PolyLineShape.Box.Read(reader);
-                                var numParts = ShpSpec.Record.Contents.PolyLineShape.NumParts.Read(reader);
-                                var numPoints = ShpSpec.Record.Contents.PolyLineShape.NumPoints.Read(reader);
+                                var box = ShpSpec.Record.Contents.MultiPartShape.Box.Read(reader);
+                                var numParts = ShpSpec.Record.Contents.MultiPartShape.NumParts.Read(reader);
+                                var numPoints = ShpSpec.Record.Contents.MultiPartShape.NumPoints.Read(reader);
 
                                 var pointStartIndices = new List<int>();
 
                                 for (var i = 0; i < numParts; i++)
                                 {
-                                    var pointStartIndex = ShpSpec.Record.Contents.PolyLineShape.Part(i).Read(reader);
+                                    var pointStartIndex = ShpSpec.Record.Contents.MultiPartShape.Part(i).Read(reader);
 
                                     pointStartIndices.Add(pointStartIndex);
                                 }
@@ -66,7 +66,7 @@ namespace ShapefileSharp.Spec
 
                                     for (var iPointIndex = startIndex; iPointIndex <= endIndex; iPointIndex++)
                                     {
-                                        var point = ShpSpec.Record.Contents.PolyLineShape.Point(numParts, iPointIndex).Read(reader);
+                                        var point = ShpSpec.Record.Contents.MultiPartShape.Point(numParts, iPointIndex).Read(reader);
                                         points.Add(point);                     
                                     }
 
@@ -79,14 +79,14 @@ namespace ShapefileSharp.Spec
                                         return new PolyLineShape()
                                         {
                                             Box = box,
-                                            Parts = parts.AsReadOnly()
+                                            Lines = parts.AsReadOnly()
                                         };
 
                                     case ShapeType.Polygon:
                                         return new PolygonShape()
                                         {
                                             Box = box,
-                                            Parts = parts.AsReadOnly()
+                                            Rings = parts.AsReadOnly()
                                         };
                                 }
                                 

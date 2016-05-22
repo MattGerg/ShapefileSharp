@@ -2,7 +2,7 @@
 
 namespace ShapefileSharp
 {
-    public interface IMultiPartShape<T> :IShape where T:IPoint
+    internal interface IMultiPartGeometry<T> where T:IPoint
     {
         IBoundingBox<T> Box { get; }
         IReadOnlyList<IReadOnlyList<T>> Parts { get; }

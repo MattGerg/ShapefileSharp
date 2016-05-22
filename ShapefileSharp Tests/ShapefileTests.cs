@@ -73,18 +73,18 @@ namespace ShapefileSharp.Tests
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.PolyLine, actual.Shape.ShapeType);
 
-            Assert.IsInstanceOfType(actual.Shape, typeof(IPolyLineShape));
-            var polyLineShape = actual.Shape as IPolyLineShape;
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPolyLineShape<IPoint>));
+            var polyLineShape = actual.Shape as IPolyLineShape<IPoint>;
 
-            Assert.AreEqual(1, polyLineShape.Parts.Count);
-            Assert.AreEqual(12, polyLineShape.Parts.First().Count);
+            Assert.AreEqual(1, polyLineShape.Lines.Count);
+            Assert.AreEqual(12, polyLineShape.Lines.First().Count);
 
             var firstPoint = new Point()
             {
                 X = -74.95269,
                 Y = 40.04527
             };
-            Assert.AreEqual(firstPoint, polyLineShape.Parts.First().First());
+            Assert.AreEqual(firstPoint, polyLineShape.Lines.First().First());
 
 
             var box = new BoundingBox<IPoint>()
@@ -112,18 +112,18 @@ namespace ShapefileSharp.Tests
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.Polygon, actual.Shape.ShapeType);
 
-            Assert.IsInstanceOfType(actual.Shape, typeof(IPolygonShape));
-            var polygonShape = actual.Shape as IPolygonShape;
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPolygonShape<IPoint>));
+            var polygonShape = actual.Shape as IPolygonShape<IPoint>;
 
-            Assert.AreEqual(1, polygonShape.Parts.Count);
-            Assert.AreEqual(26, polygonShape.Parts.First().Count);
+            Assert.AreEqual(1, polygonShape.Rings.Count);
+            Assert.AreEqual(26, polygonShape.Rings.First().Count);
 
             var firstPoint = new Point()
             {
                 X = -69.996937628999916,
                 Y = 12.577582098000036
             };
-            Assert.AreEqual(firstPoint, polygonShape.Parts.First().First());
+            Assert.AreEqual(firstPoint, polygonShape.Rings.First().First());
 
 
             var box = new BoundingBox<IPoint>()

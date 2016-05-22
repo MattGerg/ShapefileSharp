@@ -15,7 +15,7 @@
 
                 public static IntField ShapeType { get; } = new IntField(WordCount.FromBytes(0), Endianness.Little);
 
-                public static class PolyLineShape
+                public static class MultiPartShape
                 {
                     public static BoundingBox2dField Box { get; } = new BoundingBox2dField(WordCount.FromBytes(4));
 
