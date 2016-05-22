@@ -1,5 +1,4 @@
 ﻿using ShapefileSharp.Spec;
-using System.Diagnostics;
 using System.IO;
 
 namespace ShapefileSharp
@@ -14,7 +13,7 @@ namespace ShapefileSharp
 
         public IShpRecord ReadShapeRecord(IShxRecord indexRecord)
         {
-            var header = ReadShapeHeader(indexRecord);
+            var header = ShpSpec.Record.Header.Read(BinaryReader, indexRecord.Offset);
 
             BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.Contents.Offset).Bytes;
             var contents = BinaryReader.ReadBytes(header.ContentLength.Bytes);
@@ -24,15 +23,6 @@ namespace ShapefileSharp
             {
                 Header = header,
                 Shape = shape
-            };
-        }
-
-        private IShpRecordHeader ReadShapeHeader(IShxRecord indexRecord)
-        {
-            return new ShpRecordHeader()
-            {
-                RecordNumber = ShpSpec.Record.Header.RecordNumber.Read(BinaryReader, indexRecord.Offset),
-                ContentLength = ShpSpec.Record.Header.ContentLength.Read(BinaryReader, indexRecord.Offset)
             };
         }
     }

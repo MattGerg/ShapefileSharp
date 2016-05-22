@@ -4,13 +4,7 @@
     {
         public static class Record
         {
-            public static class Header
-            {
-                public static IntField RecordNumber { get; } = new IntField(WordCount.FromBytes(0), Endianness.Big);
-                public static WordCountField ContentLength { get; } = new WordCountField(WordCount.FromBytes(4));
-
-                public static WordCount Length { get; } = RecordNumber.Length + ContentLength.Length;
-            }
+            public static ShpRecordHeaderField Header { get; } = new ShpRecordHeaderField(WordCount.FromBytes(0));
 
             public static class Contents
             {
