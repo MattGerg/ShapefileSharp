@@ -43,50 +43,24 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.PolyLine: case ShapeType.Polygon:
                             {
-                                var box = ShpSpec.Record.Contents.MultiPartShape.Box.Read(reader);
-                                var numParts = ShpSpec.Record.Contents.MultiPartShape.NumParts.Read(reader);
-                                var numPoints = ShpSpec.Record.Contents.MultiPartShape.NumPoints.Read(reader);
+                                var shapeField = new MultiPartGeometryField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
 
-                                var pointStartIndices = new List<int>();
-
-                                for (var i = 0; i < numParts; i++)
-                                {
-                                    var pointStartIndex = ShpSpec.Record.Contents.MultiPartShape.Part(i).Read(reader);
-
-                                    pointStartIndices.Add(pointStartIndex);
-                                }
-
-                                var parts = new List<IReadOnlyList<IPoint>>();
-
-                                for (var i = 0; i < pointStartIndices.Count; i++)
-                                {
-                                    var startIndex = pointStartIndices[i];
-                                    var endIndex = (pointStartIndices.Count > (i + 1) ? pointStartIndices[i + 1] : numPoints) - 1;
-                                    var points = new List<IPoint>();
-
-                                    for (var iPointIndex = startIndex; iPointIndex <= endIndex; iPointIndex++)
-                                    {
-                                        var point = ShpSpec.Record.Contents.MultiPartShape.Point(numParts, iPointIndex).Read(reader);
-                                        points.Add(point);                     
-                                    }
-
-                                    parts.Add(points.AsReadOnly());
-                                }
+                                var geometry = shapeField.Read(reader);
 
                                 switch (shapeType)
                                 {
                                     case ShapeType.PolyLine:
                                         return new PolyLineShape()
                                         {
-                                            Box = box,
-                                            Lines = parts.AsReadOnly()
+                                            Box = geometry.Box,
+                                            Lines = geometry.Parts
                                         };
 
                                     case ShapeType.Polygon:
                                         return new PolygonShape()
                                         {
-                                            Box = box,
-                                            Rings = parts.AsReadOnly()
+                                            Box = geometry.Box,
+                                            Rings = geometry.Parts
                                         };
                                 }
                                 

@@ -74,6 +74,7 @@
     <Compile Include="Spec\Endianness.cs" />
     <Compile Include="Spec\Field.cs" />
     <Compile Include="Spec\IntField.cs" />
+    <Compile Include="Spec\MultiPartGeometryField.cs" />
     <Compile Include="Spec\MultiPointShapeField.cs" />
     <Compile Include="Spec\PointField.cs" />
     <Compile Include="Spec\PointShapeField.cs" />
