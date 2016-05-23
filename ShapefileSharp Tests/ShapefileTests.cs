@@ -179,7 +179,7 @@ namespace ShapefileSharp.Tests
             Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape<IPointM>));
             var multiPointShape = actual.Shape as IMultiPointShape<IPointM>;
 
-            Assert.AreEqual(3, multiPointShape.Points.Count); //TODO: Maybe test a MultiPoint record with multiple points? haha
+            Assert.AreEqual(3, multiPointShape.Points.Count);
 
             var firstPoint = new Point()
             {
