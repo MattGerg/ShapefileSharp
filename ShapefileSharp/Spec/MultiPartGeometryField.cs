@@ -51,21 +51,21 @@ namespace ShapefileSharp.Spec
                 pointStartIndices.Add(pointStartIndex);
             }
 
-            var parts = new List<IReadOnlyList<IPoint>>();
+            var parts = new List<IMultiPointGeometry<IPoint>>();
 
             for (var i = 0; i < pointStartIndices.Count; i++)
             {
                 var startIndex = pointStartIndices[i];
                 var endIndex = (pointStartIndices.Count > (i + 1) ? pointStartIndices[i + 1] : numPoints) - 1;
-                var points = new List<IPoint>();
+                var part = new MultiPointGeometry<IPoint>();
 
                 for (var iPointIndex = startIndex; iPointIndex <= endIndex; iPointIndex++)
                 {
                     var point = Point(numParts, iPointIndex).Read(reader, origin);
-                    points.Add(point);
+                    part.Points.Add(point);
                 }
 
-                parts.Add(points);
+                parts.Add(part);
             }
 
             return new MultiPartGeometry<IPoint>()

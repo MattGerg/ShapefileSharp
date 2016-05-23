@@ -5,6 +5,6 @@ namespace ShapefileSharp
     internal interface IMultiPartGeometry<T> where T:IPoint
     {
         IBoundingBox<T> Box { get; }
-        IReadOnlyList<IReadOnlyList<T>> Parts { get; }
+        IReadOnlyList<IMultiPointGeometry<T>> Parts { get; }
     }
 }

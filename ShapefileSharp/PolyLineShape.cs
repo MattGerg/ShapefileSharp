@@ -13,6 +13,6 @@ namespace ShapefileSharp
         }
 
         public IBoundingBox<IPoint> Box { get; set; }
-        public IReadOnlyList<IReadOnlyList<IPoint>> Lines { get; set; }
+        public IReadOnlyList<IMultiPointGeometry<IPoint>> Lines { get; set; }
     }
 }

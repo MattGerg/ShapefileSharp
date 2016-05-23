@@ -79,14 +79,14 @@ namespace ShapefileSharp.Tests
             var polyLineShape = actual.Shape as IPolyLineShape<IPoint>;
 
             Assert.AreEqual(1, polyLineShape.Lines.Count);
-            Assert.AreEqual(12, polyLineShape.Lines.First().Count);
+            Assert.AreEqual(12, polyLineShape.Lines.First().Points.Count);
 
             var firstPoint = new Point()
             {
                 X = -74.95269,
                 Y = 40.04527
             };
-            Assert.AreEqual(firstPoint, polyLineShape.Lines.First().First());
+            Assert.AreEqual(firstPoint, polyLineShape.Lines.First().Points.First());
 
 
             var box = new BoundingBox<IPoint>()
@@ -118,14 +118,14 @@ namespace ShapefileSharp.Tests
             var polygonShape = actual.Shape as IPolygonShape<IPoint>;
 
             Assert.AreEqual(1, polygonShape.Rings.Count);
-            Assert.AreEqual(26, polygonShape.Rings.First().Count);
+            Assert.AreEqual(26, polygonShape.Rings.First().Points.Count);
 
             var firstPoint = new Point()
             {
                 X = -69.996937628999916,
                 Y = 12.577582098000036
             };
-            Assert.AreEqual(firstPoint, polygonShape.Rings.First().First());
+            Assert.AreEqual(firstPoint, polygonShape.Rings.First().Points.First());
 
 
             var box = new BoundingBox<IPoint>()
