@@ -19,11 +19,16 @@ namespace ShapefileSharp.Spec
         private BoundingBox2dField Box { get; }
         private IntField NumPoints { get; }
 
-        private PointMField Point(int pointIndex)
+        //TODO: Combine the Box/MinM/MaxM fields like this...?
+        private PointMField Point(int numPoints, int pointIndex)
         {
-            var offset = NumPoints.Offset + NumPoints.Length + (pointIndex * PointMField.FieldLength);
+            var pointsStart = NumPoints.Offset + NumPoints.Length;
+            var xOffset = pointsStart + (pointIndex * PointField.FieldLength);
 
-            return new PointMField(offset);
+            //Points + MinM + MaxM + M values
+            var mOffset = pointsStart + (numPoints * PointField.FieldLength) + (2 * DoubleField.FieldLength) + (pointIndex * DoubleField.FieldLength);
+
+            return new PointMField(xOffset, mOffset);
         }
 
         private DoubleField MinM(int numPoints)
@@ -49,7 +54,7 @@ namespace ShapefileSharp.Spec
 
             for (var i = 0; i < numPoints; i++)
             {
-                var point = Point(i).Read(reader, origin);
+                var point = Point(numPoints, i).Read(reader, origin);
 
                 points.Add(point);
             }

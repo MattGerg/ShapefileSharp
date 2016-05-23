@@ -185,7 +185,7 @@ namespace ShapefileSharp.Tests
             {
                 X = 10,
                 Y = 10,
-                M = 5
+                M = 100
             };
             Assert.AreEqual(firstPoint, multiPointShape.Points.First());
 
