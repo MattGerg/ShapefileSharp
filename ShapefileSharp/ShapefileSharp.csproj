@@ -60,6 +60,7 @@
     <Compile Include="IShpFile.cs" />
     <Compile Include="MultiPartGeometry.cs" />
     <Compile Include="MultiPointGeometry.cs" />
+    <Compile Include="MultiPointMShape.cs" />
     <Compile Include="MultiPointShape.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointMShape.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Spec\Field.cs" />
     <Compile Include="Spec\IntField.cs" />
     <Compile Include="Spec\MultiPartGeometryField.cs" />
+    <Compile Include="Spec\MultiPointMShapeField.cs" />
     <Compile Include="Spec\MultiPointShapeField.cs" />
     <Compile Include="Spec\PointField.cs" />
     <Compile Include="Spec\PointMField.cs" />

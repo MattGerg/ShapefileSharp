@@ -62,6 +62,13 @@ namespace ShapefileSharp.Spec
                                 return shapeField.Read(reader);
                             }
 
+                        case ShapeType.MultiPointM:
+                            {
+                                var shapeField = new MultiPointMShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
+
+                                return shapeField.Read(reader);
+                            }
+
                         case ShapeType.PointZ:
                             {
                                 var shapeField = new PointZShapeField(ShpSpec.Record.Contents.ShapeType.Length);

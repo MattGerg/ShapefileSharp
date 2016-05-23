@@ -12,6 +12,7 @@ namespace ShapefileSharp.Tests
         Shapefile PolyLineActual = new Shapefile(PolyLineShpFile.FilePath);
         Shapefile PolygonActual = new Shapefile(PolygonShpFile.FilePath);
         Shapefile PointMActual = new Shapefile(PointMShpFile.FilePath);
+        Shapefile MultiPointMActual = new Shapefile(MultiPointMShpFile.FilePath);
         Shapefile PointZActual = new Shapefile(PointZShpFile.FilePath);
 
         [TestMethod]
@@ -164,6 +165,46 @@ namespace ShapefileSharp.Tests
             };
 
             Assert.AreEqual(expectedPoint, pointShape.Point);
+        }
+
+        [TestMethod]
+        public void MultiPointM_FirstRecord_Equals()
+        {
+            var actual = MultiPointMActual.First();
+
+            //TODO: There must be a better way to store these expected values...
+            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(ShapeType.MultiPointM, actual.Shape.ShapeType);
+
+            Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape<IPointM>));
+            var multiPointShape = actual.Shape as IMultiPointShape<IPointM>;
+
+            Assert.AreEqual(3, multiPointShape.Points.Count); //TODO: Maybe test a MultiPoint record with multiple points? haha
+
+            var firstPoint = new Point()
+            {
+                X = 10,
+                Y = 10,
+                M = 5
+            };
+            Assert.AreEqual(firstPoint, multiPointShape.Points.First());
+
+            var box = new BoundingBox<IPointM>()
+            {
+                Min = new Point()
+                {
+                    X = 0,
+                    Y = 5,
+                    M = 50
+                },
+                Max = new Point()
+                {
+                    X = 10,
+                    Y = 10,
+                    M = 75
+                }
+            };
+            Assert.AreEqual(box, multiPointShape.Box);
         }
 
         [TestMethod]
