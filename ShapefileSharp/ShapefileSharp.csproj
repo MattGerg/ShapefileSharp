@@ -50,7 +50,6 @@
     <Compile Include="IMultiPointShape.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="IPointM.cs" />
-    <Compile Include="IPointMShape.cs" />
     <Compile Include="IPointShape.cs" />
     <Compile Include="IPointZ.cs" />
     <Compile Include="IPolygonShape.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Spec\Endianness.cs" />
     <Compile Include="Spec\Field.cs" />
     <Compile Include="Spec\IntField.cs" />
-    <Compile Include="IPointZShape.cs" />
     <Compile Include="Spec\MultiPartGeometryField.cs" />
     <Compile Include="Spec\MultiPointShapeField.cs" />
     <Compile Include="Spec\PointField.cs" />

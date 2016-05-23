@@ -22,9 +22,9 @@ namespace ShapefileSharp.Tests
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.Point, actual.Shape.ShapeType);
-            Assert.IsInstanceOfType(actual.Shape, typeof(IPointShape));
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPointShape<IPoint>));
 
-            var pointShape = actual.Shape as IPointShape;
+            var pointShape = actual.Shape as IPointShape<IPoint>;
             Assert.AreEqual(-57.840002473401341, pointShape.Point.X);
             Assert.AreEqual(-34.47999900541754, pointShape.Point.Y);
         }
@@ -153,8 +153,8 @@ namespace ShapefileSharp.Tests
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.PointM, actual.Shape.ShapeType);
 
-            Assert.IsInstanceOfType(actual.Shape, typeof(IPointMShape));
-            var pointShape = actual.Shape as IPointMShape;
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPointShape<IPointM>));
+            var pointShape = actual.Shape as IPointShape<IPointM>;
 
             var expectedPoint = new Point()
             {
@@ -175,8 +175,8 @@ namespace ShapefileSharp.Tests
             Assert.AreEqual(1, actual.Header.RecordNumber);
             Assert.AreEqual(ShapeType.PointZ, actual.Shape.ShapeType);
 
-            Assert.IsInstanceOfType(actual.Shape, typeof(IPointZShape));
-            var pointShape = actual.Shape as IPointZShape;
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPointShape<IPointZ>));
+            var pointShape = actual.Shape as IPointShape<IPointZ>;
 
             var expectedPoint = new Point()
             {

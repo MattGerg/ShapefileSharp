@@ -2,7 +2,7 @@
 
 namespace ShapefileSharp.Spec
 {
-    internal sealed class PointShapeField : Field<IPointShape>
+    internal sealed class PointShapeField : Field<IPointShape<IPoint>>
     {
         public PointShapeField(WordCount offset) : base(offset)
         {
@@ -19,7 +19,7 @@ namespace ShapefileSharp.Spec
             }
         }
 
-        public override IPointShape Read(BinaryReader reader, WordCount origin)
+        public override IPointShape<IPoint> Read(BinaryReader reader, WordCount origin)
         {
             var point = Point.Read(reader, origin);
 

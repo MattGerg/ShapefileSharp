@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public sealed class PointShape : Shape, IPointShape
+    public sealed class PointShape : Shape, IPointShape<IPoint>
     {
         public override ShapeType ShapeType
         {

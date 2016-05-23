@@ -1,9 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    class PointMShapeField : Field<IPointMShape>
+    class PointMShapeField : Field<IPointShape<IPointM>>
     {
         public PointMShapeField(WordCount offset) : base(offset)
         {
@@ -20,7 +19,7 @@ namespace ShapefileSharp.Spec
             }
         }
 
-        public override IPointMShape Read(BinaryReader reader, WordCount origin)
+        public override IPointShape<IPointM> Read(BinaryReader reader, WordCount origin)
         {
             var point = Point.Read(reader, origin);
 
