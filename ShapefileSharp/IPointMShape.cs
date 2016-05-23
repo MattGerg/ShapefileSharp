@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IPointMShape : IShape
+    public interface IPointMShape : IShape<IPointM>
     {
         IPointM Point { get; }
     }
