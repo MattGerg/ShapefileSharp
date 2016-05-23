@@ -12,6 +12,7 @@ namespace ShapefileSharp.Tests
         Shapefile PolyLineActual = new Shapefile(PolyLineShpFile.FilePath);
         Shapefile PolygonActual = new Shapefile(PolygonShpFile.FilePath);
         Shapefile PointMActual = new Shapefile(PointMShpFile.FilePath);
+        Shapefile PointZActual = new Shapefile(PointZShpFile.FilePath);
 
         [TestMethod]
         public void Cities_FirstRecord_Equals()
@@ -160,6 +161,29 @@ namespace ShapefileSharp.Tests
                 X = 10,
                 Y = 10,
                 M = 100
+            };
+
+            Assert.AreEqual(expectedPoint, pointShape.Point);
+        }
+
+        [TestMethod]
+        public void PointZ_FirstRecord_Equals()
+        {
+            var actual = PointZActual.First();
+
+            //TODO: There must be a better way to store these expected values...
+            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(ShapeType.PointZ, actual.Shape.ShapeType);
+
+            Assert.IsInstanceOfType(actual.Shape, typeof(IPointZShape));
+            var pointShape = actual.Shape as IPointZShape;
+
+            var expectedPoint = new Point()
+            {
+                X = 10,
+                Y = 10,
+                Z= 100,
+                M = -1.7976931348623157E+308
             };
 
             Assert.AreEqual(expectedPoint, pointShape.Point);

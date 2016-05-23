@@ -63,6 +63,7 @@
     <Compile Include="Point.cs" />
     <Compile Include="PointMShape.cs" />
     <Compile Include="PointShape.cs" />
+    <Compile Include="PointZShape.cs" />
     <Compile Include="PolygonShape.cs" />
     <Compile Include="PolyLineShape.cs" />
     <Compile Include="ShapefileHeader.cs" />
@@ -76,12 +77,15 @@
     <Compile Include="Spec\Endianness.cs" />
     <Compile Include="Spec\Field.cs" />
     <Compile Include="Spec\IntField.cs" />
+    <Compile Include="IPointZShape.cs" />
     <Compile Include="Spec\MultiPartGeometryField.cs" />
     <Compile Include="Spec\MultiPointShapeField.cs" />
     <Compile Include="Spec\PointField.cs" />
     <Compile Include="Spec\PointMField.cs" />
     <Compile Include="Spec\PointMShapeField.cs" />
     <Compile Include="Spec\PointShapeField.cs" />
+    <Compile Include="Spec\PointZField.cs" />
+    <Compile Include="Spec\PointZShapeField.cs" />
     <Compile Include="Spec\PolygonShapeField.cs" />
     <Compile Include="Spec\PolyLineShapeField.cs" />
     <Compile Include="Spec\ShapeSerializer.cs" />

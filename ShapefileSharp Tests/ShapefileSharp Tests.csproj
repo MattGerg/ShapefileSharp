@@ -56,6 +56,7 @@
     <Compile Include="Shapefiles\CitiesMainFile.cs" />
     <Compile Include="Shapefiles\CitiesShapefile.cs" />
     <Compile Include="Shapefiles\PointMShpFile.cs" />
+    <Compile Include="Shapefiles\PointZShpFile.cs" />
     <Compile Include="Shapefiles\PolygonShpFile.cs" />
     <Compile Include="IShapeMainFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,6 +176,17 @@
     </Content>
     <Content Include="Data\pointm.shx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\pointz.dbf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\pointz.shp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\pointz.shx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Choose>
