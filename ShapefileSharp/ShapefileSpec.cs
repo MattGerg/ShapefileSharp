@@ -1,11 +1,8 @@
 ﻿namespace ShapefileSharp
 {
-    internal sealed class ShapefileSpec
+    internal static class ShapefileSpec
     {
-        private ShapefileSpec()
-        {
-            
-        }
+        public static readonly WordCount HeaderLength = WordCount.FromWords(50);
 
         public const uint FileCodePos = 0;
         public const uint FileCodeBytes = 4;

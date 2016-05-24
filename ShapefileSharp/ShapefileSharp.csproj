@@ -56,6 +56,7 @@
     <Compile Include="IPolygonShape.cs" />
     <Compile Include="IPolyLineShape.cs" />
     <Compile Include="IShapefileHeader.cs" />
+    <Compile Include="IShapefileRecord.cs" />
     <Compile Include="IShxRecord.cs" />
     <Compile Include="IShpFile.cs" />
     <Compile Include="MultiPartGeometry.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="PolygonShape.cs" />
     <Compile Include="PolyLineShape.cs" />
     <Compile Include="ShapefileHeader.cs" />
+    <Compile Include="ShapefileRecord.cs" />
+    <Compile Include="ShapefileWriter.cs" />
     <Compile Include="ShpReader.cs" />
     <Compile Include="ShapefileEnumerator.cs" />
     <Compile Include="ShapeIndexEnumerator.cs" />
