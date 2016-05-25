@@ -26,12 +26,13 @@ namespace ShapefileSharp.Spec
 
         public override IShpRecordHeader Read(BinaryReader reader, WordCount origin)
         {
-            reader.BaseStream.Position = origin.Bytes;
+            var recordNumber = RecordNumber.Read(reader, origin);
+            var contentLength = ContentLength.Read(reader, origin);
 
             return new ShpRecordHeader()
             {
-                RecordNumber = RecordNumber.Read(reader, origin),
-                ContentLength = ContentLength.Read(reader, origin)
+                RecordNumber = recordNumber,
+                ContentLength = contentLength
             };
         }
 
