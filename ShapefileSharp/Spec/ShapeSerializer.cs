@@ -83,5 +83,37 @@ namespace ShapefileSharp.Spec
                 }
             }
         }
+
+        public byte[] Serialize(IShape shape)
+        {
+            using (var ms = new MemoryStream())
+            {
+                using (var writer = new BinaryWriter(ms))
+                {
+                    writer.Write((int)shape.ShapeType);
+                    
+                    //TODO: This switch should drive off of the Type somehow...
+                    //      So then we can serialize a PointZ as a PointM, for example.
+                    switch (shape.ShapeType)
+                    {
+                        case ShapeType.NullShape:
+                            throw new NotImplementedException();
+
+                        case ShapeType.Point:
+                            {
+                                var shapeField = new PointShapeField(ShpSpec.Record.Contents.ShapeType.Length);
+
+                                shapeField.Write(writer, (IPointShape<IPoint>)shape); //TODO: Presumptuous cast...
+                            } break;
+
+                        default:
+                            Debug.Fail(string.Format("Unimplemented IShape: {0}", typeof(IShape)));
+                            throw new NotImplementedException();
+                    }
+                }
+
+                return ms.ToArray();
+            }
+        }
     }
 }
