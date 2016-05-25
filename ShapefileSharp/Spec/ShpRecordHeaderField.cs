@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -26,6 +27,11 @@ namespace ShapefileSharp.Spec
                 RecordNumber = RecordNumber.Read(reader, origin),
                 ContentLength = ContentLength.Read(reader, origin)
             };
+        }
+
+        public override void Write(BinaryWriter writer, IShpRecordHeader value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

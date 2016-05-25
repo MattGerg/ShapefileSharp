@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -27,6 +28,11 @@ namespace ShapefileSharp.Spec
             {
                 Point = point
             };
+        }
+
+        public override void Write(BinaryWriter writer, IPointShape<IPoint> value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

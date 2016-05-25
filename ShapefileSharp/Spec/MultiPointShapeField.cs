@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ShapefileSharp.Spec
@@ -44,6 +45,11 @@ namespace ShapefileSharp.Spec
                 Box = box,
                 Points = points
             };
+        }
+
+        public override void Write(BinaryWriter writer, IMultiPointShape<IPoint> value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

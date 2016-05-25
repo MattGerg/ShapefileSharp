@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ShapefileSharp.Spec
 {
     //TODO: Can this be a generic class?  Or do we need MultiPartGeomtryMField and MultiPartGeometryZField as well?
-    class MultiPartGeometryField : Field<IMultiPartGeometry<IPoint>>
+    internal sealed class MultiPartGeometryField : Field<IMultiPartGeometry<IPoint>>
     {
         public MultiPartGeometryField(WordCount offset, WordCount length) : base(offset)
         {
@@ -73,6 +74,11 @@ namespace ShapefileSharp.Spec
                 Box = box,
                 Parts = parts
             };
+        }
+
+        public override void Write(BinaryWriter writer, IMultiPartGeometry<IPoint> value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

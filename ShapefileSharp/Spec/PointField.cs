@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -30,6 +31,11 @@ namespace ShapefileSharp.Spec
                 X = X.Read(reader, origin),
                 Y = Y.Read(reader, origin)
             };
+        }
+
+        public override void Write(BinaryWriter writer, IPoint value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    class PointMShapeField : Field<IPointShape<IPointM>>
+    internal sealed class PointMShapeField : Field<IPointShape<IPointM>>
     {
         public PointMShapeField(WordCount offset) : base(offset)
         {
@@ -27,6 +28,11 @@ namespace ShapefileSharp.Spec
             {
                 Point = point
             };
+        }
+
+        public override void Write(BinaryWriter writer, IPointShape<IPointM> value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

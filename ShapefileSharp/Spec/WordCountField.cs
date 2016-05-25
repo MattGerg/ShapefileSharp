@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -15,6 +16,11 @@ namespace ShapefileSharp.Spec
         {
             reader.BaseStream.Position = (origin + Offset).Bytes;
             return WordCount.FromWords(reader.ReadInt32Big()); //All "Length" fields in the spec are Big endian...
+        }
+
+        public override void Write(BinaryWriter writer, WordCount value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

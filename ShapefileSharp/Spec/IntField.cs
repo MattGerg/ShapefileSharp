@@ -32,5 +32,10 @@ namespace ShapefileSharp.Spec
                     throw new NotImplementedException();
             }
         }
+
+        public override void Write(BinaryWriter writer, int value, WordCount origin)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

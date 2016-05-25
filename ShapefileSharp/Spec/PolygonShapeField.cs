@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    class PolygonShapeField : Field<IPolygonShape<IPoint>>
+    internal sealed class PolygonShapeField : Field<IPolygonShape<IPoint>>
     {
         public PolygonShapeField(WordCount offset, WordCount length) : base(offset)
         {
@@ -28,6 +29,11 @@ namespace ShapefileSharp.Spec
                 Box = geometry.Box,
                 Rings = geometry.Parts
             };
+        }
+
+        public override void Write(BinaryWriter writer, IPolygonShape<IPoint> value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -24,6 +25,11 @@ namespace ShapefileSharp.Spec
                 Min = Min.Read(reader, origin),
                 Max = Max.Read(reader, origin)
             };
+        }
+
+        public override void Write(BinaryWriter writer, IBoundingBox<IPoint> value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

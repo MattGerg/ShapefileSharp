@@ -18,5 +18,12 @@ namespace ShapefileSharp.Spec
         {
             return Read(reader, WordCount.Zero);
         }
+
+        public abstract void Write(BinaryWriter writer, T value, WordCount origin);
+
+        public void Write(BinaryWriter writer, T value)
+        {
+            Write(writer, value, WordCount.Zero);
+        }
     }
 }

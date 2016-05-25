@@ -84,5 +84,10 @@ namespace ShapefileSharp.Spec
                 Points = points
             };
         }
+
+        public override void Write(BinaryWriter writer, IMultiPointShape<IPointM> value, WordCount origin)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

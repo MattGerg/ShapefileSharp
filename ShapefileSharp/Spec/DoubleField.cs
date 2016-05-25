@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ShapefileSharp.Spec
 {
@@ -22,6 +23,11 @@ namespace ShapefileSharp.Spec
         {
             reader.BaseStream.Position = (origin + Offset).Bytes;
             return reader.ReadDouble();
+        }
+
+        public override void Write(BinaryWriter writer, double value, WordCount origin)
+        {
+            throw new NotImplementedException();
         }
     }
 }
