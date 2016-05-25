@@ -81,6 +81,7 @@
     <Compile Include="Spec\DoubleField.cs" />
     <Compile Include="Spec\Endianness.cs" />
     <Compile Include="Spec\Field.cs" />
+    <Compile Include="Spec\FixedField.cs" />
     <Compile Include="Spec\IntField.cs" />
     <Compile Include="Spec\MultiPartGeometryField.cs" />
     <Compile Include="Spec\MultiPointMShapeField.cs" />

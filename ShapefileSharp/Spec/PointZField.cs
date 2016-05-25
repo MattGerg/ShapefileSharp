@@ -4,7 +4,7 @@ using System.IO;
 namespace ShapefileSharp.Spec
 {
     //TODO: Is there opportunity to inherit/abstract from PointField/PointMField?
-    internal sealed class PointZField : Field<IPointZ>
+    internal sealed class PointZField : FixedField<IPointZ>
     {
         public PointZField(WordCount offset) : base(offset)
         {

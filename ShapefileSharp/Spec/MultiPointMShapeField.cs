@@ -6,15 +6,11 @@ namespace ShapefileSharp.Spec
 {
     internal sealed class MultiPointMShapeField : Field<IMultiPointShape<IPointM>>
     {
-        public MultiPointMShapeField(WordCount offset, WordCount length) : base(offset)
+        public MultiPointMShapeField(WordCount offset) : base(offset)
         {
-            Length = length;
-
             Box = new BoundingBox2dField(offset);
             NumPoints = new IntField(offset + Box.Length, Endianness.Little);
         }
-
-        public override WordCount Length { get; }
 
         private BoundingBox2dField Box { get; }
         private IntField NumPoints { get; }

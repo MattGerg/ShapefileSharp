@@ -5,20 +5,12 @@ namespace ShapefileSharp.Spec
 {
     internal sealed class PolygonShapeField : Field<IPolygonShape<IPoint>>
     {
-        public PolygonShapeField(WordCount offset, WordCount length) : base(offset)
+        public PolygonShapeField(WordCount offset) : base(offset)
         {
-            Geometry = new MultiPartGeometryField(offset, length);
+            Geometry = new MultiPartGeometryField(offset);
         }
 
         private MultiPartGeometryField Geometry { get; }
-
-        public override WordCount Length
-        {
-            get
-            {
-                return Geometry.Length;
-            }
-        }
 
         public override IPolygonShape<IPoint> Read(BinaryReader reader, WordCount origin)
         {

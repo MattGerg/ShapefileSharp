@@ -3,17 +3,23 @@ using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    internal sealed class BoundingBox2dField : Field<IBoundingBox<IPoint>>
+    internal sealed class BoundingBox2dField : FixedField<IBoundingBox<IPoint>>
     {
         public BoundingBox2dField(WordCount offset) : base(offset)
         {
             Min = new PointField(offset);
             Max = new PointField(Min.Offset + Min.Length);
-
-            Length = Min.Length + Max.Length;
         }
 
-        public override WordCount Length { get; }
+        public static readonly WordCount FieldLength = PointField.FieldLength * 2;
+
+        public override WordCount Length
+        {
+            get
+            {
+                return FieldLength;
+            }
+        }
 
         private PointField Min { get; }
         private PointField Max { get; }

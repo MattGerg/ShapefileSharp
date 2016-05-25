@@ -3,14 +3,20 @@ using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    internal sealed class WordCountField : Field<WordCount>
+    internal sealed class WordCountField : FixedField<WordCount>
     {
         public WordCountField(WordCount offset) : base(offset)
         {
-            Length = WordCount.FromBytes(sizeof(int));
         }
 
-        public override WordCount Length { get; }
+        public static readonly WordCount FieldLength = WordCount.FromBytes(sizeof(int));
+
+        public override WordCount Length {
+            get
+            {
+                return FieldLength;
+            }
+        }
 
         public override WordCount Read(BinaryReader reader, WordCount origin)
         {

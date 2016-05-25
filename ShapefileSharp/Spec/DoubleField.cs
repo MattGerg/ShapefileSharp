@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    internal sealed class DoubleField : Field<double>
+    internal sealed class DoubleField : FixedField<double>
     {
         public DoubleField(WordCount offset) : base(offset)
         {

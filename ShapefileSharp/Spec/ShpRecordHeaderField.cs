@@ -3,17 +3,24 @@ using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    internal sealed class ShpRecordHeaderField : Field<IShpRecordHeader>
+    internal sealed class ShpRecordHeaderField : FixedField<IShpRecordHeader>
     {
         public ShpRecordHeaderField(WordCount offset) : base(offset)
         {
             RecordNumber = new IntField(offset, Endianness.Big);
             ContentLength = new WordCountField(offset + RecordNumber.Length);
-
-            Length = RecordNumber.Length + ContentLength.Length;
         }
 
-        public override WordCount Length { get; }
+        public static readonly WordCount FieldLength = IntField.FieldLength + WordCountField.FieldLength;
+
+        //TODO: Does anything actually use this?  Can this class be a Field<T>?
+        public override WordCount Length
+        {
+            get
+            {
+                return FieldLength;
+            }
+        }
 
         private IntField RecordNumber { get; }
         private WordCountField ContentLength { get; }

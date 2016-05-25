@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    internal sealed class PointField : Field<IPoint>
+    internal sealed class PointField : FixedField<IPoint>
     {
         public PointField(WordCount offset) : base(offset)
         {

@@ -36,21 +36,21 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.MultiPoint:
                             {
-                                var shapeField = new MultiPointShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
+                                var shapeField = new MultiPointShapeField(ShpSpec.Record.Contents.ShapeType.Length);
 
                                 return shapeField.Read(reader);
                             }
 
                         case ShapeType.PolyLine:
                             {
-                                var shapeField = new PolyLineShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
+                                var shapeField = new PolyLineShapeField(ShpSpec.Record.Contents.ShapeType.Length);
 
                                 return shapeField.Read(reader);
                             }
 
                         case ShapeType.Polygon:
                             {
-                                var shapeField = new PolygonShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
+                                var shapeField = new PolygonShapeField(ShpSpec.Record.Contents.ShapeType.Length);
 
                                 return shapeField.Read(reader);
                             }
@@ -64,7 +64,7 @@ namespace ShapefileSharp.Spec
 
                         case ShapeType.MultiPointM:
                             {
-                                var shapeField = new MultiPointMShapeField(ShpSpec.Record.Contents.ShapeType.Length, WordCount.FromBytes(bytes.Length));
+                                var shapeField = new MultiPointMShapeField(ShpSpec.Record.Contents.ShapeType.Length);
 
                                 return shapeField.Read(reader);
                             }

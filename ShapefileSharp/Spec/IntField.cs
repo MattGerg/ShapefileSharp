@@ -4,15 +4,22 @@ using System.IO;
 
 namespace ShapefileSharp.Spec
 {
-    internal sealed class IntField : Field<int>
+    internal sealed class IntField : FixedField<int>
     {
         public IntField(WordCount offset, Endianness endianness) : base(offset)
         {
-            Length = WordCount.FromBytes(sizeof(int));
             Endianness = endianness;
         }
 
-        public override WordCount Length { get; }
+        public static readonly WordCount FieldLength = WordCount.FromBytes(sizeof(int));
+
+        public override WordCount Length {
+            get
+            {
+                return FieldLength;
+            }
+        }
+
         public Endianness Endianness { get; }
 
         public override int Read(BinaryReader reader, WordCount origin)

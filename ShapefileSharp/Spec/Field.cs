@@ -10,7 +10,6 @@ namespace ShapefileSharp.Spec
         }
 
         public WordCount Offset { get; }
-        public abstract WordCount Length { get; }
 
         public abstract T Read(BinaryReader reader, WordCount origin);
 

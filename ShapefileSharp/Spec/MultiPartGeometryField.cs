@@ -7,16 +7,12 @@ namespace ShapefileSharp.Spec
     //TODO: Can this be a generic class?  Or do we need MultiPartGeomtryMField and MultiPartGeometryZField as well?
     internal sealed class MultiPartGeometryField : Field<IMultiPartGeometry<IPoint>>
     {
-        public MultiPartGeometryField(WordCount offset, WordCount length) : base(offset)
+        public MultiPartGeometryField(WordCount offset) : base(offset)
         {
-            Length = length;
-
             Box = new BoundingBox2dField(offset);
             NumParts = new IntField(Box.Offset + Box.Length, Endianness.Little);
             NumPoints = new IntField(NumParts.Offset + NumParts.Length, Endianness.Little);
         }
-
-        public override WordCount Length { get; }
 
         private BoundingBox2dField Box { get; }
         private IntField NumParts { get; }

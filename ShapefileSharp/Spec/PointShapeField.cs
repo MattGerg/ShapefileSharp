@@ -12,14 +12,6 @@ namespace ShapefileSharp.Spec
 
         private PointField Point { get; }
 
-        public override WordCount Length
-        {
-            get
-            {
-                return Point.Length;
-            }
-        }
-
         public override IPointShape<IPoint> Read(BinaryReader reader, WordCount origin)
         {
             var point = Point.Read(reader, origin);
