@@ -1,5 +1,4 @@
 ﻿using ShapefileSharp.Spec;
-using System.IO;
 
 namespace ShapefileSharp
 {
@@ -9,21 +8,11 @@ namespace ShapefileSharp
         {
         }
 
-        private readonly ShapeSerializer ShapeSerializer = new ShapeSerializer();
-
         public IShpRecord ReadShapeRecord(IShxRecord indexRecord)
         {
-            var header = ShpSpec.Record.Header.Read(BinaryReader, indexRecord.Offset);
+            var shapeRecordField = new ShpRecordField(indexRecord.Offset);
 
-            BinaryReader.BaseStream.Position = (indexRecord.Offset + ShpSpec.Record.Contents.Offset).Bytes;
-            var contents = BinaryReader.ReadBytes(header.ContentLength.Bytes);
-            var shape = ShapeSerializer.Deserialize(contents);
-
-            return new ShpRecord()
-            {
-                Header = header,
-                Shape = shape
-            };
+            return shapeRecordField.Read(BinaryReader);
         }
     }
 }

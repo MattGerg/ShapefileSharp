@@ -94,9 +94,9 @@
     <Compile Include="Spec\PointZShapeField.cs" />
     <Compile Include="Spec\PolygonShapeField.cs" />
     <Compile Include="Spec\PolyLineShapeField.cs" />
-    <Compile Include="Spec\ShapeSerializer.cs" />
+    <Compile Include="Spec\ShapeField.cs" />
+    <Compile Include="Spec\ShpRecordField.cs" />
     <Compile Include="Spec\ShpRecordHeaderField.cs" />
-    <Compile Include="Spec\ShpSpec.cs" />
     <Compile Include="Spec\ShxSpec.cs" />
     <Compile Include="ShpFile.cs" />
     <Compile Include="ShapeMainFileFactory.cs" />

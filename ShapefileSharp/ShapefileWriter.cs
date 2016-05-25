@@ -1,10 +1,9 @@
-﻿using ShapefileSharp.Spec;
-using System;
+﻿using System;
 using System.IO;
 
 namespace ShapefileSharp
 {
-    public sealed class ShapefileWriter<T> : IDisposable where T:IShape
+    public sealed class ShapefileWriter<T> : IDisposable where T : IShape
     {
         public ShapefileWriter(string shpFilePath) : base()
         {
@@ -20,8 +19,6 @@ namespace ShapefileSharp
             {
                 FileLength = ShapefileSpec.HeaderLength
             };
-
-            Serializer = new ShapeSerializer();
         }
 
         private readonly FileStream ShpStream;
@@ -29,8 +26,6 @@ namespace ShapefileSharp
 
         private readonly ShapefileHeader ShpHeader;
         private readonly ShapefileHeader ShxHeader;
-
-        private readonly ShapeSerializer Serializer;
 
         public void Close()
         {
@@ -75,11 +70,7 @@ namespace ShapefileSharp
                 Shape = shape
             };
 
-            //TODO: Write the SHP header...
-
-            var contentBytes = Serializer.Serialize(shape);
-
-            ShpStream.Write(contentBytes, 0, contentBytes.Length);
+            //TODO: Write to the SHP file...
 
             //TODO: Write to the SHX file...
 

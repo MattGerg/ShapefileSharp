@@ -13,7 +13,6 @@ namespace ShapefileSharp.Spec
 
         public static readonly WordCount FieldLength = IntField.FieldLength + WordCountField.FieldLength;
 
-        //TODO: Does anything actually use this?  Can this class be a Field<T>?
         public override WordCount Length
         {
             get
