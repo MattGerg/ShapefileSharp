@@ -113,7 +113,7 @@
     <Compile Include="Shape.cs" />
     <Compile Include="Shapefile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShapefileSpec.cs" />
+    <Compile Include="Spec\ShapefileHeaderField.cs" />
     <Compile Include="ShxFile.cs" />
     <Compile Include="ShpRecord.cs" />
     <Compile Include="ShapeType.cs" />

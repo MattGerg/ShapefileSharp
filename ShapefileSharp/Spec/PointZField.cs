@@ -6,12 +6,20 @@ namespace ShapefileSharp.Spec
     //TODO: Is there opportunity to inherit/abstract from PointField/PointMField?
     internal sealed class PointZField : FixedField<IPointZ>
     {
-        public PointZField(WordCount offset) : base(offset)
+        /// <summary>
+        /// The offset of the X value, when the XYZM values are contiguous.
+        /// </summary>
+        /// <param name="offset"></param>
+        public PointZField(WordCount offset) : this(offset, offset + DoubleField.FieldLength, offset + (2 * DoubleField.FieldLength), offset + (3 * DoubleField.FieldLength))
         {
-            X = new DoubleField(offset);
-            Y = new DoubleField(X.Offset + X.Length);
-            Z = new DoubleField(Y.Offset + Y.Length);
-            M = new DoubleField(Z.Offset + Z.Length);
+        }
+
+        public PointZField(WordCount xOffset, WordCount yOffset, WordCount zOffset, WordCount mOffset) : base(xOffset)
+        {
+            X = new DoubleField(xOffset);
+            Y = new DoubleField(yOffset);
+            Z = new DoubleField(zOffset);
+            M = new DoubleField(mOffset);
         }
 
         public static readonly WordCount FieldLength = DoubleField.FieldLength * 4;

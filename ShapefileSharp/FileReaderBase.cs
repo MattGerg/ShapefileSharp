@@ -41,46 +41,9 @@ namespace ShapefileSharp
 
         public IShapefileHeader ReadHeader()
         {
-            BinaryReader.BaseStream.Seek(ShapefileSpec.ShapeTypePos, SeekOrigin.Begin);
-            var shapeType = (ShapeType)BinaryReader.ReadInt32();
+            var headerField = new Spec.ShapefileHeaderField(WordCount.Zero);
 
-            var min = new Point();
-            var max = new Point();
-
-            //TODO: Use some kind of PointField...
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxXMinPos, SeekOrigin.Begin);
-            min.X = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxXMaxPos, SeekOrigin.Begin);
-            max.X = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxYMinPos, SeekOrigin.Begin);
-            min.Y = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxYMaxPos, SeekOrigin.Begin);
-            max.Y = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxZMinPos, SeekOrigin.Begin);
-            min.Z = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxZMaxPos, SeekOrigin.Begin);
-            max.Z = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxMMinPos, SeekOrigin.Begin);
-            min.M = BinaryReader.ReadDouble();
-
-            BinaryReader.BaseStream.Seek(ShapefileSpec.BoundingBoxMMaxPos, SeekOrigin.Begin);
-            max.M = BinaryReader.ReadDouble();
-
-            return new ShapefileHeader()
-            {
-                ShapeType = shapeType,
-                BoundingBox = new BoundingBox<IPointZ>()
-                {
-                    Min = min,
-                    Max = max
-                }
-            };
+            return headerField.Read(BinaryReader, WordCount.Zero);
         }
     }
 }

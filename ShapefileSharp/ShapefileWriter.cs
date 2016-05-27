@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShapefileSharp.Spec;
+using System;
 using System.IO;
 
 namespace ShapefileSharp
@@ -12,12 +13,12 @@ namespace ShapefileSharp
 
             ShpHeader = new ShapefileHeader()
             {
-                FileLength = ShapefileSpec.HeaderLength
+                FileLength = ShapefileHeaderField.FieldLength
             };
 
             ShxHeader = new ShapefileHeader()
             {
-                FileLength = ShapefileSpec.HeaderLength
+                FileLength = ShapefileHeaderField.FieldLength
             };
         }
 
