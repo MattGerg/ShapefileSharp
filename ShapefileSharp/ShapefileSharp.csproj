@@ -95,6 +95,7 @@
     <Compile Include="Spec\PolygonShapeField.cs" />
     <Compile Include="Spec\PolyLineShapeField.cs" />
     <Compile Include="Spec\ShapeField.cs" />
+    <Compile Include="Spec\ShapeTypeField.cs" />
     <Compile Include="Spec\ShpRecordField.cs" />
     <Compile Include="Spec\ShpRecordHeaderField.cs" />
     <Compile Include="Spec\ShxSpec.cs" />

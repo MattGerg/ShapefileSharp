@@ -8,16 +8,14 @@ namespace ShapefileSharp.Spec
     {
         public ShapeField(WordCount offset) : base(offset)
         {
-            ShapeTypeField = new IntField(offset, Endianness.Little);
+            ShapeTypeField = new ShapeTypeField(offset);
         }
 
-        //TODO: Create ShapeType field?
-        private IntField ShapeTypeField { get; }
+        private ShapeTypeField ShapeTypeField { get; }
 
         public override IShape Read(BinaryReader reader, WordCount origin)
         {
-            //TODO: Create ShapeType field?
-            ShapeType shapeType = (ShapeType)ShapeTypeField.Read(reader, origin);
+            ShapeType shapeType = ShapeTypeField.Read(reader, origin);
 
             switch (shapeType)
             {

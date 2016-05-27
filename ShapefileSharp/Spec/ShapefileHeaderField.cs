@@ -10,7 +10,7 @@ namespace ShapefileSharp.Spec
             FileCode = new IntField(offset, Endianness.Big);
             FileLength = new WordCountField(offset + WordCount.FromBytes(4));
             Version = new IntField(offset, Endianness.Little);
-            ShapeType = new IntField(offset + WordCount.FromBytes(32), Endianness.Little);
+            ShapeType = new ShapeTypeField(offset + WordCount.FromBytes(32));
             BoxMin = new PointZField(
                 offset + WordCount.FromBytes(36),
                 offset + WordCount.FromBytes(44),
@@ -40,8 +40,7 @@ namespace ShapefileSharp.Spec
         private WordCountField FileLength { get; }
         private const int VersionValue = 1000;
         private IntField Version { get; }
-        //TODO: Make a ShapeTypeField
-        private IntField ShapeType { get; }
+        private ShapeTypeField ShapeType { get; }
 
         //TODO: Can't we have a BoundingBoxZField that accepts 2 PointZFields in its constructor?
         private PointZField BoxMin { get; }
