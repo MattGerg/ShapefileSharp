@@ -11,6 +11,9 @@ namespace ShapefileSharp
             ShpStream = new FileStream(shpFilePath, FileMode.Create);
             ShxStream = new FileStream(Path.ChangeExtension(shpFilePath, ".shx"), FileMode.Create);
 
+            ShpWriter = new BinaryWriter(ShpStream);
+            ShxWriter = new BinaryWriter(ShxStream);
+
             ShpHeader = new ShapefileHeader()
             {
                 FileLength = ShapefileHeaderField.FieldLength
@@ -24,6 +27,9 @@ namespace ShapefileSharp
 
         private readonly FileStream ShpStream;
         private readonly FileStream ShxStream;
+
+        private readonly BinaryWriter ShpWriter;
+        private readonly BinaryWriter ShxWriter;
 
         private readonly ShapefileHeader ShpHeader;
         private readonly ShapefileHeader ShxHeader;
@@ -65,15 +71,45 @@ namespace ShapefileSharp
 
         public IShapefileRecord<T> Write(T shape)
         {
+            //TODO: Bad cast... Make WordCount use long...
+            var shpRecordOffset = WordCount.FromBytes((int)ShpWriter.BaseStream.Position);
+            var shpContentOffset = shpRecordOffset + ShpRecordHeaderField.FieldLength;
+
             var record = new ShapefileRecord<T>()
             {
                 RecordNumber = RecordNumber,
                 Shape = shape
             };
 
-            //TODO: Write to the SHP file...
+            //TODO: Write the SHP header first...
+            //      But we have to write the shape, to figure out its length, to add the length to the header...
+            var shapeField = new ShapeField(shpContentOffset);
+            shapeField.Write(ShpWriter, shape);
+
+            var shpStreamPositionAfterRecord = ShpWriter.BaseStream.Position;
+                
+            var shpHeader = new ShpRecordHeader()
+            {
+                //TODO: Bad cast... Make WordCount use long...
+                //TODO: The shapeField should just have a Length... vs assuming the writer will be in the correct position...
+                ContentLength = WordCount.FromBytes((int)shpStreamPositionAfterRecord) - shpContentOffset,
+                RecordNumber = RecordNumber
+            };
+
+            var shpHeaderField = new ShpRecordHeaderField(shpRecordOffset);
+            shpHeaderField.Write(ShpWriter, shpHeader);
+
+            //Reset so we are at the correct position for the next shape...
+            ShpWriter.BaseStream.Position = shpStreamPositionAfterRecord;
+
 
             //TODO: Write to the SHX file...
+
+            var shxRecord = new ShxRecord()
+            {
+                Offset = shpRecordOffset,
+                ContentLength = WordCount.FromBytes((int)ShpStream.Position) - shpRecordOffset
+            };
 
             RecordNumber++;
 
