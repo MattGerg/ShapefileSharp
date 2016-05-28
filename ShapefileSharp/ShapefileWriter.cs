@@ -71,8 +71,7 @@ namespace ShapefileSharp
 
         public IShapefileRecord<T> Write(T shape)
         {
-            //TODO: Bad cast... Make WordCount use long...
-            var shpRecordOffset = WordCount.FromBytes((int)ShpWriter.BaseStream.Position);
+            var shpRecordOffset = WordCount.FromBytes(ShpWriter.BaseStream.Position);
             var shpContentOffset = shpRecordOffset + ShpRecordHeaderField.FieldLength;
 
             var record = new ShapefileRecord<T>()
@@ -90,9 +89,8 @@ namespace ShapefileSharp
                 
             var shpHeader = new ShpRecordHeader()
             {
-                //TODO: Bad cast... Make WordCount use long...
                 //TODO: The shapeField should just have a Length... vs assuming the writer will be in the correct position...
-                ContentLength = WordCount.FromBytes((int)shpStreamPositionAfterRecord) - shpContentOffset,
+                ContentLength = WordCount.FromBytes(shpStreamPositionAfterRecord) - shpContentOffset,
                 RecordNumber = RecordNumber
             };
 

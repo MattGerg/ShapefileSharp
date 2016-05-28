@@ -8,7 +8,7 @@ namespace ShapefileSharp
 
         private const int BytesPerWord = 2;
 
-        public WordCount(int words)
+        public WordCount(long words)
         {
             Words = words;
         }
@@ -17,7 +17,7 @@ namespace ShapefileSharp
         /// Create a <see cref="WordCount"/> based on the specified number of bytes.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the specified number of bytes is odd (i.e. un-even).</exception>
-        public static WordCount FromBytes(int bytes)
+        public static WordCount FromBytes(long bytes)
         {
             if (bytes % BytesPerWord != 0)
             {
@@ -27,7 +27,7 @@ namespace ShapefileSharp
             return new WordCount(bytes / BytesPerWord);
         }
 
-        public static WordCount FromWords(int words)
+        public static WordCount FromWords(long words)
         {
             return new WordCount(words);
         }
@@ -40,12 +40,12 @@ namespace ShapefileSharp
         /// <summary>
         /// The number of 16-bit words.
         /// </summary>
-        public int Words { get; set; }
+        public long Words { get; set; }
 
         /// <summary>
         /// The number of bytes.
         /// </summary>
-        public int Bytes {
+        public long Bytes {
             get
             {
                 return Words * BytesPerWord;
