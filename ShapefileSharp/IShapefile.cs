@@ -2,7 +2,7 @@
 
 namespace ShapefileSharp
 {
-    public interface IShapefile: IReadOnlyList<IShpRecord>
+    public interface IShapefile: IReadOnlyList<IShapefileRecord>
     {
         IShapefileHeader Header { get; }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -36,17 +35,20 @@ namespace ShapefileSharp
             }
         }
 
-        public IShpRecord this[int index]
+        public IShapefileRecord this[int index]
         {
             get
             {
                 var indexRecord = ShapeIndex[index];
 
-                return ShapeMainFile.GetRecord(indexRecord);
+                var shpRecord = ShapeMainFile.GetRecord(indexRecord);
+
+                //TODO: This <IShape> smells bad...
+                return new ShapefileRecord<IShape>(shpRecord);
             }
         }
 
-        public IEnumerator<IShpRecord> GetEnumerator()
+        public IEnumerator<IShapefileRecord> GetEnumerator()
         {
             return new ShapefileEnumerator(this);
         }

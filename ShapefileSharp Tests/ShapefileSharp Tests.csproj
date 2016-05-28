@@ -64,6 +64,7 @@
     <Compile Include="Shapefiles\MultiPointShpFile.cs" />
     <Compile Include="Shapefiles\PolyLineShpFile.cs" />
     <Compile Include="ShapefileTests.cs" />
+    <Compile Include="ReadWriteTests.cs" />
     <Compile Include="WordCountTests.cs" />
   </ItemGroup>
   <ItemGroup>

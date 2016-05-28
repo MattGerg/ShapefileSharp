@@ -21,7 +21,7 @@ namespace ShapefileSharp.Tests
             var actual = CitiesActual.First();
 
             //TODO: There must be a better way to store these expected values...
-            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(1, actual.RecordNumber);
             Assert.AreEqual(ShapeType.Point, actual.Shape.ShapeType);
             Assert.IsInstanceOfType(actual.Shape, typeof(IPointShape<IPoint>));
 
@@ -36,7 +36,7 @@ namespace ShapefileSharp.Tests
             var actual = MultiPointActual.First();
 
             //TODO: There must be a better way to store these expected values...
-            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(1, actual.RecordNumber);
             Assert.AreEqual(ShapeType.MultiPoint, actual.Shape.ShapeType);
 
             Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape<IPoint>));   
@@ -73,7 +73,7 @@ namespace ShapefileSharp.Tests
             var actual = PolyLineActual.First();
 
             //TODO: There must be a better way to store these expected values...
-            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(1, actual.RecordNumber);
             Assert.AreEqual(ShapeType.PolyLine, actual.Shape.ShapeType);
 
             Assert.IsInstanceOfType(actual.Shape, typeof(IPolyLineShape<IPoint>));
@@ -112,7 +112,7 @@ namespace ShapefileSharp.Tests
             var actual = PolygonActual.First();
 
             //TODO: There must be a better way to store these expected values...
-            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(1, actual.RecordNumber);
             Assert.AreEqual(ShapeType.Polygon, actual.Shape.ShapeType);
 
             Assert.IsInstanceOfType(actual.Shape, typeof(IPolygonShape<IPoint>));
@@ -151,7 +151,7 @@ namespace ShapefileSharp.Tests
             var actual = PointMActual.First();
 
             //TODO: There must be a better way to store these expected values...
-            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(1, actual.RecordNumber);
             Assert.AreEqual(ShapeType.PointM, actual.Shape.ShapeType);
 
             Assert.IsInstanceOfType(actual.Shape, typeof(IPointShape<IPointM>));
@@ -173,7 +173,7 @@ namespace ShapefileSharp.Tests
             var actual = MultiPointMActual.First();
 
             //TODO: There must be a better way to store these expected values...
-            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(1, actual.RecordNumber);
             Assert.AreEqual(ShapeType.MultiPointM, actual.Shape.ShapeType);
 
             Assert.IsInstanceOfType(actual.Shape, typeof(IMultiPointShape<IPointM>));
@@ -213,7 +213,7 @@ namespace ShapefileSharp.Tests
             var actual = PointZActual.First();
 
             //TODO: There must be a better way to store these expected values...
-            Assert.AreEqual(1, actual.Header.RecordNumber);
+            Assert.AreEqual(1, actual.RecordNumber);
             Assert.AreEqual(ShapeType.PointZ, actual.Shape.ShapeType);
 
             Assert.IsInstanceOfType(actual.Shape, typeof(IPointShape<IPointZ>));
