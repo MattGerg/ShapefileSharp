@@ -18,13 +18,11 @@ namespace ShapefileSharp
         {
             var indexRecord = new ShxRecord();
 
-            var recordPos = ShxSpec.Record.GetPos(recordIndex);
+            var recordOffset = ShxSpec.Record.GetPos(recordIndex);
 
-            BinaryReader.BaseStream.Position = recordPos.Bytes;
-            indexRecord.Offset = new WordCount(BinaryReader.ReadInt32Big());
-            indexRecord.ContentLength = new WordCount(BinaryReader.ReadInt32Big());
+            var shxRecordField = new ShxRecordField(recordOffset);
 
-            return indexRecord;
+            return shxRecordField.Read(BinaryReader);
         }
     }
 }
