@@ -101,13 +101,16 @@ namespace ShapefileSharp
             ShpWriter.BaseStream.Position = shpStreamPositionAfterRecord;
 
 
-            //TODO: Write to the SHX file...
 
             var shxRecord = new ShxRecord()
             {
                 Offset = shpRecordOffset,
-                ContentLength = WordCount.FromBytes((int)ShpStream.Position) - shpRecordOffset
+                ContentLength = WordCount.FromBytes((int)ShpWriter.BaseStream.Position) - shpRecordOffset
             };
+
+            var shxRecordField = new ShxRecordField(WordCount.FromBytes(ShxWriter.BaseStream.Position));
+            shxRecordField.Write(ShxWriter, shxRecord);
+
 
             RecordNumber++;
 
