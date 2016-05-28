@@ -1,8 +1,13 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IShapefileRecord<T> where T:IShape
+    public interface IShapefileRecord
     {
         int RecordNumber { get; }
-        T Shape { get; }
+        IShape Shape { get; }
+    }
+
+    public interface IShapefileRecord<T> : IShapefileRecord where T:IShape
+    {
+        new T Shape { get; }
     }
 }
