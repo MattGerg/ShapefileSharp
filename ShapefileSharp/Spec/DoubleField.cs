@@ -27,7 +27,8 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, double value, WordCount origin)
         {
-            throw new NotImplementedException();
+            writer.BaseStream.Position = (origin + Offset).Bytes;
+            writer.Write(value);
         }
     }
 }
