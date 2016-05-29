@@ -6,25 +6,25 @@ namespace ShapefileSharp
 {
     public class Shapefile : IShapefile
     {
-        public Shapefile(string filePath) : this(new ShpFile(filePath), new ShxFile(Path.ChangeExtension(filePath, ".shx")))
+        public Shapefile(string shpFilePath) : this(new ShpFile(shpFilePath), new ShxFile(Path.ChangeExtension(shpFilePath, ".shx")))
         {
         }
 
-        public Shapefile(IShpFile shapeMainFile, IShxFile shapeIndex) : base()
+        public Shapefile(IShpFile shpFile, IShxFile shxFile) : base()
         {
-            ShapeMainFile = shapeMainFile;
-            ShapeIndex = shapeIndex;
+            ShpFile = shpFile;
+            ShxFile = shxFile;
             Features = new FeatureList(this);
         }
 
-        private IShpFile ShapeMainFile { get; }
-        private IShxFile ShapeIndex { get; }
+        private IShpFile ShpFile { get; }
+        private IShxFile ShxFile { get; }
 
         public IShapefileHeader Header
         {
             get
             {
-                return ShapeMainFile.Header;
+                return ShpFile.Header;
             }
         }
 
@@ -43,7 +43,7 @@ namespace ShapefileSharp
             {
                 get
                 {
-                    return Shapefile.ShapeIndex.Records.Count;
+                    return Shapefile.ShxFile.Records.Count;
                 }
             }
 
@@ -51,9 +51,9 @@ namespace ShapefileSharp
             {
                 get
                 {
-                    var indexRecord = Shapefile.ShapeIndex.Records[index];
+                    var indexRecord = Shapefile.ShxFile.Records[index];
 
-                    var shpRecord = Shapefile.ShapeMainFile.GetRecord(indexRecord);
+                    var shpRecord = Shapefile.ShpFile.GetRecord(indexRecord);
 
                     //TODO: This <IShape> smells bad...
                     return new ShapefileRecord<IShape>(shpRecord);
