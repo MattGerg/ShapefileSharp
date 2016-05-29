@@ -94,6 +94,11 @@ namespace ShapefileSharp
         /// </summary>
         private int RecordNumber = 1;
 
+        public IShapefileRecord<T> Write(IShape shape)
+        {
+            return Write((T)shape);
+        }
+
         public IShapefileRecord<T> Write(T shape)
         {
             var shpRecordOffset = WordCount.FromBytes(ShpWriter.BaseStream.Position);

@@ -6,6 +6,7 @@ namespace ShapefileSharp
 {
     public class Shapefile : IShapefile
     {
+        //TODO: But shouldn't we dispose of these objects we create?
         public Shapefile(string shpFilePath) : this(new ShpFile(shpFilePath), new ShxFile(Path.ChangeExtension(shpFilePath, ".shx")))
         {
         }

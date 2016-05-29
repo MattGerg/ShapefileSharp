@@ -18,7 +18,19 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void ReadWrite_Point()
         {
+            var expected = Shapefiles.CitiesMainFile.FilePath;
+            var actual = "written.shp";
 
+            var reader = new Shapefile(Shapefiles.CitiesMainFile.FilePath);
+
+            using (var writer = new ShapefileWriter<IPointShape<IPoint>>(actual))
+            {
+                foreach (var iFeature in reader.Features) {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            Assert.IsTrue(IsContentEqual(expected, actual));
         }
     }
 }
