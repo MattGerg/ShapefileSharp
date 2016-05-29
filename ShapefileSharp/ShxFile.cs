@@ -7,14 +7,11 @@ namespace ShapefileSharp
     /// <summary>
     /// A Shape Index (.shx) file.
     /// </summary>
-    internal sealed class ShxFile : IShxFile, IDisposable
+    internal sealed class ShxFile : IShxFile, IReadOnlyList<IShxRecord>, IDisposable
     {
         public ShxFile(string filePath) : base()
         {
             Reader = new ShxReader(filePath);
-
-            Header = Reader.ReadHeader();
-            RecordCount = Reader.GetRecordCount();            
         }
 
         #region IDisposable Support
@@ -43,10 +40,30 @@ namespace ShapefileSharp
 
         private ShxReader Reader { get; }
 
-        public IShapefileHeader Header { get; }
-        public int RecordCount { get; }
+        public IShapefileHeader Header {
+            get
+            {
+                return Reader.ReadHeader();
+            }
+        }
 
-        public IShxRecord this[int index]
+        public IReadOnlyList<IShxRecord> Records
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        int IReadOnlyCollection<IShxRecord>.Count
+        {
+            get
+            {
+                return Reader.GetRecordCount();
+            }
+        }
+
+        IShxRecord IReadOnlyList<IShxRecord>.this[int index]
         {
             get
             {
@@ -54,22 +71,19 @@ namespace ShapefileSharp
             }
         }
 
-        public int Count
+        IEnumerator<IShxRecord> IEnumerable<IShxRecord>.GetEnumerator()
         {
-            get
-            {
-                return RecordCount;
-            }
-        }
+            var self = (IReadOnlyList<IShxRecord>)this;
 
-        public IEnumerator<IShxRecord> GetEnumerator()
-        {
-            return new ShapeIndexEnumerator(this);
+            for (int i = 0; i < self.Count; i++)
+            {
+                yield return self[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return ((IReadOnlyList<IShxRecord>)this).GetEnumerator();
         }
     }
 }

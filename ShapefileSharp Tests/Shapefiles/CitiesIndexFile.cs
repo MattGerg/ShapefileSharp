@@ -13,15 +13,15 @@ namespace ShapefileSharp.Tests.Shapefiles
 
         public CitiesIndexFile() : base()
         {
-            var indices = new List<ShxRecord>();
+            var records = new List<ShxRecord>();
 
-            indices.Add(new ShxRecord()
+            records.Add(new ShxRecord()
             {
                 Offset = new WordCount(50),
                 ContentLength = new WordCount(10)
             });
 
-            Indices = indices.AsReadOnly();
+            Records = records;
         }
 
         public IShapefileHeader Header
@@ -32,40 +32,6 @@ namespace ShapefileSharp.Tests.Shapefiles
             }
         }
 
-        private IReadOnlyList<IShxRecord> Indices { get; }
-
-        public IShxRecord this[int index]
-        {
-            get
-            {
-                return Indices[index];
-            }
-        }
-
-        public int RecordCount
-        {
-            get
-            {
-                return Indices.Count;
-            }
-        }
-
-        public int Count
-        {
-            get
-            {
-                return RecordCount;
-            }
-        }
-
-        public IEnumerator<IShxRecord> GetEnumerator()
-        {
-            return Indices.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return Indices.GetEnumerator();
-        }
+        public IReadOnlyList<IShxRecord> Records { get; }
     }
 }

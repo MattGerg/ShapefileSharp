@@ -43,7 +43,7 @@ namespace ShapefileSharp
             {
                 get
                 {
-                    return Shapefile.ShapeIndex.Count;
+                    return Shapefile.ShapeIndex.Records.Count;
                 }
             }
 
@@ -51,7 +51,7 @@ namespace ShapefileSharp
             {
                 get
                 {
-                    var indexRecord = Shapefile.ShapeIndex[index];
+                    var indexRecord = Shapefile.ShapeIndex.Records[index];
 
                     var shpRecord = Shapefile.ShapeMainFile.GetRecord(indexRecord);
 

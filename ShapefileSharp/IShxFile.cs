@@ -5,9 +5,9 @@ namespace ShapefileSharp
     /// <summary>
     /// A Shapefile Index (.shx) file.
     /// </summary>
-    public interface IShxFile : IReadOnlyList<IShxRecord>
+    public interface IShxFile
     {
         IShapefileHeader Header { get; }
-        int RecordCount { get; }
+        IReadOnlyList<IShxRecord> Records { get; }
     }
 }
