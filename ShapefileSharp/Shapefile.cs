@@ -14,6 +14,7 @@ namespace ShapefileSharp
         {
             ShapeMainFile = shapeMainFile;
             ShapeIndex = shapeIndex;
+            Features = new FeatureList(this);
         }
 
         private IShpFile ShapeMainFile { get; }
@@ -27,35 +28,50 @@ namespace ShapefileSharp
             }
         }
 
-        public int Count
+        public IReadOnlyList<IShapefileRecord> Features { get; }
+
+        private sealed class FeatureList : IReadOnlyList<IShapefileRecord>
         {
-            get
+            public FeatureList(Shapefile shapefile)
             {
-                return ShapeIndex.Count;
+                Shapefile = shapefile;
             }
-        }
 
-        public IShapefileRecord this[int index]
-        {
-            get
+            private readonly Shapefile Shapefile;
+
+            public int Count
             {
-                var indexRecord = ShapeIndex[index];
-
-                var shpRecord = ShapeMainFile.GetRecord(indexRecord);
-
-                //TODO: This <IShape> smells bad...
-                return new ShapefileRecord<IShape>(shpRecord);
+                get
+                {
+                    return Shapefile.ShapeIndex.Count;
+                }
             }
-        }
 
-        public IEnumerator<IShapefileRecord> GetEnumerator()
-        {
-            return new ShapefileEnumerator(this);
-        }
+            public IShapefileRecord this[int index]
+            {
+                get
+                {
+                    var indexRecord = Shapefile.ShapeIndex[index];
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+                    var shpRecord = Shapefile.ShapeMainFile.GetRecord(indexRecord);
+
+                    //TODO: This <IShape> smells bad...
+                    return new ShapefileRecord<IShape>(shpRecord);
+                }
+            }
+
+            public IEnumerator<IShapefileRecord> GetEnumerator()
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    yield return this[i];
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
         }
     }
 }

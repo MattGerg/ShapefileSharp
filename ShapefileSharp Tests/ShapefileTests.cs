@@ -18,7 +18,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void Cities_FirstRecord_Equals()
         {
-            var actual = CitiesActual.First();
+            var actual = CitiesActual.Features.First();
 
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.RecordNumber);
@@ -33,7 +33,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void MultiPoint_FirstRecord_Equals()
         {
-            var actual = MultiPointActual.First();
+            var actual = MultiPointActual.Features.First();
 
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.RecordNumber);
@@ -70,7 +70,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void Polyline_FirstRecord_Equals()
         {
-            var actual = PolyLineActual.First();
+            var actual = PolyLineActual.Features.First();
 
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.RecordNumber);
@@ -109,7 +109,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void Polygon_FirstRecord_Equals()
         {
-            var actual = PolygonActual.First();
+            var actual = PolygonActual.Features.First();
 
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.RecordNumber);
@@ -148,7 +148,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void PointM_FirstRecord_Equals()
         {
-            var actual = PointMActual.First();
+            var actual = PointMActual.Features.First();
 
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.RecordNumber);
@@ -170,7 +170,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void MultiPointM_FirstRecord_Equals()
         {
-            var actual = MultiPointMActual.First();
+            var actual = MultiPointMActual.Features.First();
 
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.RecordNumber);
@@ -210,7 +210,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void PointZ_FirstRecord_Equals()
         {
-            var actual = PointZActual.First();
+            var actual = PointZActual.Features.First();
 
             //TODO: There must be a better way to store these expected values...
             Assert.AreEqual(1, actual.RecordNumber);
