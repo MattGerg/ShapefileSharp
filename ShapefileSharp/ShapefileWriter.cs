@@ -25,20 +25,6 @@ namespace ShapefileSharp
             };
         }
 
-        private readonly FileStream ShpStream;
-        private readonly FileStream ShxStream;
-
-        private readonly BinaryWriter ShpWriter;
-        private readonly BinaryWriter ShxWriter;
-
-        private readonly ShapefileHeader ShpHeader;
-        private readonly ShapefileHeader ShxHeader;
-
-        public void Close()
-        {
-            Dispose();
-        }
-
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
@@ -49,6 +35,9 @@ namespace ShapefileSharp
                 if (disposing)
                 {
                     //TODO: Write headers to files...
+
+                    ShpWriter.Dispose();
+                    ShxWriter.Dispose();
 
                     ShpStream.Dispose();
                     ShxStream.Dispose();
@@ -63,6 +52,42 @@ namespace ShapefileSharp
             Dispose(true);
         }
         #endregion
+
+        private readonly FileStream ShpStream;
+        private readonly FileStream ShxStream;
+
+        private readonly BinaryWriter ShpWriter;
+        private readonly BinaryWriter ShxWriter;
+
+        private readonly ShapefileHeader ShpHeader;
+        private readonly ShapefileHeader ShxHeader;
+
+        public void Close()
+        {
+            Dispose();
+        }
+
+        /// <summary>
+        /// The path the the .shp file that is being written.
+        /// </summary>
+        public string ShpFilePath
+        {
+            get
+            {
+                return ShpStream.Name;
+            }
+        }
+
+        /// <summary>
+        /// The path the the .shx file that is being written.
+        /// </summary>
+        public string ShxFilePath
+        {
+            get
+            {
+                return ShxStream.Name;
+            }
+        }
 
         /// <summary>
         /// The RecordNumber for the next shape.
