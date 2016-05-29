@@ -26,7 +26,8 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, WordCount value, WordCount origin)
         {
-            throw new NotImplementedException();
+            writer.BaseStream.Position = (origin + Offset).Bytes;
+            writer.WriteInt32Big(value.Words); //All "Length" fields in the spec are Big endian...
         }
     }
 }

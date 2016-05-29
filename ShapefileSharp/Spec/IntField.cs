@@ -42,7 +42,22 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, int value, WordCount origin)
         {
-            throw new NotImplementedException();
+            writer.BaseStream.Position = (origin + Offset).Bytes;
+
+            switch (Endianness) {
+                case Endianness.Little:
+                    writer.Write(value);
+                    return;
+
+                case Endianness.Big:
+                    writer.WriteInt32Big(value);
+                    return;
+
+                default:
+                    Debug.Fail("Unimplemented Endianess.");
+                    throw new NotImplementedException();
+
+            }
         }
     }
 }

@@ -38,7 +38,8 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IShpRecordHeader value, WordCount origin)
         {
-            throw new NotImplementedException();
+            RecordNumber.Write(writer, value.RecordNumber, origin);
+            ContentLength.Write(writer, value.ContentLength, origin);
         }
     }
 }
