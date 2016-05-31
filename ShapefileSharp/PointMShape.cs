@@ -1,4 +1,6 @@
-﻿namespace ShapefileSharp
+﻿using System;
+
+namespace ShapefileSharp
 {
     public sealed class PointMShape : Shape, IPointShape<IPointM>
     {
@@ -11,5 +13,13 @@
         }
 
         public IPointM Point { get; set; }
+
+        public IBoundingBox<IPointM> Box
+        {
+            get
+            {
+                return new BoundingBox<IPointM>(Point, Point);
+            }
+        }
     }
 }

@@ -7,5 +7,6 @@
 
     public interface IShape<T> : IShape where T:IPoint
     {
+        IBoundingBox<T> Box { get; }
     }
 }
