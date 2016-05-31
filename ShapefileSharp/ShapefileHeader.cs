@@ -4,6 +4,15 @@ namespace ShapefileSharp
 {
     public sealed class ShapefileHeader : IShapefileHeader
     {
+        public ShapefileHeader() : this(new BoundingBox<IPointZ>(Point.Empty, Point.Empty))
+        {
+        }
+
+        public ShapefileHeader(IBoundingBox<IPointZ> box) : base()
+        {
+            BoundingBox = box;
+        }
+
         public int FileCode { get; set; }
         public WordCount FileLength { get; set; }
         public int Version { get; set; }

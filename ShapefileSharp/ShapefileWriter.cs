@@ -14,15 +14,10 @@ namespace ShapefileSharp
             ShpWriter = new BinaryWriter(ShpStream);
             ShxWriter = new BinaryWriter(ShxStream);
 
-            ShpHeader = new ShapefileHeader()
-            {
-                FileLength = ShapefileHeaderField.FieldLength
-            };
+            ShpHeader = new ShapefileHeader();
+            ShxHeader = new ShapefileHeader();
 
-            ShxHeader = new ShapefileHeader()
-            {
-                FileLength = ShapefileHeaderField.FieldLength
-            };
+            WriteHeaders();
         }
 
         #region IDisposable Support
@@ -34,7 +29,7 @@ namespace ShapefileSharp
             {
                 if (disposing)
                 {
-                    //TODO: Write headers to files...
+                    WriteHeaders();
 
                     ShpWriter.Dispose();
                     ShxWriter.Dispose();
@@ -87,6 +82,15 @@ namespace ShapefileSharp
             {
                 return ShxStream.Name;
             }
+        }
+
+        private void WriteHeaders()
+        {
+            var shpHeaderField = new ShapefileHeaderField(WordCount.Zero);
+            var shxHeaderField = new ShapefileHeaderField(WordCount.Zero);
+
+            shpHeaderField.Write(ShpWriter, ShpHeader);
+            shxHeaderField.Write(ShxWriter, ShxHeader);
         }
 
         /// <summary>
