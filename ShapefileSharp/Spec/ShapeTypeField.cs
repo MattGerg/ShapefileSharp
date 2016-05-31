@@ -30,7 +30,7 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, ShapeType value, WordCount origin)
         {
-            throw new NotImplementedException();
+            ShapeTypeIntField.Write(writer, (int)value, origin);
         }
     }
 }

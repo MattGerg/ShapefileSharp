@@ -50,7 +50,10 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IPointZ value, WordCount origin)
         {
-            throw new NotImplementedException();
+            X.Write(writer, value.X, origin);
+            Y.Write(writer, value.Y, origin);
+            Z.Write(writer, value.Z, origin);
+            M.Write(writer, value.M, origin);
         }
     }
 }
