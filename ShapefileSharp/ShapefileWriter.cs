@@ -108,6 +108,8 @@ namespace ShapefileSharp
 
         public IShapefileRecord<T> Write(T shape)
         {
+            //TODO: Add the shape to the BoundingBox of the header...
+
             var shpRecordOffset = WordCount.FromBytes(ShpWriter.BaseStream.Position);
             var shpContentOffset = shpRecordOffset + ShpRecordHeaderField.FieldLength;
 
