@@ -8,8 +8,8 @@ namespace ShapefileSharp.Spec
         public ShapefileHeaderField(WordCount offset) : base(offset)
         {
             FileCode = new IntField(offset, Endianness.Big);
-            FileLength = new WordCountField(offset + WordCount.FromBytes(4));
-            Version = new IntField(offset, Endianness.Little);
+            FileLength = new WordCountField(offset + WordCount.FromBytes(24));
+            Version = new IntField(offset + WordCount.FromBytes(28), Endianness.Little);
             ShapeType = new ShapeTypeField(offset + WordCount.FromBytes(32));
             BoxMin = new PointZField(
                 offset + WordCount.FromBytes(36),
