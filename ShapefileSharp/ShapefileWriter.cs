@@ -86,6 +86,9 @@ namespace ShapefileSharp
 
         private void WriteHeaders()
         {
+            ShpHeader.FileLength = WordCount.FromBytes(ShpWriter.BaseStream.Length);
+            ShxHeader.FileLength = WordCount.FromBytes(ShxWriter.BaseStream.Length);
+
             var shpHeaderField = new ShapefileHeaderField(WordCount.Zero);
             var shxHeaderField = new ShapefileHeaderField(WordCount.Zero);
 
