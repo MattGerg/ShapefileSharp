@@ -7,12 +7,15 @@ namespace ShapefileSharp.Tests
     [TestClass]
     public class ReadWriteTests
     {
-        private bool IsContentEqual(string filePath1, string filePath2)
+        private void AssertIsContentEqual(string expectedFilePath, string actualFilePath)
         {
-            var bytes1 = File.ReadAllBytes(filePath1);
-            var bytes2 = File.ReadAllBytes(filePath2);
+            var bytes1 = File.ReadAllBytes(expectedFilePath);
+            var bytes2 = File.ReadAllBytes(actualFilePath);
 
-            return bytes1.SequenceEqual(bytes2);
+            for (var i=0; i < bytes1.Length; i++)
+            {
+                Assert.AreEqual(bytes1[i], bytes2[i], string.Format("Position: {0}", i));
+            }
         }
 
         [TestMethod]
@@ -30,7 +33,7 @@ namespace ShapefileSharp.Tests
                 }
             }
 
-            Assert.IsTrue(IsContentEqual(expected, actual));
+            AssertIsContentEqual(expected, actual);
         }
     }
 }
