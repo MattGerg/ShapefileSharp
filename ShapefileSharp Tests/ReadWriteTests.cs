@@ -24,11 +24,30 @@ namespace ShapefileSharp.Tests
             var expected = Shapefiles.CitiesMainFile.FilePath;
             var actual = "written.shp";
 
-            var reader = new Shapefile(Shapefiles.CitiesMainFile.FilePath);
+            var reader = new Shapefile(expected);
 
             using (var writer = new ShapefileWriter<IPointShape<IPoint>>(actual))
             {
                 foreach (var iFeature in reader.Features) {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ReadWrite_PolyLine()
+        {
+            var expected = Shapefiles.PolyLineShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IPolyLineShape<IPoint>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
                     writer.Write(iFeature.Shape);
                 }
             }
