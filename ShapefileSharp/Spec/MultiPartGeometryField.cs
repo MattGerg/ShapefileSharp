@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ShapefileSharp.Spec
 {
@@ -76,7 +77,28 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IMultiPartGeometry<IPoint> value, WordCount origin)
         {
-            throw new NotImplementedException();
+            Box.Write(writer, value.Box, origin);
+
+            var partCount = value.Parts.Count;
+            NumParts.Write(writer, partCount, origin);
+
+            var points = value.Parts.SelectMany(part => part.Points).ToArray();
+
+            NumPoints.Write(writer, points.Length, origin);
+
+            int pointCount = 0;
+
+            for (int i = 0; i < partCount; i++)
+            {
+                Part(i).Write(writer, pointCount, origin);
+
+                pointCount += value.Parts[i].Points.Count;
+            }
+
+            for (int i = 0; i < pointCount; i++)
+            {
+                Point(partCount, i).Write(writer, points[i], origin);
+            }
         }
     }
 }
