@@ -25,7 +25,13 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IPolyLineShape<IPoint> value, WordCount origin)
         {
-            throw new NotImplementedException();
+            var geometry = new MultiPartGeometry<IPoint>()
+            {
+                Box = value.Box,
+                Parts = value.Lines
+            };
+
+            Geometry.Write(writer, geometry, origin);
         }
     }
 }

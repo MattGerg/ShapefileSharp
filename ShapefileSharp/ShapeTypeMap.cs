@@ -21,6 +21,11 @@ namespace ShapefileSharp
                 return ShapeType.Point;
             }
 
+            if (typeof(T).IsEquivalentTo(typeof(IPolyLineShape<IPoint>)))
+            {
+                return ShapeType.PolyLine;
+            }
+
             throw new NotImplementedException(typeof(T).ToString());
         }
     }

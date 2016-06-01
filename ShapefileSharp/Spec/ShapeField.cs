@@ -96,6 +96,14 @@ namespace ShapefileSharp.Spec
                     }
                     break;
 
+                case ShapeType.PolyLine:
+                    {
+                        var shapeField = new PolyLineShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IPolyLineShape<IPoint>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
                 default:
                     Debug.Fail(string.Format("Unimplemented IShape: {0}", typeof(IShape)));
                     throw new NotImplementedException();
