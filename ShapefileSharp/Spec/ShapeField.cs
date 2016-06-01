@@ -79,8 +79,7 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IShape value, WordCount origin)
         {
-            writer.BaseStream.Position = origin.Bytes;
-            writer.Write((int)value.ShapeType);
+            ShapeTypeField.Write(writer, value.ShapeType, origin);
 
             //TODO: This switch should drive off of the Type somehow...
             //      So then we can serialize a PointZ as a PointM, for example.
