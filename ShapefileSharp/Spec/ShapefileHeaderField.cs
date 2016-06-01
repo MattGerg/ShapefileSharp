@@ -75,14 +75,14 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IShapefileHeader value, WordCount origin)
         {
-            FileCode.Write(writer, value.FileCode, origin);
-            Unused1.Write(writer, UnusedValue, origin);
-            Unused2.Write(writer, UnusedValue, origin);
-            Unused3.Write(writer, UnusedValue, origin);
-            Unused4.Write(writer, UnusedValue, origin);
-            Unused5.Write(writer, UnusedValue, origin);
+            FileCode.Write(writer, FileCodeValue, origin); //TODO: ShapefileHeader should be constructed with this const value... then we write the property value.
+            Unused1.Write(writer, UnusedValue, origin); //TODO: ShapefileHeader should be constructed with this const value... then we write the property value.
+            Unused2.Write(writer, UnusedValue, origin); //TODO: ShapefileHeader should be constructed with this const value... then we write the property value.
+            Unused3.Write(writer, UnusedValue, origin); //TODO: ShapefileHeader should be constructed with this const value... then we write the property value.
+            Unused4.Write(writer, UnusedValue, origin); //TODO: ShapefileHeader should be constructed with this const value... then we write the property value.
+            Unused5.Write(writer, UnusedValue, origin); //TODO: ShapefileHeader should be constructed with this const value... then we write the property value.
             FileLength.Write(writer, value.FileLength, origin);
-            Version.Write(writer, value.Version, origin);
+            Version.Write(writer, VersionValue, origin); //TODO: ShapefileHeader should be constructed with this const value... then we write the property value.
             ShapeType.Write(writer, value.ShapeType, origin);
             BoxMin.Write(writer, value.BoundingBox.Min, origin);
             BoxMax.Write(writer, value.BoundingBox.Max, origin);

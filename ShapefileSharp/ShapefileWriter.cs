@@ -100,6 +100,8 @@ namespace ShapefileSharp
                 };
             }
 
+            //TODO: Populate Header.ShapeType field...
+
             var shpHeaderField = new ShapefileHeaderField(WordCount.Zero);
             var shxHeaderField = new ShapefileHeaderField(WordCount.Zero);
 
