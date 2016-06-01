@@ -4,7 +4,7 @@ using System.IO;
 
 namespace ShapefileSharp
 {
-    public sealed class ShapefileWriter<T> : IDisposable where T : IShape
+    public sealed class ShapefileWriter<T> : IDisposable where T:IShape<IPoint>
     {
         public ShapefileWriter(string shpFilePath) : base()
         {
@@ -57,6 +57,8 @@ namespace ShapefileSharp
         private readonly ShapefileHeader ShpHeader;
         private readonly ShapefileHeader ShxHeader;
 
+        private BoundingBox<Point>? BoundingBox;
+
         public void Close()
         {
             Dispose();
@@ -89,6 +91,15 @@ namespace ShapefileSharp
             ShpHeader.FileLength = WordCount.FromBytes(ShpWriter.BaseStream.Length);
             ShxHeader.FileLength = WordCount.FromBytes(ShxWriter.BaseStream.Length);
 
+            if (BoundingBox.HasValue)
+            {
+                ShpHeader.BoundingBox = new BoundingBox<IPointZ>()
+                {
+                    Min = BoundingBox.Value.Min,
+                    Max = BoundingBox.Value.Max
+                };
+            }
+
             var shpHeaderField = new ShapefileHeaderField(WordCount.Zero);
             var shxHeaderField = new ShapefileHeaderField(WordCount.Zero);
 
@@ -108,7 +119,20 @@ namespace ShapefileSharp
 
         public IShapefileRecord<T> Write(T shape)
         {
-            //TODO: Add the shape to the BoundingBox of the header...
+            if (BoundingBox.HasValue)
+            {
+                BoundingBox = new BoundingBox<Point>()
+                {
+                    Min = BoundingBox.Value.Min.Minimize(shape.Box.Min),
+                    Max = BoundingBox.Value.Max.Maximize(shape.Box.Max)
+                };
+            } else {
+                BoundingBox = new BoundingBox<Point>()
+                {
+                    Min = new Point(shape.Box.Min),
+                    Max = new Point(shape.Box.Max)
+                };
+            }
 
             var shpRecordOffset = WordCount.FromBytes(ShpWriter.BaseStream.Position);
             var shpContentOffset = shpRecordOffset + ShpRecordHeaderField.FieldLength;
