@@ -100,7 +100,7 @@ namespace ShapefileSharp
                 };
             }
 
-            //TODO: Populate Header.ShapeType field...
+            ShpHeader.ShapeType = ShapeTypeMap.GetShapeType<T>();
 
             var shpHeaderField = new ShapefileHeaderField(WordCount.Zero);
             var shxHeaderField = new ShapefileHeaderField(WordCount.Zero);

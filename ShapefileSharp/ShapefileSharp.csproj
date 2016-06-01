@@ -72,6 +72,7 @@
     <Compile Include="ShapefileHeader.cs" />
     <Compile Include="ShapefileRecord.cs" />
     <Compile Include="ShapefileWriter.cs" />
+    <Compile Include="ShapeTypeMap.cs" />
     <Compile Include="ShpReader.cs" />
     <Compile Include="ShxRecord.cs" />
     <Compile Include="ShxReader.cs" />
