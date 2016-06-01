@@ -104,6 +104,14 @@ namespace ShapefileSharp.Spec
                     }
                     break;
 
+                case ShapeType.Polygon:
+                    {
+                        var shapeField = new PolygonShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IPolygonShape<IPoint>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
                 default:
                     Debug.Fail(string.Format("Unimplemented IShape: {0}", typeof(IShape)));
                     throw new NotImplementedException();
