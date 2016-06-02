@@ -73,5 +73,24 @@ namespace ShapefileSharp.Tests
 
             AssertIsContentEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void ReadWrite_MultiPoint()
+        {
+            var expected = Shapefiles.MultiPointShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IMultiPointShape<IPoint>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
     }
 }

@@ -31,6 +31,11 @@ namespace ShapefileSharp
                 return ShapeType.Polygon;
             }
 
+            if (typeof(T).IsEquivalentTo(typeof(IMultiPointShape<IPoint>)))
+            {
+                return ShapeType.MultiPoint;
+            }
+
             throw new NotImplementedException(typeof(T).ToString());
         }
     }
