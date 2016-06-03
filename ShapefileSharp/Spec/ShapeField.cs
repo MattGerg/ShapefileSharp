@@ -112,6 +112,14 @@ namespace ShapefileSharp.Spec
                     }
                     break;
 
+                case ShapeType.MultiPoint:
+                    {
+                        var shapeField = new MultiPointShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IMultiPointShape<IPoint>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
                 default:
                     Debug.Fail(string.Format("Unimplemented IShape: {0}", typeof(IShape)));
                     throw new NotImplementedException();

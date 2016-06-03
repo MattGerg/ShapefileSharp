@@ -45,7 +45,13 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IMultiPointShape<IPoint> value, WordCount origin)
         {
-            throw new NotImplementedException();
+            Box.Write(writer, value.Box, origin);
+            NumPoints.Write(writer, value.Points.Count, origin);
+
+            for (int i = 0; i < value.Points.Count; i++)
+            {
+                Point(i).Write(writer, value.Points[i], origin);
+            }
         }
     }
 }
