@@ -4,7 +4,7 @@ namespace ShapefileSharp
 {
     public sealed class ShapefileHeader : IShapefileHeader
     {
-        public ShapefileHeader() : this(new BoundingBox<IPointZ>(Point.Empty, Point.Empty))
+        public ShapefileHeader() : this(new BoundingBox<IPointZ>(new Point(), new Point()))
         {
         }
 

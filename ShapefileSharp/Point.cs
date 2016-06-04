@@ -2,19 +2,16 @@
 
 namespace ShapefileSharp
 {
-    //TODO: Shouldn't an IPointZ should equal an IPoint based only on X+Y?  
-    //      With this struct, it won't...
-    //TODO: Mutable struct... bad practice?
-    public struct Point : IPoint, IPointM, IPointZ
+    public class Point : IPoint, IPointM, IPointZ
     {
-        public static readonly Point Empty = new Point();
+        public Point() : base()
+        {
+        }
 
-        public Point(IPoint point)
+        public Point(IPoint point) : this()
         {
             X = point.X;
             Y = point.Y;
-            Z = Empty.Z;
-            M = Empty.M;
         }
 
         public Point(IPointM point) : this((IPoint) point)

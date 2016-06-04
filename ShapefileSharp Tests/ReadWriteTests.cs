@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using System.Linq;
 
 namespace ShapefileSharp.Tests
 {
@@ -21,7 +20,7 @@ namespace ShapefileSharp.Tests
         [TestMethod]
         public void ReadWrite_Point()
         {
-            var expected = Shapefiles.CitiesMainFile.FilePath;
+            var expected = Shapefiles.PointShpFile.FilePath;
             var actual = "written.shp";
 
             var reader = new Shapefile(expected);
