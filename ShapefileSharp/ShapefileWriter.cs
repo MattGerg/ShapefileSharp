@@ -92,8 +92,8 @@ namespace ShapefileSharp
             ShxHeader.FileLength = WordCount.FromBytes(ShxWriter.BaseStream.Length);
 
             if (BoundingBox != null) { 
-                ShpHeader.BoundingBox = BoundingBox.ToIPointZ();
-                ShxHeader.BoundingBox = BoundingBox.ToIPointZ();
+                ShpHeader.BoundingBox = BoundingBox;
+                ShxHeader.BoundingBox = BoundingBox;
             }
 
             ShpHeader.ShapeType = ShapeTypeMap.GetShapeType<T>();

@@ -19,12 +19,4 @@
         public T Min { get; set; }
         public T Max { get; set; }
     }
-
-    internal static class BoundingBoxExtensions
-    {
-        public static BoundingBox<IPointZ> ToIPointZ(this BoundingBox<PointZ> box)
-        {
-            return new BoundingBox<IPointZ>(box.Min, box.Max);
-        }
-    }
 }
