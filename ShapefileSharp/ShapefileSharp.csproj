@@ -64,8 +64,10 @@
     <Compile Include="MultiPointMShape.cs" />
     <Compile Include="MultiPointShape.cs" />
     <Compile Include="Point.cs" />
+    <Compile Include="PointM.cs" />
     <Compile Include="PointMShape.cs" />
     <Compile Include="PointShape.cs" />
+    <Compile Include="PointZ.cs" />
     <Compile Include="PointZShape.cs" />
     <Compile Include="PolygonShape.cs" />
     <Compile Include="PolyLineShape.cs" />

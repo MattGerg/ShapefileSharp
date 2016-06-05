@@ -39,7 +39,7 @@ namespace ShapefileSharp.Spec
 
         public override IPointZ Read(BinaryReader reader, WordCount origin)
         {
-            return new Point()
+            return new PointZ()
             {
                 X = X.Read(reader, origin),
                 Y = Y.Read(reader, origin),

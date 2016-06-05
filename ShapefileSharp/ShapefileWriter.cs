@@ -57,7 +57,7 @@ namespace ShapefileSharp
         private readonly ShapefileHeader ShpHeader;
         private readonly ShapefileHeader ShxHeader;
 
-        private BoundingBox<Point>? BoundingBox;
+        private BoundingBox<PointZ>? BoundingBox;
 
         public void Close()
         {
@@ -121,18 +121,18 @@ namespace ShapefileSharp
 
         public IShapefileRecord<T> Write(T shape)
         {
+            //TODO: Write BoundingBox merge method(s)...
+            dynamic shapeBox = shape.Box;
+
             if (BoundingBox.HasValue)
             {
-                BoundingBox = new BoundingBox<Point>()
-                {
-                    Min = BoundingBox.Value.Min.Minimize(shape.Box.Min),
-                    Max = BoundingBox.Value.Max.Maximize(shape.Box.Max)
-                };
+                BoundingBox.Value.Min.Minimize(shapeBox.Min);
+                BoundingBox.Value.Max.Maximize(shapeBox.Max);
             } else {
-                BoundingBox = new BoundingBox<Point>()
+                BoundingBox = new BoundingBox<PointZ>()
                 {
-                    Min = new Point(shape.Box.Min),
-                    Max = new Point(shape.Box.Max)
+                    Min = new PointZ(shapeBox.Min),
+                    Max = new PointZ(shapeBox.Max)
                 };
             }
 

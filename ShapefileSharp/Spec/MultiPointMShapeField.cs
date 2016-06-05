@@ -60,13 +60,13 @@ namespace ShapefileSharp.Spec
 
             var boxM = new BoundingBox<IPointM>()
             {
-                Min = new Point()
+                Min = new PointM()
                 {
                     X = box.Min.X,
                     Y = box.Min.Y,
                     M = minM
                 },
-                Max = new Point()
+                Max = new PointM()
                 {
                     X = box.Max.X,
                     Y = box.Max.Y,
