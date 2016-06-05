@@ -3,6 +3,7 @@ using System.IO;
 
 namespace ShapefileSharp.Tests
 {
+    //TODO: Test that the .shx files are correct as well...
     [TestClass]
     public class ReadWriteTests
     {
@@ -101,6 +102,25 @@ namespace ShapefileSharp.Tests
             var reader = new Shapefile(expected);
 
             using (var writer = new ShapefileWriter<IPointShape<IPointM>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ReadWrite_MultiPointM()
+        {
+            var expected = Shapefiles.MultiPointMShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IMultiPointShape<IPointM>>(actual))
             {
                 foreach (var iFeature in reader.Features)
                 {

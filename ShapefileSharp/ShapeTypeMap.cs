@@ -36,6 +36,11 @@ namespace ShapefileSharp
                 return ShapeType.MultiPoint;
             }
 
+            if (typeof(T).IsEquivalentTo(typeof(IMultiPointShape<IPointM>)))
+            {
+                return ShapeType.MultiPointM;
+            }
+
             throw new NotImplementedException(typeof(T).ToString());
         }
     }
