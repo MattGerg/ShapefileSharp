@@ -57,7 +57,7 @@ namespace ShapefileSharp
         private readonly ShapefileHeader ShpHeader;
         private readonly ShapefileHeader ShxHeader;
 
-        private BoundingBox<PointZ>? BoundingBox;
+        private BoundingBox<PointZ> BoundingBox;
 
         public void Close()
         {
@@ -91,13 +91,9 @@ namespace ShapefileSharp
             ShpHeader.FileLength = WordCount.FromBytes(ShpWriter.BaseStream.Length);
             ShxHeader.FileLength = WordCount.FromBytes(ShxWriter.BaseStream.Length);
 
-            if (BoundingBox.HasValue)
-            {
-                ShpHeader.BoundingBox = new BoundingBox<IPointZ>()
-                {
-                    Min = BoundingBox.Value.Min,
-                    Max = BoundingBox.Value.Max
-                };
+            if (BoundingBox != null) { 
+                ShpHeader.BoundingBox = BoundingBox.ToIPointZ();
+                ShxHeader.BoundingBox = BoundingBox.ToIPointZ();
             }
 
             ShpHeader.ShapeType = ShapeTypeMap.GetShapeType<T>();
@@ -124,16 +120,16 @@ namespace ShapefileSharp
             //TODO: Write BoundingBox merge method(s)...
             dynamic shapeBox = shape.Box;
 
-            if (BoundingBox.HasValue)
+            if (BoundingBox == null)
             {
-                BoundingBox.Value.Min.Minimize(shapeBox.Min);
-                BoundingBox.Value.Max.Maximize(shapeBox.Max);
-            } else {
                 BoundingBox = new BoundingBox<PointZ>()
                 {
                     Min = new PointZ(shapeBox.Min),
                     Max = new PointZ(shapeBox.Max)
                 };
+            } else {
+                BoundingBox.Min.Minimize(shapeBox.Min);
+                BoundingBox.Max.Maximize(shapeBox.Max);
             }
 
             var shpRecordOffset = WordCount.FromBytes(ShpWriter.BaseStream.Position);
