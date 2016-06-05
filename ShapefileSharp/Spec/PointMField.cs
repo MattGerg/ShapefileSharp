@@ -43,7 +43,9 @@ namespace ShapefileSharp.Spec
 
         public override void Write(BinaryWriter writer, IPointM value, WordCount origin)
         {
-            throw new NotImplementedException();
+            X.Write(writer, value.X, origin);
+            Y.Write(writer, value.Y, origin);
+            M.Write(writer, value.M, origin);
         }
     }
 }
