@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IPointShape<T>: IShape<T> where T:IPoint
+    public interface IPointShape<out T>: IShape<T> where T:IPoint
     {
         T Point { get; }
     }

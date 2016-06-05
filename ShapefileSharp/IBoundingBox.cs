@@ -1,6 +1,6 @@
 ﻿namespace ShapefileSharp
 {
-    public interface IBoundingBox<T> where T:IPoint
+    public interface IBoundingBox<out T> where T:IPoint
     {
         T Min { get; }
         T Max { get; }
