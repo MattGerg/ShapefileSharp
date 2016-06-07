@@ -130,5 +130,24 @@ namespace ShapefileSharp.Tests
 
             AssertIsContentEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void ReadWrite_PointZ()
+        {
+            var expected = Shapefiles.PointZShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IPointShape<IPointZ>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
     }
 }

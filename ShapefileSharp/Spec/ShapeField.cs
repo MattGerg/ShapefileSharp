@@ -136,6 +136,14 @@ namespace ShapefileSharp.Spec
                     }
                     break;
 
+                case ShapeType.PointZ:
+                    {
+                        var shapeField = new PointZShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IPointShape<IPointZ>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
                 default:
                     Debug.Fail(string.Format("Unimplemented IShape: {0}", typeof(IShape)));
                     throw new NotImplementedException();
