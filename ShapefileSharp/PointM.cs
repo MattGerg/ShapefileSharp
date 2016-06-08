@@ -20,7 +20,7 @@ namespace ShapefileSharp
         /// <summary>
         /// Any M value less than this is a "no data" value.
         /// </summary>
-        public const double NoDataMax = -10^38;
+        public const double NoDataMax = -10e38;
 
         public double M { get; set; }
 
