@@ -43,6 +43,13 @@ namespace ShapefileSharp.Spec
                         return shapeField.Read(reader);
                     }
 
+                case ShapeType.PolyLineM:
+                    {
+                        var shapeField = new PolyLineMShapeField(Offset + ShapeTypeField.Length);
+
+                        return shapeField.Read(reader);
+                    }
+
                 case ShapeType.Polygon:
                     {
                         var shapeField = new PolygonShapeField(Offset + ShapeTypeField.Length);
@@ -101,6 +108,14 @@ namespace ShapefileSharp.Spec
                         var shapeField = new PolyLineShapeField(Offset + ShapeTypeField.Length);
 
                         shapeField.Write(writer, (IPolyLineShape<IPoint>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
+                case ShapeType.PolyLineM:
+                    {
+                        var shapeField = new PolyLineMShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IPolyLineShape<IPointM>)value); //TODO: Presumptuous cast...
                     }
                     break;
 
