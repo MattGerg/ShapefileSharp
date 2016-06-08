@@ -56,6 +56,25 @@ namespace ShapefileSharp.Tests
         }
 
         [TestMethod]
+        public void ReadWrite_PolyLineM()
+        {
+            var expected = Shapefiles.PolyLineMShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IPolyLineShape<IPointM>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void ReadWrite_Polygon()
         {
             var expected = Shapefiles.PolygonShpFile.FilePath;
