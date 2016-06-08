@@ -12,7 +12,7 @@ namespace ShapefileSharp.Spec
             NumPoints = new IntField(offset + Box.Length, Endianness.Little);
         }
 
-        private BoundingBox2dField Box { get; }
+        private BoundingBox2dField Box { get; } //TODO: We need a BoxM field...
         private IntField NumPoints { get; }
 
         //TODO: Combine the Box/MinM/MaxM fields like this...?
@@ -89,6 +89,9 @@ namespace ShapefileSharp.Spec
             {
                 Point(value.Points.Count, i).Write(writer, value.Points[i], origin);
             }
+
+            MinM(value.Points.Count).Write(writer, value.Box.Min.M, origin);
+            MaxM(value.Points.Count).Write(writer, value.Box.Max.M, origin);
         }
     }
 }
