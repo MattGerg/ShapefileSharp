@@ -162,12 +162,12 @@ namespace ShapefileSharp
             var shapeField = new ShapeField(shpContentOffset);
             shapeField.Write(ShpWriter, shape);
 
-            var shpStreamPositionAfterRecord = ShpWriter.BaseStream.Position;
+            var shpStreamLengthAfterRecordWrite = ShpWriter.BaseStream.Length;
                 
             var shpHeader = new ShpRecordHeader()
             {
-                //TODO: The shapeField should just have a Length... vs assuming the writer will be in the correct position...
-                ContentLength = WordCount.FromBytes(shpStreamPositionAfterRecord) - shpContentOffset,
+                //TODO: The shapeField should just have a Length... vs assuming the writer will be at the correct length...
+                ContentLength = WordCount.FromBytes(shpStreamLengthAfterRecordWrite) - shpContentOffset,
                 RecordNumber = RecordNumber
             };
 
@@ -175,7 +175,7 @@ namespace ShapefileSharp
             shpHeaderField.Write(ShpWriter, shpHeader);
 
             //Reset so we are at the correct position for the next shape...
-            ShpWriter.BaseStream.Position = shpStreamPositionAfterRecord;
+            ShpWriter.BaseStream.Position = shpStreamLengthAfterRecordWrite;
 
 
 
