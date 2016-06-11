@@ -94,6 +94,25 @@ namespace ShapefileSharp.Tests
         }
 
         [TestMethod]
+        public void ReadWrite_PolygonM()
+        {
+            var expected = Shapefiles.PolygonMShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IPolygonShape<IPointM>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void ReadWrite_MultiPoint()
         {
             var expected = Shapefiles.MultiPointShpFile.FilePath;

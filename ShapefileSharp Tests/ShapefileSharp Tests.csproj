@@ -59,6 +59,7 @@
     <Compile Include="Shapefiles\PolygonShpFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shapefiles\MultiPointShpFile.cs" />
+    <Compile Include="Shapefiles\PolygonMShpFile.cs" />
     <Compile Include="Shapefiles\PolyLineMShpFile.cs" />
     <Compile Include="Shapefiles\PolyLineShpFile.cs" />
     <Compile Include="ReadWriteTests.cs" />
