@@ -70,6 +70,7 @@
     <Compile Include="PointZ.cs" />
     <Compile Include="PointZShape.cs" />
     <Compile Include="PolygonShape.cs" />
+    <Compile Include="PolygonMShape.cs" />
     <Compile Include="PolyLineMShape.cs" />
     <Compile Include="PolyLineShape.cs" />
     <Compile Include="ShapefileHeader.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Spec\PointZField.cs" />
     <Compile Include="Spec\PointZShapeField.cs" />
     <Compile Include="Spec\PolygonShapeField.cs" />
+    <Compile Include="Spec\PolygonMShapeField.cs" />
     <Compile Include="Spec\PolyLineMShapeField.cs" />
     <Compile Include="Spec\PolyLineShapeField.cs" />
     <Compile Include="Spec\ShapeField.cs" />

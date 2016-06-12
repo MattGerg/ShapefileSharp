@@ -31,6 +31,11 @@ namespace ShapefileSharp
                 return ShapeType.PolyLine;
             }
 
+            if (typeof(T).IsEquivalentTo(typeof(IPolygonShape<IPointM>)))
+            {
+                return ShapeType.PolygonM;
+            }
+
             if (typeof(T).IsEquivalentTo(typeof(IPolygonShape<IPoint>)))
             {
                 return ShapeType.Polygon;
