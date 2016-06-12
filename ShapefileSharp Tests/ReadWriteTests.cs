@@ -132,14 +132,14 @@ namespace ShapefileSharp.Tests
         }
 
         [TestMethod]
-        public void ReadWrite_PointM()
+        public void ReadWrite_MultiPointM()
         {
-            var expected = Shapefiles.PointMShpFile.FilePath;
+            var expected = Shapefiles.MultiPointMShpFile.FilePath;
             var actual = "written.shp";
 
             var reader = new Shapefile(expected);
 
-            using (var writer = new ShapefileWriter<IPointShape<IPointM>>(actual))
+            using (var writer = new ShapefileWriter<IMultiPointShape<IPointM>>(actual))
             {
                 foreach (var iFeature in reader.Features)
                 {
@@ -151,14 +151,33 @@ namespace ShapefileSharp.Tests
         }
 
         [TestMethod]
-        public void ReadWrite_MultiPointM()
+        public void ReadWrite_MultiPointZ()
         {
-            var expected = Shapefiles.MultiPointMShpFile.FilePath;
+            var expected = Shapefiles.MultiPointZShpFile.FilePath;
             var actual = "written.shp";
 
             var reader = new Shapefile(expected);
 
-            using (var writer = new ShapefileWriter<IMultiPointShape<IPointM>>(actual))
+            using (var writer = new ShapefileWriter<IMultiPointShape<IPointZ>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ReadWrite_PointM()
+        {
+            var expected = Shapefiles.PointMShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IPointShape<IPointM>>(actual))
             {
                 foreach (var iFeature in reader.Features)
                 {
