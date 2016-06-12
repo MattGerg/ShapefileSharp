@@ -78,6 +78,13 @@ namespace ShapefileSharp.Spec
                         return shapeField.Read(reader);
                     }
 
+                case ShapeType.MultiPointZ:
+                    {
+                        var shapeField = new MultiPointZShapeField(Offset + ShapeTypeField.Length);
+
+                        return shapeField.Read(reader);
+                    }
+
                 case ShapeType.PointZ:
                     {
                         var shapeField = new PointZShapeField(Offset + ShapeTypeField.Length);
@@ -107,6 +114,22 @@ namespace ShapefileSharp.Spec
                         var shapeField = new PointShapeField(Offset + ShapeTypeField.Length);
 
                         shapeField.Write(writer, (IPointShape<IPoint>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
+                case ShapeType.PointM:
+                    {
+                        var shapeField = new PointMShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IPointShape<IPointM>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
+                case ShapeType.PointZ:
+                    {
+                        var shapeField = new PointZShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IPointShape<IPointZ>)value); //TODO: Presumptuous cast...
                     }
                     break;
 
@@ -150,14 +173,6 @@ namespace ShapefileSharp.Spec
                     }
                     break;
 
-                case ShapeType.PointM:
-                    {
-                        var shapeField = new PointMShapeField(Offset + ShapeTypeField.Length);
-
-                        shapeField.Write(writer, (IPointShape<IPointM>)value); //TODO: Presumptuous cast...
-                    }
-                    break;
-
                 case ShapeType.MultiPointM:
                     {
                         var shapeField = new MultiPointMShapeField(Offset + ShapeTypeField.Length);
@@ -166,11 +181,11 @@ namespace ShapefileSharp.Spec
                     }
                     break;
 
-                case ShapeType.PointZ:
+                case ShapeType.MultiPointZ:
                     {
-                        var shapeField = new PointZShapeField(Offset + ShapeTypeField.Length);
+                        var shapeField = new MultiPointZShapeField(Offset + ShapeTypeField.Length);
 
-                        shapeField.Write(writer, (IPointShape<IPointZ>)value); //TODO: Presumptuous cast...
+                        shapeField.Write(writer, (IMultiPointShape<IPointZ>)value); //TODO: Presumptuous cast...
                     }
                     break;
 
