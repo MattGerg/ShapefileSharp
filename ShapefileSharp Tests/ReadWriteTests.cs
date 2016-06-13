@@ -12,7 +12,14 @@ namespace ShapefileSharp.Tests
             var bytes1 = File.ReadAllBytes(expectedFilePath);
             var bytes2 = File.ReadAllBytes(actualFilePath);
 
-            for (var i=0; i < bytes1.Length; i++)
+            //Check shape content first...
+            for (var i=100; i < bytes1.Length; i++)
+            {
+                Assert.AreEqual(bytes1[i], bytes2[i], string.Format("Position: {0}", i));
+            }
+
+            //Check header content last...
+            for (var i=0; i < 100; i++)
             {
                 Assert.AreEqual(bytes1[i], bytes2[i], string.Format("Position: {0}", i));
             }
