@@ -31,12 +31,17 @@ namespace ShapefileSharp.Spec
 
         private PointZField Point(WordCount pointsOffset, int numPoints, int pointIndex)
         {
-            var xOffset = pointsOffset + (pointIndex * PointField.FieldLength);
+            var xOffset = OffsetX(pointsOffset, pointIndex);
             var yOffset = xOffset + DoubleField.FieldLength;
             var zOffset = OffsetZ(pointsOffset, numPoints, pointIndex);
             var mOffset = OffsetM(pointsOffset, numPoints, pointIndex);
 
             return new PointZField(xOffset, yOffset, zOffset, mOffset);
+        }
+
+        private WordCount OffsetX(WordCount pointsOffset, int pointIndex)
+        {
+            return pointsOffset + (pointIndex * PointField.FieldLength);
         }
 
         private DoubleField MinZ(WordCount pointsOffset, int numPoints)
