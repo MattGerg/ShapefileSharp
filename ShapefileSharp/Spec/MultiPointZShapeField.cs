@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace ShapefileSharp.Spec
@@ -34,31 +33,32 @@ namespace ShapefileSharp.Spec
         private WordCount OffsetMinZ(int numPoints)
         {
             //After the final Point
-            return NumPoints.Offset + NumPoints.Length + (numPoints * PointField.FieldLength);
+            var offset = NumPoints.Offset + NumPoints.Length + (numPoints * PointField.FieldLength);
+            return offset;
         }
 
         private WordCount OffsetMaxZ(int numPoints)
         {
-            return OffsetMinZ(numPoints) + DoubleField.FieldLength;
+            var offset = OffsetMinZ(numPoints) + DoubleField.FieldLength;
+            return offset;
         }
 
         private WordCount OffsetZ(int numPoints, int pointIndex)
         {
             //MaxZ.Offset + MaxZ.Length + Nth Z Value
-            return OffsetMaxZ(numPoints) + DoubleField.FieldLength + (pointIndex * DoubleField.FieldLength);
+            var offset = OffsetMaxZ(numPoints) + DoubleField.FieldLength + (pointIndex * DoubleField.FieldLength);
+            return offset;
         }
 
         private DoubleField MinZ(int numPoints)
         {
             var offset = OffsetMinZ(numPoints);
-
             return new DoubleField(offset);
         }
 
         private DoubleField MaxZ(int numPoints)
         {
             var offset = OffsetMinZ(numPoints) + DoubleField.FieldLength;
-
             return new DoubleField(offset);
         }
 
@@ -66,32 +66,33 @@ namespace ShapefileSharp.Spec
         private WordCount OffsetMinM(int numPoints)
         {
             //After the final Z value
-            return OffsetZ(numPoints, numPoints - 1) + DoubleField.FieldLength;
+            var offset = OffsetZ(numPoints, numPoints - 1) + DoubleField.FieldLength;
+            return offset;
         }
 
         private WordCount OffsetMaxM(int numPoints)
         {
             //MinM.Offset + MinM.Legnth
-            return OffsetMinM(numPoints) + DoubleField.FieldLength;
+            var offset = OffsetMinM(numPoints) + DoubleField.FieldLength;
+            return offset;
         }
 
         private WordCount OffsetM(int numPoints, int pointIndex)
         {
             //MaxM.Offset + MaxM.Legnth + Nth M Value
-            return OffsetMaxM(numPoints) + DoubleField.FieldLength + (pointIndex * DoubleField.FieldLength);
+            var offset = OffsetMaxM(numPoints) + DoubleField.FieldLength + (pointIndex * DoubleField.FieldLength);
+            return offset;
         }
 
         private DoubleField MinM(int numPoints)
         {
             var offset = OffsetMinM(numPoints);
-
             return new DoubleField(offset);
         }
 
         private DoubleField MaxM(int numPoints)
         {
             var offset = OffsetMaxM(numPoints);
-
             return new DoubleField(offset);
         }
 
@@ -144,7 +145,7 @@ namespace ShapefileSharp.Spec
         public override void Write(BinaryWriter writer, IMultiPointShape<IPointZ> value, WordCount origin)
         {
             Box.Write(writer, value.Box, origin);
-            
+
             for (int i = 0; i < value.Points.Count; i++)
             {
                 Point(value.Points.Count, i).Write(writer, value.Points[i], origin);
