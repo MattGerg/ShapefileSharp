@@ -156,8 +156,8 @@ namespace ShapefileSharp.Spec
                 Point(pointsOffset, pointCount, i).Write(writer, points[i], origin);
             }
 
-            MinM(pointsOffset, partCount).Write(writer, value.Box.Min.M, origin);
-            MaxM(pointsOffset, partCount).Write(writer, value.Box.Max.M, origin);
+            MinM(pointsOffset, pointCount).Write(writer, value.Box.Min.M, origin);
+            MaxM(pointsOffset, pointCount).Write(writer, value.Box.Max.M, origin);
         }
     }
 }
