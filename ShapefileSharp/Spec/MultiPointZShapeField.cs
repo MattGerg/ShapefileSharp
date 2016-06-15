@@ -130,7 +130,7 @@ namespace ShapefileSharp.Spec
                 {
                     X = box.Max.X,
                     Y = box.Max.Y,
-                    Z = minZ,
+                    Z = maxZ,
                     M = maxM
                 }
             };
@@ -146,10 +146,15 @@ namespace ShapefileSharp.Spec
         {
             Box.Write(writer, value.Box, origin);
 
+            NumPoints.Write(writer, value.Points.Count, origin);
+
             for (int i = 0; i < value.Points.Count; i++)
             {
                 Point(value.Points.Count, i).Write(writer, value.Points[i], origin);
             }
+
+            MinZ(value.Points.Count).Write(writer, value.Box.Min.Z, origin);
+            MaxZ(value.Points.Count).Write(writer, value.Box.Max.Z, origin);
 
             MinM(value.Points.Count).Write(writer, value.Box.Min.M, origin);
             MaxM(value.Points.Count).Write(writer, value.Box.Max.M, origin);
