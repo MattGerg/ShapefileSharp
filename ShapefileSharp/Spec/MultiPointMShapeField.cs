@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace ShapefileSharp.Spec
@@ -29,16 +28,26 @@ namespace ShapefileSharp.Spec
 
         private DoubleField MinM(int numPoints)
         {
-            var offset = NumPoints.Offset + NumPoints.Length + (numPoints * PointMField.FieldLength);
-
+            var offset = OffsetMinM(numPoints);
             return new DoubleField(offset);
+        }
+
+        private WordCount OffsetMinM(int numPoints)
+        {
+            var offset = NumPoints.Offset + NumPoints.Length + (numPoints * PointField.FieldLength);
+            return offset;
         }
 
         private DoubleField MaxM(int numPoints)
         {
-            var offset = NumPoints.Offset + NumPoints.Length + (numPoints * PointMField.FieldLength) + DoubleField.FieldLength;
-
+            var offset = OffsetMaxM(numPoints);
             return new DoubleField(offset);
+        }
+
+        private WordCount OffsetMaxM(int numPoints)
+        {
+            var offset = OffsetMinM(numPoints) + DoubleField.FieldLength;
+            return offset;
         }
 
         public override IMultiPointShape<IPointM> Read(BinaryReader reader, WordCount origin)
@@ -84,7 +93,9 @@ namespace ShapefileSharp.Spec
         public override void Write(BinaryWriter writer, IMultiPointShape<IPointM> value, WordCount origin)
         {
             Box.Write(writer, value.Box, origin);
-            
+
+            NumPoints.Write(writer, value.Points.Count, origin);
+
             for (int i = 0; i < value.Points.Count; i++)
             {
                 Point(value.Points.Count, i).Write(writer, value.Points[i], origin);
