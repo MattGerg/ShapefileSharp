@@ -39,24 +39,35 @@ namespace ShapefileSharp.Spec
 
         private DoubleField MinM(WordCount pointsOffset, int numPoints)
         {
-            var offset = pointsOffset + (numPoints * PointMField.FieldLength);
-
+            var offset = OffsetMinM(pointsOffset, numPoints);
             return new DoubleField(offset);
+        }
+
+        private WordCount OffsetMinM(WordCount pointsOffset, int numPoints)
+        {
+            var offset = pointsOffset + (numPoints * PointMField.FieldLength);
+            return offset;
         }
 
         private DoubleField MaxM(WordCount pointsOffset, int numPoints)
         {
-            var offset = pointsOffset + (numPoints * PointMField.FieldLength) + DoubleField.FieldLength;
-
+            var offset = OffsetMaxM(pointsOffset, numPoints);
             return new DoubleField(offset);
+        }
+
+        private WordCount OffsetMaxM(WordCount pointsOffset, int numPoints)
+        {
+            var offset = OffsetMinM(pointsOffset, numPoints) + DoubleField.FieldLength;
+            return offset;
         }
 
         /// <summary>
         /// The offset of the first point.
         /// </summary>s>
-        private WordCount PointsOffset(int numParts)
+        private WordCount OffsetPoints(int numParts)
         {
-            return Offset + WordCount.FromBytes(40) + (numParts * IntField.FieldLength);
+            var offset = Offset + WordCount.FromBytes(40) + (numParts * IntField.FieldLength);
+            return offset;
         }
 
         public override IMultiPartGeometry<IPointM> Read(BinaryReader reader, WordCount origin)
@@ -75,7 +86,7 @@ namespace ShapefileSharp.Spec
             }
 
             var parts = new List<IMultiPointGeometry<IPointM>>();
-            var pointsOffset = PointsOffset(numParts);
+            var pointsOffset = OffsetPoints(numParts);
 
             for (var i = 0; i < pointStartIndices.Count; i++)
             {
@@ -138,7 +149,7 @@ namespace ShapefileSharp.Spec
                 pointCount += value.Parts[i].Points.Count;
             }
 
-            var pointsOffset = PointsOffset(partCount);
+            var pointsOffset = OffsetPoints(partCount);
 
             for (int i = 0; i < points.Length; i++)
             {
