@@ -31,8 +31,8 @@ namespace ShapefileSharp.Spec
         {
             var xyOffset = pointsOffset + (pointIndex * PointField.FieldLength);
 
-            //Points + MinM + MaxM + M values
-            var mOffset = pointsOffset + (numPoints * PointField.FieldLength) + (2 * DoubleField.FieldLength) + (pointIndex * DoubleField.FieldLength);
+            //MaxM.Offset + MaxM.Length + Nth M Value
+            var mOffset = OffsetMaxM(pointsOffset, numPoints) + DoubleField.FieldLength + (pointIndex * DoubleField.FieldLength);
 
             return new PointMField(xyOffset, mOffset);
         }
@@ -45,7 +45,7 @@ namespace ShapefileSharp.Spec
 
         private WordCount OffsetMinM(WordCount pointsOffset, int numPoints)
         {
-            var offset = pointsOffset + (numPoints * PointMField.FieldLength);
+            var offset = pointsOffset + (numPoints * PointField.FieldLength);
             return offset;
         }
 
