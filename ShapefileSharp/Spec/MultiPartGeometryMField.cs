@@ -24,7 +24,9 @@ namespace ShapefileSharp.Spec
         private IntField Part(int partIndex)
         {
             //TODO: Do we have to do all of this math again and again for every part?
-            return new IntField(Offset + WordCount.FromBytes(40) + (partIndex * IntField.FieldLength), Endianness.Little);
+            var offset = Offset + WordCount.FromBytes(40) + (partIndex * IntField.FieldLength);
+
+            return new IntField(offset, Endianness.Little);
         }
 
         private PointMField Point(WordCount pointsOffset, int numPoints, int pointIndex)
