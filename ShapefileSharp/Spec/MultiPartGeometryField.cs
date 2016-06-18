@@ -24,16 +24,14 @@ namespace ShapefileSharp.Spec
         /// </summary>
         private IntField Part(int partIndex)
         {
-            //TODO: Access these literals in a static field kind of way...
             //TODO: Do we have to do all of this math again and again for every part?
-            return new IntField(NumPoints.Offset + NumPoints.Length + WordCount.FromBytes(partIndex * 4), Endianness.Little);
+            return new IntField(NumPoints.Offset + NumPoints.Length + (partIndex * IntField.FieldLength), Endianness.Little);
         }
 
         private PointField Point(int numParts, int pointIndex)
         {
-            //TODO: Access these literals in a static field kind of way...
             //TODO: Do we have to do all of this math again and again for every point?
-            return new PointField(NumPoints.Offset + NumPoints.Length + WordCount.FromBytes((4 * numParts) + (pointIndex * 16)));
+            return new PointField(NumPoints.Offset + NumPoints.Length + (numParts * IntField.FieldLength) + (pointIndex * PointField.FieldLength));
         }
 
         public override IMultiPartGeometry<IPoint> Read(BinaryReader reader, WordCount origin)
