@@ -57,6 +57,7 @@
     <Compile Include="Shapefiles\MultiPointMShpFile.cs" />
     <Compile Include="Shapefiles\PointMShpFile.cs" />
     <Compile Include="Shapefiles\PointZShpFile.cs" />
+    <Compile Include="Shapefiles\PolygonZShpFile.cs" />
     <Compile Include="Shapefiles\PolygonShpFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shapefiles\MultiPointShpFile.cs" />
@@ -243,6 +244,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\polylinez.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\polygonz.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\polygonz.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\polygonz.shx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
