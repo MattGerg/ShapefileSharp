@@ -2,7 +2,7 @@
 
 namespace ShapefileSharp
 {
-    class MultiPointGeometry<T> : IMultiPointGeometry<T> where T : IPoint
+    internal sealed class MultiPointGeometry<T> : IMultiPointGeometry<T> where T : IPoint
     {
         public List<T> Points { get; } = new List<T>();
 
