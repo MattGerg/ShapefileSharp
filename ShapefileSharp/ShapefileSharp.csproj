@@ -64,6 +64,7 @@
     <Compile Include="MultiPointZShape.cs" />
     <Compile Include="MultiPointMShape.cs" />
     <Compile Include="MultiPointShape.cs" />
+    <Compile Include="PartType.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointM.cs" />
     <Compile Include="PointMShape.cs" />
