@@ -71,6 +71,13 @@ namespace ShapefileSharp.Spec
                         return shapeField.Read(reader);
                     }
 
+                case ShapeType.PolygonZ:
+                    {
+                        var shapeField = new PolygonZShapeField(Offset + ShapeTypeField.Length);
+
+                        return shapeField.Read(reader);
+                    }
+
                 case ShapeType.PointM:
                     {
                         var shapeField = new PointMShapeField(Offset + ShapeTypeField.Length);
@@ -177,6 +184,14 @@ namespace ShapefileSharp.Spec
                         var shapeField = new PolygonMShapeField(Offset + ShapeTypeField.Length);
 
                         shapeField.Write(writer, (IPolygonShape<IPointM>)value); //TODO: Presumptuous cast...
+                    }
+                    break;
+
+                case ShapeType.PolygonZ:
+                    {
+                        var shapeField = new PolygonZShapeField(Offset + ShapeTypeField.Length);
+
+                        shapeField.Write(writer, (IPolygonShape<IPointZ>)value); //TODO: Presumptuous cast...
                     }
                     break;
 
