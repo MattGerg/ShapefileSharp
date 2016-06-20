@@ -26,6 +26,25 @@ namespace ShapefileSharp.Tests
         }
 
         [TestMethod]
+        public void ReadWrite_MultiPatch()
+        {
+            var expected = Shapefiles.MultiPatchShpFile.FilePath;
+            var actual = "written.shp";
+
+            var reader = new Shapefile(expected);
+
+            using (var writer = new ShapefileWriter<IMultiPatchShape<IPointZ>>(actual))
+            {
+                foreach (var iFeature in reader.Features)
+                {
+                    writer.Write(iFeature.Shape);
+                }
+            }
+
+            AssertIsContentEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void ReadWrite_Point()
         {
             var expected = Shapefiles.PointShpFile.FilePath;
