@@ -106,6 +106,13 @@ namespace ShapefileSharp.Spec
                         return shapeField.Read(reader);
                     }
 
+                case ShapeType.MultiPatch:
+                    {
+                        var shapeField = new MultiPatchShapeField(Offset + ShapeTypeField.Length);
+
+                        return shapeField.Read(reader);
+                    }
+
                 default:
                     Debug.Fail(string.Format("Unimplemented ShapeType: {0}", shapeType));
                     throw new NotImplementedException();
